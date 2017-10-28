@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Catalogo de Cuentas</title>
+    </h:head>
+    <h:body>
+        <p:layout fullPage="true" id="page">
+            <p:layoutUnit id="edit" position="west" size="30%" >
+                <f:view>
+                    <h:form id="frmEdit">
+                        <h3><h:outputText value="Agregar/Modificar Cuentas"/></h3>
+                        <p:messages/>
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="Codigo de Cuenta:" for="idCuenta" />
+                            <p:inputText id="idCuenta" value="#{frmCatalogo.cuenta.idCuenta}" title="Codigo"/>
+                            <p:outputLabel value="Nombre:" for="nombre" />
+                            <p:inputText id="nombre" value="#{frmCatalogo.cuenta.nombre}" title="Nombre"/>
+                            <p:outputLabel value="Tipo de Saldo:" for="tipoSaldo" />
+                            <p:selectOneRadio id="tipoSaldo" value="#{frmCatalogo.cuenta.tipoSaldo}">
+                                <f:selectItem itemLabel="Deudor" itemValue="D"/>
+                                <f:selectItem itemLabel="Acreedor" itemValue="H"/>
+                            </p:selectOneRadio>
+                            <p:outputLabel value="Descripcion:" for="descripcion" />
+                            <p:inputText id="descripcion" value="#{frmCatalogo.cuenta.descripcion}" title="Descripcion" />
+                            <p:outputLabel value="Tipo de Cuenta:" for="idTipoCuenta" />
+                            <p:selectOneMenu id="idTipoCuenta" value="#{frmCatalogo.cuenta.idTipoCuenta}" effect="fold" converter="omnifaces.SelectItemsConverter">
+                                <f:selectItems  value="#{frmTipoCuenta.find()}" var="id" itemLabel="#{id.nombre}" itemValue="#{id}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Tipo de Estado:" for="idTipoEstado" />
+                            <p:selectOneMenu id="idTipoEstado" value="#{frmCatalogo.cuenta.idTipoEstado}" effect="fold" converter="omnifaces.SelectItemsConverter">
+                                <f:selectItems  value="#{frmTipoEstado.find()}" var="id" itemLabel="#{id.nombre}" itemValue="#{id}"/>
+                            </p:selectOneMenu>
+                            
+                        </p:panelGrid>
+                        <p:commandButton value="CREAR" rendered="#{frmCatalogo.crear}">
+                            <p:ajax process="edit" update="frmEdit :frmTable" listener="#{frmCatalogo.crear()}"/>
+                        </p:commandButton>
+                        <p:commandButton value="EDITAR" rendered="#{frmCatalogo.rmedit}">
+                            <p:ajax process="edit" update="frmEdit :frmTable" listener="#{frmCatalogo.modificar()}"/>
+                        </p:commandButton>
+                        <p:commandButton value="ELIMINAR" rendered="#{frmCatalogo.rmedit}">
+                            <p:ajax process="edit" update="frmEdit :frmTable" listener="#{frmCatalogo.eliminar()}"/>
+                        </p:commandButton>
+                        <p:commandButton value="CANCELAR" rendered="true">
+                            <p:ajax update="frmEdit :frmTable" listener="#{frmCatalogo.clear()}"/>
+                        </p:commandButton>
+                    </h:form>
+                </f:view>
+
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center" id="table">
+                <f:view>
+                    <h:form id="frmTable">
+                        <h2><h:outputText value="Catalogo de Cuentas"/></h2>
+                        <p:dataTable value="#{frmCatalogo.cuentasldm}" var="item"
+                                     lazy="true"
+                                     rows="8"
+                                     paginator="true"
+                                     selectionMode="single"
+                                     selection="#{frmCatalogo.cuenta}"
+                                     >
+                            <p:ajax update="frmEdit" event="rowSelect" listener="#{frmCatalogo.changeSelected}"/>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Codigo de Cuenta"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idCuenta}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nombre"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nombre}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Tipo de Cuenta"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idTipoCuenta.nombre}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Descripcion"/>
+                                </f:facet>
+                                <h:outputText value="#{item.descripcion}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </f:view>
+
+            </p:layoutUnit>
+
+        </p:layout>
+    </h:body>
+</html>
