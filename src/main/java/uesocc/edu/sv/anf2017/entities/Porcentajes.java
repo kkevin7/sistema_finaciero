@@ -22,10 +22,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author yovany
+ * @author kevin
  */
 @Entity
-@Table(name = "porcentajes", catalog = "anf2017", schema = "")
+@Table(name = "porcentajes", catalog = "analisisf2017", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Porcentajes.findAll", query = "SELECT p FROM Porcentajes p")
