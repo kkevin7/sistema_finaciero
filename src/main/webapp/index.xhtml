@@ -1,24 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <head>
+		<meta charset="UTF-8"/>
+		<title>Menu Principal</title>
+                <link href="resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+                <link rel="stylesheet" href="resources/css/menu_principal.css" />
+                <script src="resources/js/jquery.min.js"></script>
+                <script src="resources/js/skel.min.js"></script>
+                <script src="resources/js/skel-layers.min.js"></script>
+                <script src="resources/js/menuprincipal.js"></script>
+                <link rel="stylesheet" href="resources/css/footer_principal.css" />
+	</head>
+	<body class="landing">
 
-    <h:head>
-        <title>Sistema Contable</title>
-    </h:head>
-    <h:body> 
-            <h:form>
+		<!-- Header -->
+			<header id="header" class="idheader">
+                            <h1 style="font-size: 20px"><a href="index.html">Sistema Financiero</a></h1>
+				<nav id="nav" >
+					<ul>
+						<li><a href="index.jsf">Inicio</a></li>
+						<li><a href="#">Usuarios</a></li>
+						<li><a href="#" class="button special">Iniciar Sesión</a></li>
+					</ul>
+				</nav>
+			</header>
+
+
+
+		<!-- One -->
+			<section id="one" class="wrapper style1 special">
+				<div class="container">
+					<header class="major">
+						<h2>Por dónde empezamos</h2>
+						<p>Te mostramos las opciones principales del sistema!</p>
+					</header>
+					<div class="row 150%">
+						<div class="4u 12u(medium)">
+							<section class="box">
+                                                            <a href="pages/catalogo.jsf"><i class="icon big rounded color1 fa-address-book"></i></a>
+								<h3>Catalogo de Cuentas</h3>
+								<p>Esta opcion muestra las principales cuentas existentes en la base de datos,a la cual puede agregar mas y si desea.</p>
+							</section>
+						</div>
+						<div class="4u 12u(medium)">
+							<section class="box">
+                                                            <a href="#"><i class="icon big rounded color9 fa-desktop"></i></a>
+								<h3>Contabilidad</h3>
+								<p>Menu donde pobra registrar los movimientos diarios que se realizan en la empresa. </p>
+							</section>
+						</div>
+						<div class="4u 12u(medium)">
+							<section class="box">
+                                                            <a href="#"><i class="icon big rounded color6 fa fa-file-text"></i></a>
+								<h3>Reportes</h3>
+								<p>Generar reporte de estados financieros relizados duerante un perio, Balance Gneral, Estado de Resultados</p>
+							</section>
+                                                    
+						</div>
+					</div>
+				</div>
+			</section>
                 
-                                        <h3>PickList de Cuentas</h3>
-                <p:pickList id="PickList" value="#{frmCrear.cuentas}" var="V" effect="bounce"
-                            itemValue="#{V}" itemLabel="#{V.nombre}" 
-                            showSourceFilter="true" responsive="true" filterMatchMode="contains" converter="V"/>
+                <!-- FOOTER SISTEMA ANALISISFINANCIERO -->
+                 <footer id="myFooter">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <h5>Aplicacion</h5>
+                                                <ul>
+                                                    <li><a href="#">Incicio</a></li>
+                                                    <li><a href="#">Registrarse</a></li>
+                                                    <li><a href="#">Downloads</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h5>Sobre Nosotros</h5>
+                                                <ul>
+                                                    <li><a href="#">Universidad de El Salvador</a></li>
+                                                    <li><a href="#">Contact us</a></li>
+                                                    <li><a href="#">Analisis Financiero</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h5>Soporte</h5>
+                                                <ul>
+                                                    <li><a href="https://github.com/kkevin7">GitHub</a></li>
+                                                    <li><a href="#">Correo</a></li>
+                                                    <li><a href="#">Forums</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-3 info">
+                                                <h5>Informacion</h5>
+                                                <p> Somos estudiantes de la Universidad Nacional de El Salvador dispuestos a realizar una una aplicacion web para la asignatura de Analisis Financiero.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="second-bar">
+                                        <div class="container">
+                                            <h3 class="logo"><h:link value="Sistema Prestamos"></h:link></h3>
+                                            <div class="social-icons">
+                                                <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                                                <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                                                <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </footer>
+                        <!-- FOOTER SISTEMA ANALISISFINANCIERO -->
 
-              
-            </h:form>
-        
-    </h:body>
+		
+
+	</body>
 </html>
-
