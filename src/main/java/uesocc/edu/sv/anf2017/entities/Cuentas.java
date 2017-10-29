@@ -77,7 +77,7 @@ public class Cuentas implements Serializable {
         this.nombre = nombre;
         this.tipoSaldo = tipoSaldo;
     }
-
+    
     public Integer getIdCuenta() {
         return idCuenta;
     }
