@@ -6,13 +6,18 @@
 package uesocc.edu.sv.anf2017.ejb;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
+import uesocc.edu.sv.anf2017.mb.Messages;
 
 /**
  *
  * @author yovany
  */
 public abstract class AbstractFacade<T> {
+    
+    private Messages msg = new Messages();
 
     private Class<T> entityClass;
 
@@ -23,15 +28,30 @@ public abstract class AbstractFacade<T> {
     protected abstract EntityManager getEntityManager();
 
     public void create(T entity) {
-        getEntityManager().persist(entity);
+        try {
+            getEntityManager().persist(entity);
+             msg.MsgCreado();
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
+        }
     }
 
     public void edit(T entity) {
-        getEntityManager().merge(entity);
+        try {
+            getEntityManager().merge(entity);
+            msg.MsgModificado();
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
+        }
     }
 
     public void remove(T entity) {
-        getEntityManager().remove(getEntityManager().merge(entity));
+        try {
+            getEntityManager().remove(getEntityManager().merge(entity));
+            msg.MsgBorrado();
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
+        }
     }
 
     public T find(Object id) {

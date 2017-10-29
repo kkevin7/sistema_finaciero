@@ -22,12 +22,12 @@ import uesocc.edu.sv.anf2017.entities.TipoCuenta;
  */
 @Named(value = "frmTipoCuenta")
 @ViewScoped
-public class frmTipoCuenta implements Serializable{
+public class FrmTipoCuenta implements Serializable{
 
     /**
      * Creates a new instance of frmTipoCuenta
      */
-    public frmTipoCuenta() {
+    public FrmTipoCuenta() {
     }
 
     @EJB

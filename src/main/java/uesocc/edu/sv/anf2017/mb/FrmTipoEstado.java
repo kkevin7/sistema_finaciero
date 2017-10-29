@@ -22,12 +22,12 @@ import uesocc.edu.sv.anf2017.entities.TipoEstado;
  */
 @Named(value = "frmTipoEstado")
 @ViewScoped
-public class frmTipoEstado implements Serializable{
+public class FrmTipoEstado implements Serializable{
 
     /**
      * Creates a new instance of frmTipoCuenta
      */
-    public frmTipoEstado() {
+    public FrmTipoEstado() {
     }
 
     @EJB

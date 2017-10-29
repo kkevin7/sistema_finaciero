@@ -27,12 +27,12 @@ import uesocc.edu.sv.anf2017.entities.Cuentas;
  */
 @Named(value = "frmCatalogo")
 @ViewScoped
-public class frmCatalogo implements Serializable {
+public class FrmCatalogo implements Serializable {
 
     /**
      * Creates a new instance of frmCatalogo
      */
-    public frmCatalogo() {
+    public FrmCatalogo() {
     }
 
     @EJB
@@ -111,7 +111,7 @@ public class frmCatalogo implements Serializable {
             if (cuenta.getIdCuenta() != null && cuenta.getNombre().isEmpty() != true && cuenta.getTipoSaldo()!= null && this.cuentasfl != null) {
                 this.cuentasfl.create(cuenta);
                 clear();
-                msg.MsgCreado();
+               // msg.MsgCreado(); NO HAY NECESIDAD DE PONERLO AQUI, ES MEJOR EN LA REGLA DE NEGOCIO
             } else {
                 msg.MsgIncompleto();
             }
@@ -125,7 +125,7 @@ public class frmCatalogo implements Serializable {
             if (cuenta != null && this.cuentasfl != null) {
                 this.cuentasfl.remove(cuenta);
                 clear();
-                msg.MsgBorrado();
+                //msg.MsgBorrado(); NO HAY NECESIDAD DE PONERLO AQUI, ES MEJOR EN LA REGLA DE NEGOCIO
             }
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
@@ -137,7 +137,7 @@ public class frmCatalogo implements Serializable {
             if (cuenta != null && this.cuentasfl != null) {
                 this.cuentasfl.edit(cuenta);
                 clear();
-                msg.MsgModificado();
+               // msg.MsgModificado(); NO HAY NECESIDAD DE PONERLO AQUI, ES MEJOR EN LA REGLA DE NEGOCIO
             } else {
                 msg.MsgIncompleto();
             }
@@ -163,6 +163,8 @@ public class frmCatalogo implements Serializable {
         this.crear = true;
         this.rmedit = false;
     }
+    
+    /*-------------- Getter and Setter ---------------------*/
 
     public CuentasFacadeLocal getCuentasfl() {
         return cuentasfl;

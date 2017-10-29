@@ -22,12 +22,12 @@ import uesocc.edu.sv.anf2017.entities.Cuentas;
  */
 @Named(value = "frmCrear")
 @ViewScoped
-public class frmCrear implements Serializable {
+public class FrmCrear implements Serializable {
 
     /**
      * Creates a new instance of NewJSFManagedBean
      */
-    public frmCrear() {
+    public FrmCrear() {
     }
 
     @EJB
