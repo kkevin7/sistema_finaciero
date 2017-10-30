@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package uesocc.edu.sv.anf2017.ejb;
 
 import java.util.List;
@@ -11,13 +7,10 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import uesocc.edu.sv.anf2017.mb.Messages;
 
-/**
- *
- * @author yovany
- */
 public abstract class AbstractFacade<T> {
 
     private Messages msg = new Messages();
+    private EntityManager em;
 
     private Class<T> entityClass;
 
@@ -28,27 +21,51 @@ public abstract class AbstractFacade<T> {
     protected abstract EntityManager getEntityManager();
 
     public void create(T entity) {
+        
+        em= getEntityManager();
         try {
+            if(em != null && entity != null){
             getEntityManager().persist(entity);
-            msg.MsgCreado();
+
+             msg.MsgCreado();
+            }
+            else{
+                msg.msgEntidadVacia();
+                System.err.println("La entidad que llego a la regla de negocio se encuentra vacia");
+            }
+
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
         }
     }
 
     public void edit(T entity) {
+        em= getEntityManager();
         try {
+            if(em != null && entity != null){
             getEntityManager().merge(entity);
             msg.MsgModificado();
+            }
+            else{
+                msg.msgEntidadVacia();
+                System.err.println("La entidad que llego a la regla de negocio se encuentra vacia");
+            }
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
         }
     }
 
     public void remove(T entity) {
+        em= getEntityManager();
         try {
+            if(em != null && entity != null){
             getEntityManager().remove(getEntityManager().merge(entity));
             msg.MsgBorrado();
+            }
+            else{
+                msg.msgEntidadVacia();
+                System.err.println("La entidad que llego a la regla de negocio se encuentra vacia");
+            }
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
         }

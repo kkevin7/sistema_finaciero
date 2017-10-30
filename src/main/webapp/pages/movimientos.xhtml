@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Movimientos</title>
+    </h:head>
+    <h:body>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Contabilidad"/></h1>
+                <p:dataTable value="#{frmMovimientos.ldmMovimientos}" var="item"
+                             lazy="true"
+                             rows="10"
+                             paginator="true"
+                             selectionMode="single"
+                             paginatorPosition="bottom"
+                             rowsPerPageTemplate="10,15,20"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             emptyMessage="No existen registros"
+                             >
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="IdMovimiento"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idMovimiento}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Monto"/>
+                        </f:facet>
+                        <h:outputText value="#{item.monto}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Fecha"/>
+                        </f:facet>
+                        <h:outputText value="#{item.fecha}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Descripcion"/>
+                        </f:facet>
+                        <h:outputText value="#{item.descripcion}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="IdCuenta"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idCuenta}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="IdEmpresa"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idEmpresa}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </f:view>
+
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="CRUD"/></h1>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="IdMovimiento:" for="idMovimiento" />
+                    <p:inputText id="idMovimiento" value="#{frmMovimientos.movimientos.idMovimiento}" title="IdMovimiento" required="true" requiredMessage="The IdMovimiento field is required."/>
+                    <p:outputLabel value="Monto:" for="monto" />
+                    <p:inputText id="monto" value="#{frmMovimientos.movimientos.monto}" title="Monto" required="true" requiredMessage="The Monto field is required."/>
+                    <p:outputLabel value="Fecha:" for="fecha" />
+                    <p:inputText id="fecha" value="#{frmMovimientos.movimientos.fecha}" title="Fecha" required="true" requiredMessage="The Fecha field is required.">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </p:inputText>
+                    <p:outputLabel value="Descripcion:" for="descripcion" />
+                    <p:inputText id="descripcion" value="#{frmMovimientos.movimientos.descripcion}" title="Descripcion" />
+                    <p:outputLabel value="IdCuenta:" for="idCuenta" />
+                    <p:selectOneMenu id="idCuenta" value="#{frmMovimientos.movimientos.idCuenta}" required="true" requiredMessage="The IdCuenta field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{fixme}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="IdEmpresa:" for="idEmpresa" />
+                    <p:selectOneMenu id="idEmpresa" value="#{frmMovimientos.movimientos.idEmpresa}" required="true" requiredMessage="The IdEmpresa field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{fixme}"/>
+                    </p:selectOneMenu>
+                </p:panelGrid>
+            </h:form>
+        </f:view>
+
+
+    </h:body>
+</html>
+

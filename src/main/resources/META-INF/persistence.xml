@@ -9,7 +9,7 @@
     <class>uesocc.edu.sv.anf2017.entities.TipoCuenta</class>
     <class>uesocc.edu.sv.anf2017.entities.TipoEstado</class>
     <class>uesocc.edu.sv.anf2017.entities.Usuarios</class>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>
 </persistence>
