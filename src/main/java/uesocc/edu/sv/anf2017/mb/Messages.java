@@ -45,6 +45,12 @@ public class Messages implements Serializable {
         context.addMessage(null, new FacesMessage(severity, message, message));
     }
     
+    public void msgEntidadVacia() {
+        FacesContext.getCurrentInstance()
+        .addMessage(null, new FacesMessage
+        (FacesMessage.SEVERITY_WARN, "Entidad Vacia" , "Porfavor asegurece haberla intruducido"));
+    }
+    
     public String getMessage() {
         return message;
     }
