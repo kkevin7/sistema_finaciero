@@ -23,6 +23,8 @@ public interface AbstractInterface<T> {
     public T find(Object id);
 
     public List<T> findAll();
+    
+    public List<T> findBy(String parameter, String value);
 
     public List<T> findRange(int first, int pageSize);
 

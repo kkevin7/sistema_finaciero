@@ -16,7 +16,7 @@ import uesocc.edu.sv.anf2017.mb.Messages;
  * @author yovany
  */
 public abstract class AbstractFacade<T> {
-    
+
     private Messages msg = new Messages();
 
     private Class<T> entityClass;
@@ -30,7 +30,7 @@ public abstract class AbstractFacade<T> {
     public void create(T entity) {
         try {
             getEntityManager().persist(entity);
-             msg.MsgCreado();
+            msg.MsgCreado();
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
         }
@@ -80,5 +80,13 @@ public abstract class AbstractFacade<T> {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
-    
+
+    public List<T> findBy(String parameter, String value){
+        javax.persistence.criteria.CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        javax.persistence.criteria.CriteriaQuery<T> c = cb.createQuery(entityClass);
+        javax.persistence.criteria.Root<T> t = c.from(entityClass);
+        c.select(t).where(cb.like(t.<String>get(parameter), value+"%"));
+        javax.persistence.Query q = getEntityManager().createQuery(c);
+        return q.getResultList();
+    }
 }
