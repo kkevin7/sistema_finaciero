@@ -10,86 +10,89 @@
         <title>Agregar Empresas</title>
     </h:head>
     <h:body>
-        <f:view>
+
+        <ui:composition template="../templates/anftemplate.xhtml">
+            <ui:define name="content">
+
+                <f:view>
+                    <h:form id="frmTable">
+                        <h1><h:outputText value="Agregar Empresa"/></h1>
+                        <p:dataTable value="#{frmEmpresas.ldmEmpresas}" 
+                                     id="tbEmpresa"
+                                     var="item"
+                                     lazy="true"
+                                     rows="10"
+                                     paginator="true"
+                                     selectionMode="single"
+                                     paginatorPosition="bottom"
+                                     rowsPerPageTemplate="10,15,20"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     emptyMessage="No existen registros"
+                                     selection="#{frmEmpresas.empresas}"
+                                     >
+                            <p:ajax update="frmCrud" event="rowSelect" listener="#{frmEmpresas.changeSelected}"/>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="IdEmpresa"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idEmpresa}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nombre"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nombre}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Giro"/>
+                                </f:facet>
+                                <h:outputText value="#{item.giro}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Descripcion"/>
+                                </f:facet>
+                                <h:outputText value="#{item.descripcion}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </f:view>
+
+                <f:view>
 
 
-            <h:form id="frmTable">
-                <h1><h:outputText value="Agregar Empresa"/></h1>
-                <p:dataTable value="#{frmEmpresas.ldmEmpresas}" 
-                             id="tbEmpresa"
-                             var="item"
-                             lazy="true"
-                             rows="10"
-                             paginator="true"
-                             selectionMode="single"
-                             paginatorPosition="bottom"
-                             rowsPerPageTemplate="10,15,20"
-                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                             emptyMessage="No existen registros"
-                             selection="#{frmEmpresas.empresas}"
-                             >
-                    <p:ajax update="frmCrud" event="rowSelect" listener="#{frmEmpresas.changeSelected}"/>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="IdEmpresa"/>
-                        </f:facet>
-                        <h:outputText value="#{item.idEmpresa}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nombre"/>
-                        </f:facet>
-                        <h:outputText value="#{item.nombre}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Giro"/>
-                        </f:facet>
-                        <h:outputText value="#{item.giro}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Descripcion"/>
-                        </f:facet>
-                        <h:outputText value="#{item.descripcion}"/>
-                    </p:column>
-                </p:dataTable>
-            </h:form>
-        </f:view>
+                    <h:form id="frmCrud">
+                        <h1><h:outputText value="CRUD"/></h1>
+                        <p:growl id="msgs" showDetail="true" />  
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="IdEmpresa:" for="idEmpresa" />
+                            <p:inputText id="idEmpresa" value="#{frmEmpresas.empresas.idEmpresa}" disabled="true" readonly="true" title="IdEmpresa" required="true" requiredMessage="The IdEmpresa field is required."/>
+                            <p:outputLabel value="Nombre:" for="nombre" />
+                            <p:inputText id="nombre" value="#{frmEmpresas.empresas.nombre}" maxlength="45" title="Nombre" required="true" requiredMessage="The Nombre field is required."/>
+                            <p:outputLabel value="Giro:" for="giro" />
+                            <p:inputText id="giro" value="#{frmEmpresas.empresas.giro}" maxlength="1" title="Giro" required="true" requiredMessage="The Giro field is required."/>
+                            <p:outputLabel value="Descripcion:" for="descripcion" />
+                            <p:inputTextarea id="descripcion" value="#{frmEmpresas.empresas.descripcion}" maxlength="45" title="Descripcion" />
+                        </p:panelGrid>
+                        <p:commandButton value="CREAR" rendered="#{frmEmpresas.rcrear}">
+                            <p:ajax process="frmCrud" update=":frmCrud :frmTable:tbEmpresa" listener="#{frmEmpresas.crear()}"/>
+                        </p:commandButton>
+                        <p:commandButton value="EDITAR" rendered="#{frmEmpresas.rmedit}">
+                            <p:ajax process="frmCrud" update=":frmCrud :frmTable:tbEmpresa" listener="#{frmEmpresas.modificar()}"/>
+                        </p:commandButton>
+                        <p:commandButton value="ELIMINAR" rendered="#{frmEmpresas.rmedit}">
+                            <p:ajax process="frmCrud" update=":frmCrud :frmTable:tbEmpresa" listener="#{frmEmpresas.eliminar()}"/>
+                        </p:commandButton>
+                        <p:commandButton value="CANCELAR" rendered="true">
+                            <p:ajax update="frmCrud :frmTable:tbEmpresa" listener="#{frmEmpresas.clear()}"/>
+                        </p:commandButton>
+                        <p:messages closable="true"/>
+                    </h:form>
+                </f:view>
 
-        <f:view>
-
-
-            <h:form id="frmCrud">
-                <h1><h:outputText value="CRUD"/></h1>
-                <p:growl id="msgs" showDetail="true" />  
-                <p:panelGrid columns="2">
-                    <p:outputLabel value="IdEmpresa:" for="idEmpresa" />
-                    <p:inputText id="idEmpresa" value="#{frmEmpresas.empresas.idEmpresa}" disabled="true" readonly="true" title="IdEmpresa" required="true" requiredMessage="The IdEmpresa field is required."/>
-                    <p:outputLabel value="Nombre:" for="nombre" />
-                    <p:inputText id="nombre" value="#{frmEmpresas.empresas.nombre}" maxlength="45" title="Nombre" required="true" requiredMessage="The Nombre field is required."/>
-                    <p:outputLabel value="Giro:" for="giro" />
-                    <p:inputText id="giro" value="#{frmEmpresas.empresas.giro}" maxlength="1" title="Giro" required="true" requiredMessage="The Giro field is required."/>
-                    <p:outputLabel value="Descripcion:" for="descripcion" />
-                    <p:inputTextarea id="descripcion" value="#{frmEmpresas.empresas.descripcion}" maxlength="45" title="Descripcion" />
-                </p:panelGrid>
-                <p:commandButton value="CREAR" rendered="#{frmEmpresas.rcrear}">
-                    <p:ajax process="frmCrud" update=":frmCrud :frmTable:tbEmpresa" listener="#{frmEmpresas.crear()}"/>
-                </p:commandButton>
-                <p:commandButton value="EDITAR" rendered="#{frmEmpresas.rmedit}">
-                    <p:ajax process="frmCrud" update=":frmCrud :frmTable:tbEmpresa" listener="#{frmEmpresas.modificar()}"/>
-                </p:commandButton>
-                <p:commandButton value="ELIMINAR" rendered="#{frmEmpresas.rmedit}">
-                    <p:ajax process="frmCrud" update=":frmCrud :frmTable:tbEmpresa" listener="#{frmEmpresas.eliminar()}"/>
-                </p:commandButton>
-                <p:commandButton value="CANCELAR" rendered="true">
-                    <p:ajax update="frmCrud :frmTable:tbEmpresa" listener="#{frmEmpresas.clear()}"/>
-                </p:commandButton>
-                <p:messages closable="true"/>
-            </h:form>
-        </f:view>
-
-
+            </ui:define>
+        </ui:composition>
 
     </h:body>
 </html>
