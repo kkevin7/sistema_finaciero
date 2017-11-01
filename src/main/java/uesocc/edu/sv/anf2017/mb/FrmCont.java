@@ -17,7 +17,11 @@ import javax.faces.view.ViewScoped;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.SelectEvent;
 import uesocc.edu.sv.anf2017.ejb.CuentasFacadeLocal;
+import uesocc.edu.sv.anf2017.ejb.EmpresasFacadeLocal;
+import uesocc.edu.sv.anf2017.ejb.MovimientosFacadeLocal;
 import uesocc.edu.sv.anf2017.entities.Cuentas;
+import uesocc.edu.sv.anf2017.entities.Empresas;
+import uesocc.edu.sv.anf2017.entities.Movimientos;
 
 /**
  *
@@ -31,13 +35,23 @@ public class FrmCont implements Serializable {
     }
 
     @EJB
+    private MovimientosFacadeLocal mfl;
+    private Movimientos mov = new Movimientos();
+    
+    @EJB
+    private EmpresasFacadeLocal efl;
+    private Empresas emp = new Empresas();
+
+    @EJB
     private CuentasFacadeLocal fl;
     private List<Cuentas> cuent = new ArrayList<>();
     private String title;
     private Cuentas cuenta;
 
-     /**
-     * Metodo para devolver una lista con todas las cuentas de tipo Activo Corriente :V
+    /**
+     * Metodo para devolver una lista con todas las cuentas de tipo Activo
+     * Corriente :V
+     *
      * @return
      */
     public List<Cuentas> findActivosCorrientes() {
@@ -50,10 +64,12 @@ public class FrmCont implements Serializable {
         }
         return getCuent();
     }
-    
+
     /**
-     * Metodo para devolver una lista con todas las cuentas de tipo Activo No Corriente :V
-     * @return 
+     * Metodo para devolver una lista con todas las cuentas de tipo Activo No
+     * Corriente :V
+     *
+     * @return
      */
     public List<Cuentas> findActivosNoCorrientes() {
         setCuent(Collections.EMPTY_LIST);
@@ -65,9 +81,9 @@ public class FrmCont implements Serializable {
         }
         return getCuent();
     }
-    
+
     /**
-     * 
+     *
      */
     public void modificar() {
         try {
@@ -81,19 +97,26 @@ public class FrmCont implements Serializable {
 
     /**
      * Metodo que se ejecuta luego de dar enter al estar editando la tabla
+     *
      * @param event
      */
     public void onCellEdit(CellEditEvent event) {
         System.out.println(event.getRowKey());
-        cuenta.setDescripcion((String)event.getNewValue());
+        cuenta.setDescripcion((String) event.getNewValue());
+        mov.setIdMovimiento(2);
+        mov.setIdCuenta(cuenta);
+        System.out.println(mov.getIdCuenta());
         modificar();
     }
-    
-    
+
     public void changeSelected(SelectEvent se) {
         if (se.getObject() != null) {
             try {
                 this.cuenta = (Cuentas) se.getObject();
+                System.out.println(cuenta + ":v");
+                mov.setIdMovimiento(2);
+                mov.setIdCuenta(cuenta);
+                System.out.println(mov);
             } catch (Exception e) {
                 Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
             }
@@ -123,7 +146,7 @@ public class FrmCont implements Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
-    
+
     public Cuentas getCuenta() {
         return cuenta;
     }
@@ -131,4 +154,21 @@ public class FrmCont implements Serializable {
     public void setCuenta(Cuentas cuenta) {
         this.cuenta = cuenta;
     }
+
+    public MovimientosFacadeLocal getMfl() {
+        return mfl;
+    }
+
+    public void setMfl(MovimientosFacadeLocal mfl) {
+        this.mfl = mfl;
+    }
+
+    public Movimientos getMov() {
+        return mov;
+    }
+
+    public void setMov(Movimientos mov) {
+        this.mov = mov;
+    }
+
 }

@@ -19,6 +19,9 @@
                     <p:ajax update="@all" listener="#{frmCont.findActivosNoCorrientes()}" />
                 </p:commandButton>
 
+                <p:selectOneMenu id="idEmpresa" value="#{frmEmpresas.empresas.idEmpresa}" effect="fold" converter="omnifaces.SelectItemsConverter">
+                    <f:selectItems  value="#{frmEmpresas.obtenerTodos()}" var="id" itemLabel="#{id.nombre}" itemValue="#{id}"/>
+                </p:selectOneMenu>
             </p:layoutUnit>
 
             <p:layoutUnit position="center">
@@ -34,10 +37,9 @@
                                  selection="#{frmCont.cuenta}"
                                  emptyMessage="Seleccione un tipo de cuenta">
 
+                        <p:ajax process="@this" event="rowSelect" listener="#{frmCatalogo.changeSelected}"/>
                         <p:ajax event="cellEdit" listener="#{frmCont.onCellEdit}" update="@all"/>
-                        <p:ajax event="rowSelect" listener="#{frmCatalogo.changeSelected}"/>
 
-                        
                         <f:facet name="header">
                             #{frmCont.title}
                         </f:facet>
@@ -56,7 +58,7 @@
                         </p:column>
 
                     </p:dataTable>
-                    
+
                 </h:form>
             </p:layoutUnit>
         </p:layout>
