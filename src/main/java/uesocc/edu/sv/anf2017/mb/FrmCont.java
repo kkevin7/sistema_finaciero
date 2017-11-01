@@ -35,9 +35,11 @@ public class FrmCont implements Serializable {
     private List<Cuentas> cuent = new ArrayList<>();
     private String title;
     private Cuentas cuenta;
-
-     /**
-     * Metodo para devolver una lista con todas las cuentas de tipo Activo Corriente :V
+    
+    /**
+     * Metodo para devolver una lista con todas las cuentas de tipo Activo
+     * Corriente :V
+     *
      * @return
      */
     public List<Cuentas> findActivosCorrientes() {
@@ -50,10 +52,12 @@ public class FrmCont implements Serializable {
         }
         return getCuent();
     }
-    
+
     /**
-     * Metodo para devolver una lista con todas las cuentas de tipo Activo No Corriente :V
-     * @return 
+     * Metodo para devolver una lista con todas las cuentas de tipo Activo No
+     * Corriente :V
+     *
+     * @return
      */
     public List<Cuentas> findActivosNoCorrientes() {
         setCuent(Collections.EMPTY_LIST);
@@ -65,9 +69,9 @@ public class FrmCont implements Serializable {
         }
         return getCuent();
     }
-    
+
     /**
-     * 
+     *
      */
     public void modificar() {
         try {
@@ -88,7 +92,7 @@ public class FrmCont implements Serializable {
         cuenta.setDescripcion((String)event.getNewValue());
         modificar();
     }
-    
+
     
     public void changeSelected(SelectEvent se) {
         if (se.getObject() != null) {
@@ -123,7 +127,7 @@ public class FrmCont implements Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
-    
+
     public Cuentas getCuenta() {
         return cuenta;
     }
