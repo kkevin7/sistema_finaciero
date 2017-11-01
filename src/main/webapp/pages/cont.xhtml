@@ -49,11 +49,10 @@
                             </f:facet>
                             <h:outputText value="#{cuenta.nombre}"/>
                         </p:column>
-
-                        <p:column headerText="Descripcion">
+                        <p:column headerText="Descripcion" selectRow="true">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{cuenta.descripcion}" /></f:facet>
-                                <f:facet name="input"><p:inputText value="#{cuenta.descripcion}" style="width:100%"/></f:facet>
+                                <f:facet name="input"><p:inputText value="#{cuenta.descripcion}" style="width: 90%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
 
