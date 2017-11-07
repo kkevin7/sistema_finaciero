@@ -15,6 +15,7 @@ import javax.faces.view.ViewScoped;
 import org.primefaces.model.DualListModel;
 import uesocc.edu.sv.anf2017.ejb.CuentasFacadeLocal;
 import uesocc.edu.sv.anf2017.entities.Cuentas;
+import uesocc.edu.sv.anf2017.entities.Movimientos;
 
 /**
  *
@@ -33,17 +34,18 @@ public class FrmCrear implements Serializable {
     @EJB
     private CuentasFacadeLocal cuent;
     private DualListModel<Cuentas> cuentas;
-
-    @PostConstruct
-    public void init() {
-       
-        List<Cuentas> Esta = cuent.findAll();
-        List<Cuentas> Esta2 = new ArrayList<>();
-//        List<Cuentas> Source = cuent.findAll().subList(0, 5);
-//        List<Cuentas> Target = new ArrayList<>();
-        
-        cuentas = new DualListModel<>(Esta, Esta2);
-    }
+    private List<Movimientos> mov;
+    
+//    @PostConstruct
+//    public void init() {
+//       
+//        List<Cuentas> Esta = cuent.findAll();
+//        List<Cuentas> Esta2 = new ArrayList<>();
+////        List<Cuentas> Source = cuent.findAll().subList(0, 5);
+////        List<Cuentas> Target = new ArrayList<>();
+//        
+//        cuentas = new DualListModel<>(Esta, Esta2);
+//    }
 
     public CuentasFacadeLocal getCuent() {
         return cuent;

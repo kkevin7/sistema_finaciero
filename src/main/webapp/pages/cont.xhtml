@@ -9,23 +9,53 @@
         <title>Catalogo de Cuentas</title>
     </h:head>
     <h:body>
-        <p:layout>
+        <p:layout fullPage="true">
 
             <p:layoutUnit position="west" size="30%">
-                <p:commandButton value="Activos Corrientes">
-                    <p:ajax update="@all" listener="#{frmCont.findActivosCorrientes()}"/>
-                </p:commandButton>
-                <p:commandButton value="Activos No Corrientes" >
-                    <p:ajax update="@all" listener="#{frmCont.findActivosNoCorrientes()}" />
-                </p:commandButton>
+                <h:form id="menu">
+                    <p:outputLabel value="Menu de cuentas con OneMenu:"></p:outputLabel>
+                    <br></br>
+                    <br></br>
+                    <p:selectOneMenu id="tipo" value="#{frmCont.tipoCuenta}" effect="fold" converter="omnifaces.SelectItemsConverter">
+                        <f:selectItems  value="#{frmTipoCuenta.find()}" var="id" itemLabel="#{id.nombre}" itemValue="#{id.idTipoCuenta}"/>
+                        <p:ajax update=":form" event="valueChange" listener="#{frmCont.option()}"/>
+                    </p:selectOneMenu>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <p:outputLabel value="Menu de cuentas:"></p:outputLabel>
 
-                <p:selectOneMenu id="idEmpresa" value="#{frmEmpresas.empresas.idEmpresa}" effect="fold" converter="omnifaces.SelectItemsConverter">
-                    <f:selectItems  value="#{frmEmpresas.obtenerTodos()}" var="id" itemLabel="#{id.nombre}" itemValue="#{id}"/>
-                </p:selectOneMenu>
+                    <p:menu>
+                        <p:submenu label="Activos">
+                            <p:menuitem value="Activos Corrientes" actionListener="#{frmCont.findBy(11, 'Activos Corrientes')}" update=":form"/>
+                            <p:menuitem value="Activos No Corrientes" actionListener="#{frmCont.findBy(12, 'Activos No Corrientes')}" update=":form"/>
+                        </p:submenu>
+                        <p:submenu label="Pasivos">
+                            <p:menuitem value="Pasivos Corrientes" actionListener="#{frmCont.findBy(21, 'Pasivos Corrientes')}" update=":form"/>
+                            <p:menuitem value="Pasivos No Corrientes" actionListener="#{frmCont.findBy(22, 'Pasivos No Corrientes')}" update=":form"/>
+                        </p:submenu>
+                        <p:submenu label="Capital">
+                            <p:menuitem value="Capital" actionListener="#{frmCont.findBy(3, 'Capital')}" update=":form"/>
+                        </p:submenu>
+
+                    </p:menu>
+
+                    <p:outputLabel value="Seleccione la cuenta para agregar:   " for="cuenta" />
+                    <p:autoComplete id="cuenta" value="#{frmCont.cuenta}" completeMethod="#{frmCont.complete}"
+                                    var="cuenta" itemLabel="#{cuenta.nombre}" itemValue="#{cuenta}" converter="myconverter" forceSelection="true"
+                                    maxResults="10">
+                        <p:ajax event="itemSelect" listener="#{frmCont.onItemSelect}" update="@all"/>
+                    </p:autoComplete>
+                    <p:commandButton value="Update" ajax="true" update=":form"/>
+
+
+
+                </h:form>
             </p:layoutUnit>
 
             <p:layoutUnit position="center">
                 <h:form id="form">
+
                     <p:dataTable id="cuentas" 
                                  var="cuenta" 
                                  value="#{frmCont.cuent}" 
@@ -49,7 +79,7 @@
                             </f:facet>
                             <h:outputText value="#{cuenta.nombre}"/>
                         </p:column>
-                        <p:column headerText="Descripcion" selectRow="true">
+                        <p:column headerText="Descripcion" width="15%">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{cuenta.descripcion}" /></f:facet>
                                 <f:facet name="input"><p:inputText value="#{cuenta.descripcion}" style="width: 90%"/></f:facet>

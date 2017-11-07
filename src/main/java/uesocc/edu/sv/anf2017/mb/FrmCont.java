@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import org.primefaces.event.CellEditEvent;
@@ -22,6 +23,7 @@ import uesocc.edu.sv.anf2017.ejb.MovimientosFacadeLocal;
 import uesocc.edu.sv.anf2017.entities.Cuentas;
 import uesocc.edu.sv.anf2017.entities.Empresas;
 import uesocc.edu.sv.anf2017.entities.Movimientos;
+import uesocc.edu.sv.anf2017.entities.TipoCuenta;
 
 /**
  *
@@ -37,7 +39,9 @@ public class FrmCont implements Serializable {
     @EJB
     private MovimientosFacadeLocal mfl;
     private Movimientos mov = new Movimientos();
-    
+    private int tipoEstado;
+    private Integer tipoCuenta;
+
     @EJB
     private EmpresasFacadeLocal efl;
     private Empresas emp = new Empresas();
@@ -45,8 +49,12 @@ public class FrmCont implements Serializable {
     @EJB
     private CuentasFacadeLocal fl;
     private List<Cuentas> cuent = new ArrayList<>();
+    private List<Cuentas> activos = new ArrayList<>();
+    private List<Cuentas> pasivos = new ArrayList<>();
+    private List<Cuentas> capital = new ArrayList<>();
     private String title;
     private Cuentas cuenta;
+    private TipoCuenta tipo = new TipoCuenta();
 
     /**
      * Metodo para devolver una lista con todas las cuentas de tipo Activo
@@ -62,7 +70,42 @@ public class FrmCont implements Serializable {
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
         }
+        
         return getCuent();
+    }
+
+    public List<Cuentas> findBy(int codigo, String titulo) {
+        setCuent(Collections.EMPTY_LIST);
+        try {
+            setCuent(getFl().findBy("idCuenta", String.valueOf(codigo)));
+            setTitle(titulo);
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+        }
+        System.out.println(fl.find(12));
+        return getCuent();
+    }
+
+    public void option() {
+        switch (tipoCuenta) {
+            case 1:
+                findBy(tipoCuenta, "Activos");
+                break;
+            case 2:
+                findBy(tipoCuenta, "Pasivos");
+                break;
+            case 3:
+                findBy(tipoCuenta, "Capital");
+                break;
+            case 4:
+                findBy(tipoCuenta, "Gastos");
+                break;
+            case 5:
+                findBy(tipoCuenta, "Ingresos");
+                break;
+            default:
+                break;
+        }
     }
 
     /**
@@ -103,9 +146,6 @@ public class FrmCont implements Serializable {
     public void onCellEdit(CellEditEvent event) {
         System.out.println(event.getRowKey());
         cuenta.setDescripcion((String) event.getNewValue());
-        mov.setIdMovimiento(2);
-        mov.setIdCuenta(cuenta);
-        System.out.println(mov.getIdCuenta());
         modificar();
     }
 
@@ -113,14 +153,27 @@ public class FrmCont implements Serializable {
         if (se.getObject() != null) {
             try {
                 this.cuenta = (Cuentas) se.getObject();
-                System.out.println(cuenta + ":v");
-                mov.setIdMovimiento(2);
-                mov.setIdCuenta(cuenta);
-                System.out.println(mov);
             } catch (Exception e) {
                 Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
             }
         }
+    }
+
+    public List<Cuentas> complete(String query) {
+        List<Cuentas> all = fl.findAll();
+        List<Cuentas> filter = new ArrayList<>();
+
+        for (int i = 0; i < all.size(); i++) {
+            Cuentas skin = all.get(i);
+            if (skin.getNombre().toLowerCase().startsWith(query)) {
+                filter.add(skin);
+            }
+        }
+        return filter;
+    }
+
+    public void onItemSelect(SelectEvent event) {
+        System.out.println(cuenta);
     }
 
     public CuentasFacadeLocal getFl() {
@@ -169,6 +222,54 @@ public class FrmCont implements Serializable {
 
     public void setMov(Movimientos mov) {
         this.mov = mov;
+    }
+
+    public int getTipoEstado() {
+        return tipoEstado;
+    }
+
+    public void setTipoEstado(int tipoEstado) {
+        this.tipoEstado = tipoEstado;
+    }
+
+    public Integer getTipoCuenta() {
+        return tipoCuenta;
+    }
+
+    public void setTipoCuenta(Integer tipoCuenta) {
+        this.tipoCuenta = tipoCuenta;
+    }
+
+    public TipoCuenta getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoCuenta tipo) {
+        this.tipo = tipo;
+    }
+
+    public List<Cuentas> getActivos() {
+        return activos;
+    }
+
+    public void setActivos(List<Cuentas> activos) {
+        this.activos = activos;
+    }
+
+    public List<Cuentas> getPasivos() {
+        return pasivos;
+    }
+
+    public void setPasivos(List<Cuentas> pasivos) {
+        this.pasivos = pasivos;
+    }
+
+    public List<Cuentas> getCapital() {
+        return capital;
+    }
+
+    public void setCapital(List<Cuentas> capital) {
+        this.capital = capital;
     }
 
 }
