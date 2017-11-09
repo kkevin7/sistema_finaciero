@@ -13,16 +13,7 @@
 
             <p:layoutUnit position="west" size="30%">
                 <h:form id="menu">
-                    <p:outputLabel value="Menu de cuentas con OneMenu:"></p:outputLabel>
-                    <br></br>
-                    <br></br>
-                    <p:selectOneMenu id="tipo" value="#{frmCont.tipoCuenta}" effect="fold" converter="omnifaces.SelectItemsConverter">
-                        <f:selectItems  value="#{frmTipoCuenta.find()}" var="id" itemLabel="#{id.nombre}" itemValue="#{id.idTipoCuenta}"/>
-                        <p:ajax update=":form" event="valueChange" listener="#{frmCont.option()}"/>
-                    </p:selectOneMenu>
-                    <br></br>
-                    <br></br>
-                    <br></br>
+                    
                     <p:outputLabel value="Menu de cuentas:"></p:outputLabel>
 
                     <p:menu>
@@ -42,7 +33,7 @@
 
                     <p:outputLabel value="Seleccione la cuenta para agregar:   " for="cuenta" />
                     <p:autoComplete id="cuenta" value="#{frmCont.cuenta}" completeMethod="#{frmCont.complete}"
-                                    var="cuenta" itemLabel="#{cuenta.nombre}" itemValue="#{cuenta}" converter="myconverter" forceSelection="true"
+                                    var="cuenta" itemLabel="#{cuenta.nombre}" itemValue="#{cuenta}" forceSelection="true"
                                     maxResults="10">
                         <p:ajax event="itemSelect" listener="#{frmCont.onItemSelect}" update="@all"/>
                     </p:autoComplete>
@@ -58,10 +49,9 @@
 
                     <p:dataTable id="cuentas" 
                                  var="cuenta" 
-                                 value="#{frmCont.cuent}" 
+                                 value="#{frmCont.cuentas}" 
                                  editable="true" 
                                  editMode="cell" 
-                                 widgetVar="cellCars"
                                  rowKey="#{cuenta.idCuenta}"
                                  selectionMode="single"
                                  selection="#{frmCont.cuenta}"

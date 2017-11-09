@@ -106,4 +106,14 @@ public abstract class AbstractFacade<T> {
         javax.persistence.Query q = getEntityManager().createQuery(c);
         return q.getResultList();
     }
+    
+    public List<T> findByJoined(String parameter, Object value){
+        javax.persistence.criteria.CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        javax.persistence.criteria.CriteriaQuery<T> c = cb.createQuery(entityClass);
+        javax.persistence.criteria.Root<T> t = c.from(entityClass);
+        t.join(parameter);
+        c.select(t).where(cb.equal(t.get(parameter), value));
+        javax.persistence.Query q = getEntityManager().createQuery(c);
+        return q.getResultList();
+    }
 }

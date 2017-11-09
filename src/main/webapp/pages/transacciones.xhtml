@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Balance General</title>
+    </h:head>
+    <h:body>
+        <h:form id="page" >
+            <p:wizard id="wiz" nextLabel="Ver Resumen de Trasacciones">
+                <p:tab id="cuent" title="Agregar Transacciones">
+                    <h:panelGrid id="panel" columns="3" cellpadding="5">
+                        <p:panel>
+                            <p:outputLabel value="Menu de cuentas:"></p:outputLabel>
+
+                            <p:menu>
+                                <p:submenu label="Activos">
+                                    <p:menuitem value="Activos Corrientes" actionListener="#{frmCont.findBy(11, 'Activos Corrientes')}" update="page:cuentas"/>
+                                    <p:menuitem value="Activos No Corrientes" actionListener="#{frmCont.findBy(12, 'Activos No Corrientes')}" update="page:cuentas"/>
+                                </p:submenu>
+                                <p:submenu label="Pasivos">
+                                    <p:menuitem value="Pasivos Corrientes" actionListener="#{frmCont.findBy(21, 'Pasivos Corrientes')}" update="page:cuentas"/>
+                                    <p:menuitem value="Pasivos No Corrientes" actionListener="#{frmCont.findBy(22, 'Pasivos No Corrientes')}" update="page:cuentas"/>
+                                </p:submenu>
+                                <p:submenu label="Capital">
+                                    <p:menuitem value="Capital" actionListener="#{frmCont.findBy(3, 'Capital')}" update="page:cuentas"/>
+                                </p:submenu>
+                                <p:submenu label="Gastos">
+                                    <p:menuitem value="Gastos" actionListener="#{frmCont.findBy(4, 'Gastos')}" update="page:cuentas"/>
+                                </p:submenu>
+                                <p:submenu label="Ingresos">
+                                    <p:menuitem value="Ingresos" actionListener="#{frmCont.findBy(5, 'Ingresos')}" update="page:cuentas"/>
+                                </p:submenu>
+                            </p:menu>
+
+                        </p:panel>
+
+                        <p:panel id="pnlcuentas">
+                            <p:dataTable id="cuentas" 
+                                         var="cuenta" 
+                                         value="#{frmCont.cuentas}" 
+                                         widgetVar="cuent"
+                                         selectionMode="single"
+                                         rowKey="#{cuenta.idCuenta}"
+                                         selection="#{frmCont.cuenta}"
+                                         emptyMessage="Seleccione un tipo de cuenta"
+                                         >
+
+                                <p:ajax event="rowSelect" listener="#{frmCont.changeSelectedCuenta}" update="page:movcuent"/>
+
+                                <f:facet name="header">
+                                    <p:outputPanel>
+                                        <h:outputText value="#{frmCont.title}" />
+                                    </p:outputPanel>
+                                </f:facet>
+                                <p:column id="col1" colspan="2" filterBy="#{cuenta.nombre}" filterStyle="width: 80%">
+                                    <f:facet name="header">
+                                        <p:watermark for="page:cuentas:col1" value="Buscar..."/>
+                                    </f:facet>
+                                    <h:outputText value="#{cuenta.nombre}"/>
+
+                                </p:column>
+                            </p:dataTable>
+                        </p:panel>
+                        <p:panel id="movxcuent"  style="align-content: center">
+                            <p:dataTable id="movcuent" 
+                                         var="movimiento" 
+                                         value="#{frmCont.movimientosxcuent}" 
+                                         editable="true" 
+                                         editMode="cell"
+                                         rowKey="#{movimiento.idMovimiento}"
+                                         selectionMode="single"
+                                         selection="#{frmCont.mov}"
+                                         emptyMessage="Seleccione una cuenta"
+                                         >
+
+                                <p:ajax event="rowSelect" listener="#{frmCont.changeSelected}" update="@none"/>
+                                <p:ajax event="cellEdit" listener="#{frmCont.onCellEdit}" update="@all"/>
+
+                                <f:facet name="header">
+                                    <p:outputPanel>
+                                        <h:outputText value="#{frmCont.cuenta.nombre}" />
+                                    </p:outputPanel>
+                                </f:facet>
+
+                                <p:column headerText="Fecha:">
+                                    <h:outputText value="#{movimiento.fecha}">
+                                        <f:convertDateTime pattern="dd-MM-yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Monto" width="15%">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{movimiento.monto}" style="width: min-content"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputNumber value="#{movimiento.monto}" style="width: fit-content">  
+
+                                            </p:inputNumber> 
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+
+                            </p:dataTable>
+                            <p:commandButton value="Agregar nueva transaccion" icon="fa fa-fw fa-plus" onclick="PF('dlg1').show();">
+                                <p:ajax/>
+                            </p:commandButton>
+                        </p:panel>
+
+                    </h:panelGrid>
+                </p:tab>
+
+                <p:tab title="Resumen">
+                    <p:panel id="pnlmovimientos"  style="align-content: center">
+                        <p:dataTable id="movimientos" 
+                                     var="movimiento" 
+                                     value="#{frmCont.movimientos}" 
+                                     editable="true" 
+                                     editMode="cell"
+                                     widgetVar="tab"
+                                     rowKey="#{movimiento.idMovimiento}"
+                                     selectionMode="single"
+                                     selection="#{frmCont.mov}"
+                                     emptyMessage="Seleccione una cuenta"
+                                     sortBy="#{movimiento.idCuenta.idTipoCuenta.nombre}"
+                                     style="width: 50%">
+
+                            <p:ajax event="rowSelect" listener="#{frmCont.changeSelected}" update="@none"/>
+                            <p:ajax event="cellEdit" listener="#{frmCont.onCellEdit}" update="@all"/>
+
+                            <f:facet name="header">
+                                <p:outputPanel>
+                                    <h:outputText value="Resumen de Trnasacciones del día" />
+                                </p:outputPanel>
+                            </f:facet>
+                            <p:headerRow>
+                                <p:column colspan="2">
+                                    <h:outputText value="#{movimiento.idCuenta.idTipoCuenta.nombre}" />
+                                </p:column>
+                            </p:headerRow>
+                            <p:column headerText="Cuentas">
+                                <h:outputText value="#{movimiento.idCuenta.nombre}"/>
+                            </p:column>
+                            <p:column headerText="Monto" width="15%">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{movimiento.monto}" style="width: min-content"/>
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputNumber value="#{movimiento.monto}" style="width: fit-content">  
+
+                                        </p:inputNumber> 
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+
+
+                        </p:dataTable>
+                        <p:commandButton value="Agregar nueva transaccion" icon="fa fa-fw fa-plus" onclick="PF('dlg1').show();">
+                            <p:ajax/>
+                        </p:commandButton>
+                    </p:panel>
+
+                </p:tab>
+            </p:wizard>
+        </h:form>
+
+        <h:form id="form">
+
+            <p:dialog header="Agregar Transacción" widgetVar="dlg1" minHeight="40" modal="true">
+
+                <h1>#{frmCont.cuenta.nombre}</h1>
+                <p:panelGrid columns="2" style="border-color: transparent">
+                    <p:outputLabel value="Monto:" for="monto" />
+                    <p:inputText id="monto" value="#{frmMovimientos.movimientos.monto}" title="Monto" required="true" requiredMessage="The Monto field is required."/>
+                    <p:outputLabel value="Fecha:" for="fecha" />
+
+                    <p:calendar id="fecha" value="#{frmMovimientos.movimientos.fecha}" showOn="button" />
+
+                    <p:outputLabel value="Descripcion:" for="descripcion" />
+                    <p:inputText id="descripcion" value="#{frmMovimientos.movimientos.descripcion}" title="Descripcion" />
+
+                </p:panelGrid>
+
+
+
+            </p:dialog>
+        </h:form>
+
+
+
+    </h:body>
+</html>
+
+
+

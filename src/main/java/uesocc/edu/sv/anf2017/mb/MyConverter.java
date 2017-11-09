@@ -17,41 +17,39 @@ import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 import uesocc.edu.sv.anf2017.ejb.CuentasFacadeLocal;
 import uesocc.edu.sv.anf2017.entities.Cuentas;
- 
 
 @FacesConverter("myconverter")
 public class MyConverter implements Converter {
- 
+
     CuentasFacadeLocal fl;
+    Cuentas cuenta;
     @Override
-    public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
-        if(value != null && value.trim().length() > 0) {
+    public Cuentas getAsObject(FacesContext fc, UIComponent uic, String value) {
+        if (value != null && value.trim().length() > 0) {
             try {
                 int id = Integer.parseInt(value);
                 Object algo;
-                algo=fl.find(12);
-                System.out.println(algo);
-                return algo;
+                cuenta = fl.find(id);
+//                System.out.println(algo);
+                return cuenta;
 //                CuentasFacadeLocal fl = (CuentasFacadeLocal) fc.getExternalContext().getApplicationMap().get("frmCont");
 //                return fl.findAll().get(Integer.parseInt(value));
-            } catch(NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "Not a valid theme."));
             }
-        }
-        else {
+        } else {
             return null;
         }
     }
- 
+
     @Override
     public String getAsString(FacesContext fc, UIComponent uic, Object object) {
-        if(object != null) {
+        if (object != null) {
             return String.valueOf(((Cuentas) object).getIdCuenta());
-        }
-        else {
+        } else {
             return null;
         }
-    }   
+    }
 
     public CuentasFacadeLocal getFl() {
         return fl;
@@ -60,4 +58,4 @@ public class MyConverter implements Converter {
     public void setFl(CuentasFacadeLocal fl) {
         this.fl = fl;
     }
-}     
+}
