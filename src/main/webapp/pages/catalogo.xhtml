@@ -1,105 +1,169 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <h:head>
         <title>Catalogo de Cuentas</title>
+
     </h:head>
     <h:body>
-        <p:layout fullPage="true" id="page">
-            <p:layoutUnit id="edit" position="west" size="30%" >
-                <f:view>
-                    <h:form id="frmEdit">
-                        <h3><h:outputText value="Agregar/Modificar Cuentas"/></h3>
-                        <p:messages closable="true"/>
-                        <p:panelGrid columns="2">
-                            <p:outputLabel value="Codigo de Cuenta:" for="idCuenta" />
-                            <p:inputMask id="idCuenta" value="#{frmCatalogo.cuenta.idCuenta}" mask="?9999999999" maxlength="10" title="Codigo" />
-                            <p:outputLabel value="Nombre:" for="nombre" />
-                            <p:inputText id="nombre" value="#{frmCatalogo.cuenta.nombre}" maxlength="45" title="Nombre"/>
-                            <p:outputLabel value="Tipo de Saldo:" for="tipoSaldo" />
-                            <p:selectOneRadio id="tipoSaldo" value="#{frmCatalogo.cuenta.tipoSaldo}">
-                                <f:selectItem itemLabel="Deudor" itemValue="D"/>
-                                <f:selectItem itemLabel="Acreedor" itemValue="H"/>
-                            </p:selectOneRadio>
-                            <p:outputLabel value="Descripcion:" for="descripcion" />
-                            <p:inputText id="descripcion" value="#{frmCatalogo.cuenta.descripcion}" maxlength="45" title="Descripcion" />
-                            <p:outputLabel value="Tipo de Cuenta:" for="idTipoCuenta" />
-                            <p:selectOneMenu id="idTipoCuenta" value="#{frmCatalogo.cuenta.idTipoCuenta}" effect="fold" converter="omnifaces.SelectItemsConverter">
-                                <f:selectItems  value="#{frmTipoCuenta.find()}" var="id" itemLabel="#{id.nombre}" itemValue="#{id}"/>
-                            </p:selectOneMenu>
-                            <p:outputLabel value="Tipo de Estado:" for="idTipoEstado" />
-                            <p:selectOneMenu id="idTipoEstado" value="#{frmCatalogo.cuenta.idTipoEstado}" effect="fold" converter="omnifaces.SelectItemsConverter">
-                                <f:selectItems  value="#{frmTipoEstado.find()}" var="id" itemLabel="#{id.nombre}" itemValue="#{id}"/>
-                            </p:selectOneMenu>
 
-                        </p:panelGrid>
-                        <p:commandButton value="CREAR" rendered="#{frmCatalogo.crear}">
-                            <p:ajax process="edit" update="frmEdit :frmTable" listener="#{frmCatalogo.crear()}"/>
-                        </p:commandButton>
-                        <p:commandButton value="EDITAR" rendered="#{frmCatalogo.rmedit}">
-                            <p:ajax process="edit" update="frmEdit :frmTable" listener="#{frmCatalogo.modificar()}"/>
-                        </p:commandButton>
-                        <p:commandButton value="ELIMINAR" rendered="#{frmCatalogo.rmedit}">
-                            <p:ajax process="edit" update="frmEdit :frmTable" listener="#{frmCatalogo.eliminar()}"/>
-                        </p:commandButton>
-                        <p:commandButton value="CANCELAR" rendered="true">
-                            <p:ajax update="frmEdit :frmTable" listener="#{frmCatalogo.clear()}"/>
-                        </p:commandButton>
+        <ui:composition template="../templates/dinamyctemplate.xhtml">
+            <ui:define name="content">
+
+                <div class="cont-tabla">
+
+                    <h:form id="frm-iniciocliente" style="margin-left: 2.5%;">
+                        <h:panelGrid columns="5" style="background-color:  transparent; margin: 1.5%; margin-left: 5%; ">
+                            <h:graphicImage id="clienteIcon"  style="background-color: transparent; margin-right: 10px;" class="icon" name="/images/article128x128.png"  height="60" width="60"/>
+                            <p:outputLabel for="clienteIcon" value="CATALOGO DE CUENTAS" />
+
+                            <p:commandButton id="btn-agregar" icon="ui-icon-circle-plus"  
+                                             value="Nueva Cuenta"
+                                             onclick="PF('catalogo').show();"
+                                             update=":frmTable"
+                                             style="margin-left: 15px"
+                                             >
+                                <p:ajax update="frmEdit :frmTable"
+                                        listener="#{frmCatalogo.clear()}"/>
+                            </p:commandButton>
+                        </h:panelGrid>
                     </h:form>
-                </f:view>
 
-            </p:layoutUnit>
+                    <f:view>
+                        <h:form id="frmTable">
+                            <p:growl id="msgs" showDetail="true" />
+                            <p:dataTable value="#{frmCatalogo.cuentasldm}" id="tb-catalogo"
+                                         var="item" 
+                                         styleClass="tableclassPrime"
+                                         lazy="true"
+                                         rows="10"
+                                         paginator="true"
+                                         selectionMode="single"
+                                         paginatorPosition="bottom"
+                                         rowsPerPageTemplate="10,15,20"
+                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         selection="#{frmCatalogo.cuenta}"
+                                         >
+                                <p:ajax update=":frmEdit"
+                                        event="rowSelect" 
+                                        listener="#{frmCatalogo.changeSelected}"
+                                        oncomplete="PF('catalogo').show();"
+                                        />
 
-            <p:layoutUnit position="center" id="table">
-                <f:view>
-                    <h:form id="frmTable">
-                        <h2><h:outputText value="Catalogo de Cuentas"/></h2>
-                        <p:dataTable value="#{frmCatalogo.cuentasldm}" var="item"
-                                     lazy="true"
-                                     rows="10"
-                                     paginator="true"
-                                     selectionMode="single"
-                                     paginatorPosition="bottom"
-                                     rowsPerPageTemplate="10,15,20"
-                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                     selection="#{frmCatalogo.cuenta}"
-                                     >
-                            <p:ajax update="frmEdit" event="rowSelect" listener="#{frmCatalogo.changeSelected}"/>
+                                <p:column style="width: 150px">
+                                    <f:facet name="header">
+                                        <h:outputText value="Codigo de Cuenta"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idCuenta}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Nombre"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.nombre}"/>
+                                </p:column>
+                                <p:column style="width: 140px">
+                                    <f:facet name="header">
+                                        <h:outputText value="Tipo de Cuenta"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idTipoCuenta.nombre}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Descripcion"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.descripcion}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </f:view>
 
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Codigo de Cuenta"/>
-                                </f:facet>
-                                <h:outputText value="#{item.idCuenta}"/>
-                            </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Nombre"/>
-                                </f:facet>
-                                <h:outputText value="#{item.nombre}"/>
-                            </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Tipo de Cuenta"/>
-                                </f:facet>
-                                <h:outputText value="#{item.idTipoCuenta.nombre}"/>
-                            </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Descripcion"/>
-                                </f:facet>
-                                <h:outputText value="#{item.descripcion}"/>
-                            </p:column>
-                        </p:dataTable>
-                    </h:form>
-                </f:view>
+                    <p:dialog id="dialog" 
+                              width="430"
+                              height="280"
+                              modal="false" 
+                              style="background-color:#EFEDEF;" 
+                              showEffect="blind" hideEffect="blind" 
+                              widgetVar="catalogo"   
+                              header="CATALOGO DE CUENTAS"  
+                              draggable="false" 
+                              closeOnEscape="true" 
+                              appendTo="@(body)" 
+                              resizable="false"
+                              >
+                        <p:ajax event="close" 
+                                update="frmEdit :frmTable:tb-catalogo" 
+                                immediate="true" global="false" 
+                                listener="#{frmCatalogo.clear()}"
+                                />
 
-            </p:layoutUnit>
+                        <h:form id="frmEdit">
+                              
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value="Codigo de Cuenta:" for="idCuenta" />
+                                <p:inputMask id="idCuenta" value="#{frmCatalogo.cuenta.idCuenta}" mask="?9999999999" maxlength="10" title="Codigo" />
+                                <p:outputLabel value="Nombre:" for="nombre" />
+                                <p:inputText id="nombre" value="#{frmCatalogo.cuenta.nombre}" maxlength="45" title="Nombre" size="30"/>
+                                <p:outputLabel value="TipoSaldo:" for="tipoSaldo" />
+                                <p:selectOneRadio id="tipoSaldo" value="#{frmCatalogo.cuenta.tipoSaldo}">
+                                    <f:selectItem itemLabel="Deudor" itemValue="D"/>
+                                    <f:selectItem itemLabel="Acreedor" itemValue="H"/>
+                                </p:selectOneRadio>
+                                <p:outputLabel value="Descripcion:" for="descripcion" />
+                                <p:inputTextarea id="descripcion" value="#{frmCatalogo.cuenta.descripcion}" rows="3" cols="30" title="Descripcion" />
+                                <p:outputLabel value="Tipo de Cuenta:" for="idTipoCuenta" />
+                                <p:selectOneMenu id="idTipoCuenta" value="#{frmCatalogo.cuenta.idTipoCuenta}" effect="fold" converter="omnifaces.SelectItemsConverter">
+                                    <f:selectItems  value="#{frmTipoCuenta.find()}" var="id" itemLabel="#{id.nombre}" itemValue="#{id}"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Tipo de Estado:" for="idTipoEstado" />
+                                <p:selectOneMenu id="idTipoEstado" value="#{frmCatalogo.cuenta.idTipoEstado}" effect="fold" converter="omnifaces.SelectItemsConverter">
+                                    <f:selectItems  value="#{frmTipoEstado.find()}" var="id" itemLabel="#{id.nombre}" itemValue="#{id}"/>
+                                </p:selectOneMenu>
+                            </h:panelGrid>
 
-        </p:layout>
+                            <h:panelGrid columns="3" style="margin: auto ;margin-top: 10px;">
+                                <p:commandButton value="CREAR" 
+                                                 rendered="#{frmCatalogo.crear}"  
+                                                 oncomplete="PF('catalogo').hide();"
+                                                 
+                                                 >
+                                    <p:ajax process="frmEdit" update="frmEdit :frmTable" listener="#{frmCatalogo.crear()}" />
+                                </p:commandButton>
+                                <p:commandButton value="EDITAR" 
+                                                 rendered="#{frmCatalogo.rmedit}" 
+                                                 onclick="PF('catalogo').hide();"
+                                                 style="background: #2ecc71; border: none; "
+                                                 >
+                                    <p:ajax process="frmEdit" update="frmEdit :frmTable" listener="#{frmCatalogo.modificar()}"/>
+                                </p:commandButton>
+                                <p:commandButton value="ELIMINAR" 
+                                                 rendered="#{frmCatalogo.rmedit}" 
+                                                 onclick="PF('catalogo').hide();"
+                                                 style="background: #E74C3C; border: none; margin-left: 5px;"
+                                                 >
+                                    <p:ajax process="frmEdit" update="frmEdit :frmTable" listener="#{frmCatalogo.eliminar()}"/>
+                                </p:commandButton>
+                                <p:commandButton value="CANCELAR" 
+                                                 rendered="true"
+                                                 style="margin-left: 5px;"
+                                                 >
+                                    <p:ajax update="frmEdit :frmTable" listener="#{frmCatalogo.clear()}"/>
+                                </p:commandButton>
+                            </h:panelGrid>
+                        </h:form>
+                    </p:dialog>
+
+                </div>
+
+
+
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
