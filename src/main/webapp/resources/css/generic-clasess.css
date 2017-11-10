@@ -1,0 +1,29 @@
+body
+{ 
+    margin: 0;
+    background: #eee;
+}
+
+.cont-tabla{
+    background: white;  
+    margin: 0 auto;
+    width: 98%;
+    height: 95%;
+    padding-bottom: 50px;
+    margin-bottom: 1%;
+}
+
+.tableclassPrime{
+    padding-top: 30px;
+    width: 85%; 
+    margin: auto; 
+    min-width: 500px;
+    font-size: 14px;
+    text-align:center;
+}
+
+.titulo-header{
+    color: #fefefe;
+    font-size: 22px;
+    margin-left: 10px;
+}

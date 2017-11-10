@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="../resources/css/header-basic.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="../resources/css/generic-clasess.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="../resources/css/footer_principal.css" rel="stylesheet" type="text/css" media="all"/>
+
+    </h:head>
+
+    <h:body>
+
+        <div id="top">
+            <ui:insert name="top">
+
+                <header class="header-basic">
+                    <div class="header-limiter">
+                        <h1><a href="#">Sistema <span>Financiero</span></a></h1>
+                        <nav>
+                            <a href="#">Home</a>
+                            <a href="#" class="selected">Blog</a>
+                            <a href="#">About</a>
+                            <a href="#">Contact</a>
+                        </nav>
+                    </div>
+
+                </header>
+
+
+            </ui:insert>
+        </div>
+
+        <div id="content" class="center_content" style="margin-top: 2%; margin-bottom: 2%; width: 100%;">
+            <ui:insert name="content">
+
+
+
+            </ui:insert>
+        </div>
+
+        <div id="bottom">
+            <ui:insert name="bottom">
+
+                <!-- FOOTER SISTEMA ANALISISFINANCIERO -->
+                <footer id="myFooter">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h5>Aplicacion</h5>
+                                <ul>
+                                    <li><a href="#">Incicio</a></li>
+                                    <li><a href="#">Registrarse</a></li>
+                                    <li><a href="#">Downloads</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-3">
+                                <h5>Sobre Nosotros</h5>
+                                <ul>
+                                    <li><a href="#">Universidad de El Salvador</a></li>
+                                    <li><a href="#">Contact us</a></li>
+                                    <li><a href="#">Analisis Financiero</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-3">
+                                <h5>Soporte</h5>
+                                <ul>
+                                    <li><a href="https://github.com/kkevin7">GitHub</a></li>
+                                    <li><a href="#">Correo</a></li>
+                                    <li><a href="#">Forums</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-3 info">
+                                <h5>Informacion</h5>
+                                <p> Somos estudiantes de la Universidad Nacional de El Salvador dispuestos a realizar una una aplicacion web para la asignatura de Analisis Financiero.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="second-bar">
+                        <div class="container">
+                            <h3 class="logo"><h:link value="Sistema Financiero"></h:link></h3>
+                            <div class="social-icons">
+                                <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                                <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                                <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- FOOTER SISTEMA ANALISISFINANCIERO -->
+
+            </ui:insert>
+        </div>
+
+
+    </h:body>
+
+</html>
