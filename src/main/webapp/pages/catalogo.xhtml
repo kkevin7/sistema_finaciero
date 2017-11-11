@@ -86,7 +86,7 @@
 
                     <p:dialog id="dialog" 
                               width="430"
-                              height="280"
+                              height="290"
                               modal="false" 
                               style="background-color:#EFEDEF;" 
                               showEffect="blind" hideEffect="blind" 
@@ -100,11 +100,10 @@
                         <p:ajax event="close" 
                                 update="frmEdit :frmTable:tb-catalogo" 
                                 immediate="true" global="false" 
-                                listener="#{frmCatalogo.clear()}"
                                 />
 
                         <h:form id="frmEdit">
-                              
+
                             <h:panelGrid columns="2">
                                 <p:outputLabel value="Codigo de Cuenta:" for="idCuenta" />
                                 <p:inputMask id="idCuenta" value="#{frmCatalogo.cuenta.idCuenta}" mask="?9999999999" maxlength="10" title="Codigo" />
@@ -131,7 +130,6 @@
                                 <p:commandButton value="CREAR" 
                                                  rendered="#{frmCatalogo.crear}"  
                                                  oncomplete="PF('catalogo').hide();"
-                                                 
                                                  >
                                     <p:ajax process="frmEdit" update="frmEdit :frmTable" listener="#{frmCatalogo.crear()}" />
                                 </p:commandButton>
@@ -151,9 +149,10 @@
                                 </p:commandButton>
                                 <p:commandButton value="CANCELAR" 
                                                  rendered="true"
+                                                 onclick="PF('catalogo').hide();"
                                                  style="margin-left: 5px;"
                                                  >
-                                    <p:ajax update="frmEdit :frmTable" listener="#{frmCatalogo.clear()}"/>
+                                    <p:ajax update="frmEdit :frmTable"/>
                                 </p:commandButton>
                             </h:panelGrid>
                         </h:form>

@@ -106,7 +106,6 @@ public class FrmCatalogo implements Serializable {
     }
 
     public void crear() {
-        System.out.println(cuenta);
         try {
             if (cuenta.getIdCuenta() != null && cuenta.getNombre().isEmpty() != true && cuenta.getTipoSaldo()!= null && this.cuentasfl != null) {
                 this.cuentasfl.create(cuenta);

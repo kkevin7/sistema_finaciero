@@ -6,7 +6,6 @@
 package uesocc.edu.sv.anf2017.mb;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,11 +14,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import org.primefaces.event.CellEditEvent;
-import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import uesocc.edu.sv.anf2017.ejb.CuentasFacadeLocal;
 import uesocc.edu.sv.anf2017.ejb.EmpresasFacadeLocal;
@@ -40,14 +37,18 @@ public class FrmCont implements Serializable {
     public FrmCont() {
 
     }
+
     @EJB
     private EmpresasFacadeLocal efl;
+    private Empresas emp;
+    private boolean add;
 
     @EJB
     private MovimientosFacadeLocal mfl;
-    private Movimientos mov = new Movimientos();
+    private Movimientos movimiento;
     private List<Movimientos> movimientos;
-    private List<Movimientos> movimientosxcuent;
+    private List<Movimientos> movimientosxcuent = new ArrayList<>();
+    private Movimientos movi;
 
     @EJB
     private CuentasFacadeLocal fl;
@@ -58,7 +59,10 @@ public class FrmCont implements Serializable {
 
     @PostConstruct
     public void init() {
+        movi = new Movimientos();
         movimientos = resumen();
+        movimientosxcuent=Collections.EMPTY_LIST;
+        add = false;
     }
 
     public List<Cuentas> findBy(int codigo, String titulo) {
@@ -82,24 +86,29 @@ public class FrmCont implements Serializable {
         }
     }
 
-//    public void crearMovimiento() {
-//        mov.setIdCuenta(cuenta);
-//        mov.setIdEmpresa(empresas);
-//        try {
-//            if (mov != null && this.mfl != null) {
-//                this.mfl.edit(mov);
-//            }
-//        } catch (Exception e) {
-//            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
-//        }
-//    }
+    public void crearMovimiento() {
+        java.util.Date fecha = new java.util.Date();
+        try {
+            movi.setIdCuenta(cuenta);
+            movi.setIdEmpresa(efl.find(1));
+            movi.setFecha(fecha);
+            if (movi != null && this.mfl != null) {
+                this.mfl.create(movi);
+                resumen();
+                moviminetosPorCuenta();
+            }
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+        }
+    }
+
     public List<Movimientos> resumen() {
         java.util.Date fecha = new java.util.Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         movimientos = mfl.findBy("fecha", format.format(fecha));
         return movimientos;
     }
-    
+
     public List<Movimientos> moviminetosPorCuenta() {
         movimientosxcuent = mfl.findByJoined("idCuenta", cuenta);
         return movimientosxcuent;
@@ -107,9 +116,11 @@ public class FrmCont implements Serializable {
 
     public void onCellEdit(CellEditEvent event) {
         try {
-            if (mov != null && mfl != null) {
-                mov.setMonto((BigDecimal) event.getNewValue());
-                mfl.edit(mov);
+            if (movimiento != null && mfl != null) {
+                movimiento.setMonto((Double) event.getNewValue());
+                mfl.edit(movimiento);
+                resumen();
+                moviminetosPorCuenta();
             }
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
@@ -119,23 +130,23 @@ public class FrmCont implements Serializable {
     public void changeSelected(SelectEvent se) {
         if (se.getObject() != null) {
             try {
-                this.mov = (Movimientos) se.getObject();
+                this.movimiento = (Movimientos) se.getObject();
             } catch (Exception e) {
                 Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
             }
         }
     }
-    
+
     public void changeSelectedCuenta(SelectEvent se) {
         if (se.getObject() != null) {
             try {
                 this.cuenta = (Cuentas) se.getObject();
                 moviminetosPorCuenta();
+                add = true;
             } catch (Exception e) {
                 Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
             }
         }
-        
     }
 
     public void onItemSelect(SelectEvent event) {
@@ -182,12 +193,12 @@ public class FrmCont implements Serializable {
         this.mfl = mfl;
     }
 
-    public Movimientos getMov() {
-        return mov;
+    public Movimientos getMovimiento() {
+        return movimiento;
     }
 
-    public void setMov(Movimientos mov) {
-        this.mov = mov;
+    public void setMovimiento(Movimientos movimiento) {
+        this.movimiento = movimiento;
     }
 
     public TipoCuenta getTipo() {
@@ -205,13 +216,47 @@ public class FrmCont implements Serializable {
     public void setMovimientos(List<Movimientos> movimientos) {
         this.movimientos = movimientos;
     }
-    
+
     public List<Movimientos> getMovimientosxcuent() {
-        return movimientos;
+        return movimientosxcuent;
     }
 
     public void setMovimientosxcuent(List<Movimientos> movimientosxcuent) {
         this.movimientosxcuent = movimientosxcuent;
     }
+
+    public EmpresasFacadeLocal getEfl() {
+        return efl;
+    }
+
+    public void setEfl(EmpresasFacadeLocal efl) {
+        this.efl = efl;
+    }
+
+    public Empresas getEmp() {
+        return emp;
+    }
+
+    public void setEmp(Empresas emp) {
+        this.emp = emp;
+    }
+
+    public Movimientos getMovi() {
+        return movi;
+    }
+
+    public void setMovi(Movimientos movi) {
+        this.movi = movi;
+    }
+
+    public boolean isAdd() {
+        return add;
+    }
+
+    public void setAdd(boolean add) {
+        this.add = add;
+    }
+    
+    
 
 }
