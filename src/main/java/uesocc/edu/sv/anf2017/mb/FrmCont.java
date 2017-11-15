@@ -6,13 +6,14 @@
 package uesocc.edu.sv.anf2017.mb;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import org.primefaces.event.CellEditEvent;
@@ -34,148 +35,126 @@ import uesocc.edu.sv.anf2017.entities.TipoCuenta;
 public class FrmCont implements Serializable {
 
     public FrmCont() {
+
     }
 
     @EJB
-    private MovimientosFacadeLocal mfl;
-    private Movimientos mov = new Movimientos();
-    private int tipoEstado;
-    private Integer tipoCuenta;
+    private EmpresasFacadeLocal efl;
+    private Empresas emp;
+    private boolean add;
 
     @EJB
-    private EmpresasFacadeLocal efl;
-    private Empresas emp = new Empresas();
+    private MovimientosFacadeLocal mfl;
+    private Movimientos movimiento;
+    private List<Movimientos> movimientos;
+    private List<Movimientos> movimientosxcuent = new ArrayList<>();
+    private Movimientos movi;
 
     @EJB
     private CuentasFacadeLocal fl;
-    private List<Cuentas> cuent = new ArrayList<>();
-    private List<Cuentas> activos = new ArrayList<>();
-    private List<Cuentas> pasivos = new ArrayList<>();
-    private List<Cuentas> capital = new ArrayList<>();
+    private List<Cuentas> cuentas = new ArrayList<>();
     private String title;
     private Cuentas cuenta;
     private TipoCuenta tipo = new TipoCuenta();
 
-    /**
-     * Metodo para devolver una lista con todas las cuentas de tipo Activo
-     * Corriente :V
-     *
-     * @return
-     */
-    public List<Cuentas> findActivosCorrientes() {
-        setCuent(Collections.EMPTY_LIST);
-        try {
-            setCuent(getFl().findBy("idCuenta", "11"));
-            setTitle("Activos Corrientes");
-        } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
-        }
-        
-        return getCuent();
+    @PostConstruct
+    public void init() {
+        movi = new Movimientos();
+        movimientos = resumen();
+        movimientosxcuent = Collections.EMPTY_LIST;
+        add = false;
     }
 
-    public List<Cuentas> findBy(int codigo, String titulo) {
-        setCuent(Collections.EMPTY_LIST);
+    public List<Cuentas> findCuentas(int codigo, String titulo) {
+        setCuentas(Collections.EMPTY_LIST);
         try {
-            setCuent(getFl().findBy("idCuenta", String.valueOf(codigo)));
+            setCuentas(getFl().findBy("idCuenta", String.valueOf(codigo)));
             setTitle(titulo);
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
         }
-        System.out.println(fl.find(12));
-        return getCuent();
+        return getCuentas();
     }
 
-    public void option() {
-        switch (tipoCuenta) {
-            case 1:
-                findBy(tipoCuenta, "Activos");
-                break;
-            case 2:
-                findBy(tipoCuenta, "Pasivos");
-                break;
-            case 3:
-                findBy(tipoCuenta, "Capital");
-                break;
-            case 4:
-                findBy(tipoCuenta, "Gastos");
-                break;
-            case 5:
-                findBy(tipoCuenta, "Ingresos");
-                break;
-            default:
-                break;
-        }
-    }
-
-    /**
-     * Metodo para devolver una lista con todas las cuentas de tipo Activo No
-     * Corriente :V
-     *
-     * @return
-     */
-    public List<Cuentas> findActivosNoCorrientes() {
-        setCuent(Collections.EMPTY_LIST);
+    public void crearMovimiento() {
         try {
-            setCuent(getFl().findBy("idCuenta", "12"));
-            setTitle("Activos No Corrientes");
-        } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
-        }
-        return getCuent();
-    }
-
-    /**
-     *
-     */
-    public void modificar() {
-        try {
-            if (cuenta != null && this.fl != null) {
-                this.fl.edit(cuenta);
+            java.util.Date fecha = new java.util.Date();
+            movi.setIdCuenta(cuenta);
+            movi.setIdEmpresa(efl.find(1));
+            movi.setFecha(fecha);
+            if (movi != null && this.mfl != null) {
+                this.mfl.create(movi);
+                resumen();
+                moviminetosPorCuenta();
             }
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
         }
     }
 
-    /**
-     * Metodo que se ejecuta luego de dar enter al estar editando la tabla
-     *
-     * @param event
-     */
+    public List<Movimientos> resumen() {
+        movimientos = Collections.EMPTY_LIST;
+        try {
+            if (mfl != null) {
+                java.util.Date fecha = new java.util.Date();
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                movimientos = mfl.findBy("fecha", format.format(fecha));
+            }
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+        }
+        return movimientos;
+    }
+
+    public List<Movimientos> moviminetosPorCuenta() {
+        movimientosxcuent = Collections.EMPTY_LIST;
+        try {
+            if (mfl != null) {
+                movimientosxcuent = mfl.findByJoined("idCuenta", cuenta);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+        }
+        return movimientosxcuent;
+    }
+
     public void onCellEdit(CellEditEvent event) {
-        System.out.println(event.getRowKey());
-        cuenta.setDescripcion((String) event.getNewValue());
-        modificar();
+        try {
+            if (movimiento != null && mfl != null) {
+                movimiento.setMonto((Double) event.getNewValue());
+                mfl.edit(movimiento);
+                resumen();
+                moviminetosPorCuenta();
+            }
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+        }
     }
 
     public void changeSelected(SelectEvent se) {
-        if (se.getObject() != null) {
-            try {
+        try {
+            if (se.getObject() != null) {
+                this.movimiento = (Movimientos) se.getObject();
+            }
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+        }
+    }
+
+    public void changeSelectedCuenta(SelectEvent se) {
+        try {
+            if (se.getObject() != null) {
                 this.cuenta = (Cuentas) se.getObject();
-            } catch (Exception e) {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+                moviminetosPorCuenta();
+                add = true;
             }
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
         }
     }
 
-    public List<Cuentas> complete(String query) {
-        List<Cuentas> all = fl.findAll();
-        List<Cuentas> filter = new ArrayList<>();
-
-        for (int i = 0; i < all.size(); i++) {
-            Cuentas skin = all.get(i);
-            if (skin.getNombre().toLowerCase().startsWith(query)) {
-                filter.add(skin);
-            }
-        }
-        return filter;
-    }
-
-    public void onItemSelect(SelectEvent event) {
-        System.out.println(cuenta);
-    }
-
+    //----- Getter and Setter Methods -----//
+    
     public CuentasFacadeLocal getFl() {
         return fl;
     }
@@ -184,12 +163,12 @@ public class FrmCont implements Serializable {
         this.fl = fl;
     }
 
-    public List<Cuentas> getCuent() {
-        return cuent;
+    public List<Cuentas> getCuentas() {
+        return cuentas;
     }
 
-    public void setCuent(List<Cuentas> cuent) {
-        this.cuent = cuent;
+    public void setCuentas(List<Cuentas> cuentas) {
+        this.cuentas = cuentas;
     }
 
     public String getTitle() {
@@ -216,28 +195,12 @@ public class FrmCont implements Serializable {
         this.mfl = mfl;
     }
 
-    public Movimientos getMov() {
-        return mov;
+    public Movimientos getMovimiento() {
+        return movimiento;
     }
 
-    public void setMov(Movimientos mov) {
-        this.mov = mov;
-    }
-
-    public int getTipoEstado() {
-        return tipoEstado;
-    }
-
-    public void setTipoEstado(int tipoEstado) {
-        this.tipoEstado = tipoEstado;
-    }
-
-    public Integer getTipoCuenta() {
-        return tipoCuenta;
-    }
-
-    public void setTipoCuenta(Integer tipoCuenta) {
-        this.tipoCuenta = tipoCuenta;
+    public void setMovimiento(Movimientos movimiento) {
+        this.movimiento = movimiento;
     }
 
     public TipoCuenta getTipo() {
@@ -248,28 +211,52 @@ public class FrmCont implements Serializable {
         this.tipo = tipo;
     }
 
-    public List<Cuentas> getActivos() {
-        return activos;
+    public List<Movimientos> getMovimientos() {
+        return movimientos;
     }
 
-    public void setActivos(List<Cuentas> activos) {
-        this.activos = activos;
+    public void setMovimientos(List<Movimientos> movimientos) {
+        this.movimientos = movimientos;
     }
 
-    public List<Cuentas> getPasivos() {
-        return pasivos;
+    public List<Movimientos> getMovimientosxcuent() {
+        return movimientosxcuent;
     }
 
-    public void setPasivos(List<Cuentas> pasivos) {
-        this.pasivos = pasivos;
+    public void setMovimientosxcuent(List<Movimientos> movimientosxcuent) {
+        this.movimientosxcuent = movimientosxcuent;
     }
 
-    public List<Cuentas> getCapital() {
-        return capital;
+    public EmpresasFacadeLocal getEfl() {
+        return efl;
     }
 
-    public void setCapital(List<Cuentas> capital) {
-        this.capital = capital;
+    public void setEfl(EmpresasFacadeLocal efl) {
+        this.efl = efl;
+    }
+
+    public Empresas getEmp() {
+        return emp;
+    }
+
+    public void setEmp(Empresas emp) {
+        this.emp = emp;
+    }
+
+    public Movimientos getMovi() {
+        return movi;
+    }
+
+    public void setMovi(Movimientos movi) {
+        this.movi = movi;
+    }
+
+    public boolean isAdd() {
+        return add;
+    }
+
+    public void setAdd(boolean add) {
+        this.add = add;
     }
 
 }

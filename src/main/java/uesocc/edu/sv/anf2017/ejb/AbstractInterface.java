@@ -25,6 +25,8 @@ public interface AbstractInterface<T> {
     public List<T> findAll();
     
     public List<T> findBy(String parameter, String value);
+    
+    public List<T> findByJoined(String parameter, Object value);
 
     public List<T> findRange(int first, int pageSize);
 

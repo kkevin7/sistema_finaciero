@@ -6,7 +6,6 @@
 package uesocc.edu.sv.anf2017.entities;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -27,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author kevin
+ * @author yovany
  */
 @Entity
 @Table(name = "movimientos", catalog = "analisisf2017", schema = "")
@@ -46,11 +45,10 @@ public class Movimientos implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_movimiento", nullable = false)
     private Integer idMovimiento;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @NotNull
-    @Column(name = "monto", nullable = false, precision = 10, scale = 4)
-    private BigDecimal monto;
+    @Column(name = "monto", nullable = false)
+    private double monto;
     @Basic(optional = false)
     @NotNull
     @Column(name = "fecha", nullable = false)
@@ -73,7 +71,7 @@ public class Movimientos implements Serializable {
         this.idMovimiento = idMovimiento;
     }
 
-    public Movimientos(Integer idMovimiento, BigDecimal monto, Date fecha) {
+    public Movimientos(Integer idMovimiento, double monto, Date fecha) {
         this.idMovimiento = idMovimiento;
         this.monto = monto;
         this.fecha = fecha;
@@ -87,11 +85,11 @@ public class Movimientos implements Serializable {
         this.idMovimiento = idMovimiento;
     }
 
-    public BigDecimal getMonto() {
+    public double getMonto() {
         return monto;
     }
 
-    public void setMonto(BigDecimal monto) {
+    public void setMonto(double monto) {
         this.monto = monto;
     }
 
