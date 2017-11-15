@@ -4,11 +4,11 @@
     <jta-data-source>jndi_anf</jta-data-source>
     <class>uesocc.edu.sv.anf2017.entities.Cuentas</class>
     <class>uesocc.edu.sv.anf2017.entities.Empresas</class>
-    <class>uesocc.edu.sv.anf2017.entities.Movimientos</class>
     <class>uesocc.edu.sv.anf2017.entities.Porcentajes</class>
     <class>uesocc.edu.sv.anf2017.entities.TipoCuenta</class>
     <class>uesocc.edu.sv.anf2017.entities.TipoEstado</class>
     <class>uesocc.edu.sv.anf2017.entities.Usuarios</class>
+    <class>uesocc.edu.sv.anf2017.entities.Movimientos</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>

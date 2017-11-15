@@ -12,39 +12,44 @@
         <ui:composition template="../templates/dinamyctemplate.xhtml">
             <ui:define name="content">
                 <div class="cont-tabla">
-                    <h:form id="menu" style="position: relative; left: 5px">
-
-                        <p:outputLabel value="Menu de cuentas:"></p:outputLabel>
-                        <p:menu style="width: 20%">
+                    <h:form id="menu" style="position: relative; left: 10px; width: 20%">
+                        <p:commandButton value="PDF" actionListener="#{frmCrear.estadoResultados()}"/>
+                        <br/>
+                        <br/>
+                        <h4><p:outputLabel value="Menu de cuentas:"/></h4>
+                        <p:menu style="width: 100%">
                             <p:submenu label="Activos">
-                                <p:menuitem value="Activos Corrientes" actionListener="#{frmCont.findBy(11, 'Activos Corrientes')}" update="tblcuentas movimientosxcuenta"/>
-                                <p:menuitem value="Activos No Corrientes" actionListener="#{frmCont.findBy(12, 'Activos No Corrientes')}" update="tblcuentas movimientosxcuenta"/>
+                                <p:menuitem value="Activos Corrientes" actionListener="#{frmCont.findCuentas(11, 'Activos Corrientes')}" update="tblcuentas:cuentas movimientosxcuenta"/>
+                                <p:menuitem value="Activos No Corrientes" actionListener="#{frmCont.findCuentas(12, 'Activos No Corrientes')}" update="tblcuentas:cuentas movimientosxcuenta"/>
                             </p:submenu>
                             <p:submenu label="Pasivos">
-                                <p:menuitem value="Pasivos Corrientes" actionListener="#{frmCont.findBy(21, 'Pasivos Corrientes')}" update="tblcuentas movimientosxcuenta"/>
-                                <p:menuitem value="Pasivos No Corrientes" actionListener="#{frmCont.findBy(22, 'Pasivos No Corrientes')}" update="tblcuentas movimientosxcuenta"/>
+                                <p:menuitem value="Pasivos Corrientes" actionListener="#{frmCont.findCuentas(21, 'Pasivos Corrientes')}" update="tblcuentas:cuentas movimientosxcuenta"/>
+                                <p:menuitem value="Pasivos No Corrientes" actionListener="#{frmCont.findCuentas(22, 'Pasivos No Corrientes')}" update="tblcuentas:cuentas movimientosxcuenta"/>
                             </p:submenu>
                             <p:submenu label="Capital">
-                                <p:menuitem value="Capital" actionListener="#{frmCont.findBy(3, 'Capital')}" update="tblcuentas movimientosxcuenta"/>
+                                <p:menuitem value="Capital" actionListener="#{frmCont.findCuentas(3, 'Capital')}" update="tblcuentas:cuentas movimientosxcuenta"/>
                             </p:submenu>
                             <p:submenu label="Gastos">
-                                <p:menuitem value="Gastos" actionListener="#{frmCont.findBy(4, 'Gastos')}" update="tblcuentas movimientosxcuenta"/>
+                                <p:menuitem value="Gastos" actionListener="#{frmCont.findCuentas(4, 'Gastos')}" update="tblcuentas:cuentas movimientosxcuenta"/>
                             </p:submenu>
                             <p:submenu label="Ingresos">
-                                <p:menuitem value="Ingresos" actionListener="#{frmCont.findBy(5, 'Ingresos')}" update="tblcuentas movimientosxcuenta"/>
+                                <p:menuitem value="Ingresos" actionListener="#{frmCont.findCuentas(5, 'Ingresos')}" update="tblcuentas:cuentas movimientosxcuenta"/>
                             </p:submenu>
                         </p:menu>
                     </h:form>
-                    <h:form id="tblcuentas" style="position: absolute; left: 25%; top:8%; width: 40%;height: 50%">
+                    <h:form id="tblcuentas" style="position: absolute; left: 25%; top:7%; width: 40%;height: 50%">
                         <h4><p:outputLabel value="Seleccionar Cuentas:"/></h4>
                         <p:dataTable id="cuentas" 
                                      var="cuenta" 
                                      value="#{frmCont.cuentas}" 
-                                     widgetVar="cuent"
+                                     widgetVar="Table"
                                      selectionMode="single"
                                      rowKey="#{cuenta.idCuenta}"
                                      selection="#{frmCont.cuenta}"
                                      emptyMessage="Seleccione un tipo de cuenta"
+                                     scrollable="true"
+                                     scrollHeight="300"
+                                     style="border: #000"
                                      >
                             <p:ajax event="rowSelect" listener="#{frmCont.changeSelectedCuenta}" update="movimientosxcuenta"/>
                             <f:facet name="header">
@@ -61,7 +66,8 @@
                             </p:column>
                         </p:dataTable>
                     </h:form>
-                    <h:form id="movimientosxcuenta" style="position: absolute; left: 68%; right: 5px; top:8%; width: 30%">
+                    <h:form id="movimientosxcuenta" style="position: absolute; left: 68%; right: 5px; top:7%; width: 30%">
+                        <p:growl id="msgs" showDetail="true" />
                         <h4><p:outputLabel value="Movimientos del día de la cuenta:"/></h4>
                         <p:dataTable id="movcuent" 
                                      var="movimiento" 
@@ -72,10 +78,13 @@
                                      selectionMode="single"
                                      selection="#{frmCont.movimiento}"
                                      emptyMessage="Sin registros"
+                                     scrollable="true"
+                                     scrollHeight="250"
+                                     style="border: #000"
                                      >
 
                             <p:ajax event="rowSelect" listener="#{frmCont.changeSelected}" update="@none"/>
-                            <p:ajax event="cellEdit" listener="#{frmCont.onCellEdit}" update="tblmovimientos movimientosxcuenta:movcuent"/>
+                            <p:ajax event="cellEdit" listener="#{frmCont.onCellEdit}" update="tblmovimientos :movimientosxcuenta"/>
 
                             <f:facet name="header">
                                 <p:outputPanel>
@@ -91,7 +100,7 @@
                                 <p:cellEditor>
                                     <f:facet name="output">
                                         <h:outputText value="#{movimiento.monto}" style="width: min-content">
-                                            <f:convertNumber type="currency" currencySymbol="$" />
+                                            <f:convertNumber type="currency" currencySymbol="$ " />
                                         </h:outputText>
                                     </f:facet>
                                     <f:facet name="input">
@@ -100,7 +109,7 @@
                                 </p:cellEditor>
                             </p:column>
                         </p:dataTable>
-                        <p:commandButton value="Add" onclick="PF('dlg1').show();" rendered="#{frmCont.add}"/>
+                        <p:commandButton value="AGREGAR NUEVA TRANSACCIÓN" onclick="PF('dlg1').show();" rendered="#{frmCont.add}" icon="ui-icon-circle-plus"/>
 
                     </h:form>
                 </div>
@@ -118,7 +127,7 @@
                                  >
 
                         <p:ajax event="rowSelect" listener="#{frmCont.changeSelected}" update="@none"/>
-                        <p:ajax event="cellEdit" listener="#{frmCont.onCellEdit}" update="tblmovimientos:movimientos movimientosxcuenta:movcuent"/>
+                        <p:ajax event="cellEdit" listener="#{frmCont.onCellEdit}" update="tblmovimientos:movimientos movimientosxcuenta"/>
 
                         <f:facet name="header">
                             <p:outputPanel>
@@ -137,7 +146,7 @@
                             <p:cellEditor>
                                 <f:facet name="output">
                                     <h:outputText value="#{movimiento.monto}" style="width: min-content">
-                                        <f:convertNumber type="currency" currencySymbol="$" />
+                                        <f:convertNumber type="currency" currencySymbol="$ " />
                                     </h:outputText>
                                 </f:facet>
                                 <f:facet name="input">
@@ -147,8 +156,8 @@
                         </p:column>
                     </p:dataTable>
                 </h:form>
-                <h:form id="dialog">
-                    <p:dialog header="Agregar Transacción" 
+                <h:form id="frmEdit">
+                    <p:dialog id="dialog" header="Agregar Transacción" 
                               widgetVar="dlg1" 
                               minHeight="40" 
                               modal="true"
@@ -165,15 +174,16 @@
                             <p:inputText id="descripcion" value="#{frmCont.movi.descripcion}" title="Descripcion" />
 
                         </p:panelGrid>
-                        <p:commandButton value="Add New" oncomplete="PF('dlg1').hide();" >
-                            <p:ajax listener="#{frmCont.crearMovimiento()}" process="dialog" update="tblmovimientos:movimientos movimientosxcuenta:movcuent"/>
-                        </p:commandButton>
-                        <p:commandButton value="CANCELAR" 
-                                         onclick="PF('dlg1').hide();"
-                                         style="margin-left: 5px;"
-                                         >
-                        </p:commandButton>
-
+                        <p:panelGrid columns="2" style="margin: auto ;margin-top: 10px;">
+                            <p:commandButton value="GUARDAR" oncomplete="PF('dlg1').hide();" >
+                                <p:ajax listener="#{frmCont.crearMovimiento()}" process="frmEdit" update="tblmovimientos:movimientos movimientosxcuenta:movcuent"/>
+                            </p:commandButton>
+                            <p:commandButton value="CANCELAR" 
+                                             onclick="PF('dlg1').hide();"
+                                             style="margin-left: 5px;"
+                                             >
+                            </p:commandButton>
+                        </p:panelGrid>
                     </p:dialog>
 
                 </h:form>

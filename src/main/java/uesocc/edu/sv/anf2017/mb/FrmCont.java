@@ -61,11 +61,11 @@ public class FrmCont implements Serializable {
     public void init() {
         movi = new Movimientos();
         movimientos = resumen();
-        movimientosxcuent=Collections.EMPTY_LIST;
+        movimientosxcuent = Collections.EMPTY_LIST;
         add = false;
     }
 
-    public List<Cuentas> findBy(int codigo, String titulo) {
+    public List<Cuentas> findCuentas(int codigo, String titulo) {
         setCuentas(Collections.EMPTY_LIST);
         try {
             setCuentas(getFl().findBy("idCuenta", String.valueOf(codigo)));
@@ -76,19 +76,9 @@ public class FrmCont implements Serializable {
         return getCuentas();
     }
 
-    public void modificar() {
-        try {
-            if (cuenta != null && this.fl != null) {
-                this.fl.edit(cuenta);
-            }
-        } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
-        }
-    }
-
     public void crearMovimiento() {
-        java.util.Date fecha = new java.util.Date();
         try {
+            java.util.Date fecha = new java.util.Date();
             movi.setIdCuenta(cuenta);
             movi.setIdEmpresa(efl.find(1));
             movi.setFecha(fecha);
@@ -103,14 +93,28 @@ public class FrmCont implements Serializable {
     }
 
     public List<Movimientos> resumen() {
-        java.util.Date fecha = new java.util.Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        movimientos = mfl.findBy("fecha", format.format(fecha));
+        movimientos = Collections.EMPTY_LIST;
+        try {
+            if (mfl != null) {
+                java.util.Date fecha = new java.util.Date();
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                movimientos = mfl.findBy("fecha", format.format(fecha));
+            }
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+        }
         return movimientos;
     }
 
     public List<Movimientos> moviminetosPorCuenta() {
-        movimientosxcuent = mfl.findByJoined("idCuenta", cuenta);
+        movimientosxcuent = Collections.EMPTY_LIST;
+        try {
+            if (mfl != null) {
+                movimientosxcuent = mfl.findByJoined("idCuenta", cuenta);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+        }
         return movimientosxcuent;
     }
 
@@ -128,31 +132,29 @@ public class FrmCont implements Serializable {
     }
 
     public void changeSelected(SelectEvent se) {
-        if (se.getObject() != null) {
-            try {
+        try {
+            if (se.getObject() != null) {
                 this.movimiento = (Movimientos) se.getObject();
-            } catch (Exception e) {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
             }
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
         }
     }
 
     public void changeSelectedCuenta(SelectEvent se) {
-        if (se.getObject() != null) {
-            try {
+        try {
+            if (se.getObject() != null) {
                 this.cuenta = (Cuentas) se.getObject();
                 moviminetosPorCuenta();
                 add = true;
-            } catch (Exception e) {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
             }
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
         }
     }
 
-    public void onItemSelect(SelectEvent event) {
-        System.out.println(cuenta);
-    }
-
+    //----- Getter and Setter Methods -----//
+    
     public CuentasFacadeLocal getFl() {
         return fl;
     }
@@ -256,7 +258,5 @@ public class FrmCont implements Serializable {
     public void setAdd(boolean add) {
         this.add = add;
     }
-    
-    
 
 }
