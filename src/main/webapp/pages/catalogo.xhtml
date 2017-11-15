@@ -116,7 +116,7 @@
                                     <f:selectItem itemLabel="Acreedor" itemValue="H"/>
                                 </p:selectOneRadio>
                                 <p:outputLabel value="Descripcion:" for="descripcion" />
-                                <p:inputTextarea id="descripcion" value="#{frmCatalogo.cuenta.descripcion}" rows="3" cols="30" title="Descripcion" />
+                                <p:inputTextarea id="descripcion" value="#{frmCatalogo.cuenta.descripcion}" rows="3" cols="30" title="Descripcion" maxlength="45"/>
                                 <p:outputLabel value="Tipo de Cuenta:" for="idTipoCuenta" />
                                 <p:selectOneMenu id="idTipoCuenta" value="#{frmCatalogo.cuenta.idTipoCuenta}" effect="fold" converter="omnifaces.SelectItemsConverter">
                                     <f:selectItems  value="#{frmTipoCuenta.find()}" var="id" itemLabel="#{id.nombre}" itemValue="#{id}"/>
