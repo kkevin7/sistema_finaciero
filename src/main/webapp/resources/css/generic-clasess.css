@@ -13,6 +13,15 @@ body
     margin-bottom: 1%;
 }
 
+.cont-reporte{
+    background: white;  
+    margin: 0 auto;
+    width: 98%;
+    height: 95%;
+    padding-bottom: 50px;
+    margin-bottom: 1%;
+}
+
 .tableclassPrime{
     padding-top: 30px;
     width: 85%; 

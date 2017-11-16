@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Reportes</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../templates/dinamyctemplate.xhtml">
+            <ui:define name="content">
+                <link href="../resources/css/reportes_style.css" rel="stylesheet" type="text/css" media="all"/>
+                
+                <h:form id="frm-msg">
+                    <p:growl id="msgs" showDetail="true" />
+                </h:form>
+                
+                <div class="cont-reporte">
+                    <div class="text-imagen">
+                        <h:form id="frm-iniciocliente" style="margin-left: 2.5%;">
+                            <h:panelGrid columns="5" style="background-color:  transparent; margin: 1.5%; margin-left: 5%; ">
+                                <h:graphicImage id="reporteIcon"  style="background-color: transparent; margin-right: 10px;" class="icon" name="/images/reports128x128.png"  height="60" width="65"/>
+                                <p:outputLabel for="reporteIcon" value="REPORTES" style="font-size: 25px;"/>
+                            </h:panelGrid>
+                        </h:form>
+                    </div>
+
+                    <div class="form-report" style="margin-top: 1%;">
+                        <h:form id="frm-datos">
+                            <p:fieldset legend="Datos" toggleable="true" toggleSpeed="500" >
+                                <h:panelGrid columns="2" style="font-size: 18px; margin: 0 auto; background-color:  transparent; ">
+                                    <p:outputLabel value="Nombre:" for="nombre"/>
+                                    <p:selectOneMenu id="nombre" value="#{frmReportes.nombreEmpresa}" converter="omnifaces.SelectItemsConverter">
+                                        <f:selectItems  value="#{frmReportes.obtenerTodos()}" var="id" itemLabel="#{id.nombre}" itemValue="#{id.nombre}"/>
+                                    </p:selectOneMenu>
+                                    <p:outputLabel  for="tipoReporte" value="Tipo de Reporte:"/>
+                                    <p:selectOneMenu id="tipoReporte" appendTo="@this" value="#{frmReportes.tipoReporte}">
+                                        <f:selectItem itemLabel="Balance General" itemValue="BG" />
+                                        <f:selectItem itemLabel="Estado de Resultados" itemValue="ER" />
+                                        <f:selectItem itemLabel="Razones" itemValue="RZ" />
+                                    </p:selectOneMenu>
+                                    <p:outputLabel for="fechaInicial" value="Fecha de Inicial: " />
+                                    <p:calendar id="fechaInicial"
+                                                mask="99/99/9999"
+                                                size="10"
+                                                pattern="dd/MM/yyyy" 
+                                                effect="blind" 
+                                                yearRange="-100:+0"
+                                                value="#{frmReportes.fechaIncial}"
+                                                required="true"
+                                                requiredMessage="Necesita Ingresa una fecha de inicio"
+                                                >
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </p:calendar>
+                                    <p:outputLabel for="fechaFin" value="Fecha de Fin: " />
+                                    <p:calendar id="fechaFin"
+                                                mask="99/99/9999"
+                                                size="10"
+                                                pattern="dd/MM/yyyy" 
+                                                effect="blind" 
+                                                yearRange="-100:+0"
+                                                value="#{frmReportes.fechaFin}"
+                                                >
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </p:calendar>
+                                </h:panelGrid>
+                                <h:panelGrid columns="3" 
+                                             style=" margin: 0 auto;
+                                             margin-top: 4%;
+                                             margin-bottom: 2.5%;
+                                             font-size: 15px;
+                                             ">
+                                    <p:commandButton value="Vizualizar" 
+                                                     ajax="false"
+                                                     actionListener="#{frmReportes.verPDF()}"
+                                                     update="frm-msg"
+                                                     />
+                                    <p:commandButton value="Exportar PDF" 
+                                                     style="background: #E74C3C; 
+                                                     border: none;
+                                                     margin-left: 5px;" 
+                                                     ajax="false"
+                                                     actionListener="#{frmReportes.exportarPDF()}"
+                                                     update="frm-msg"
+                                                     />
+                                    <p:commandButton value="Exportar Excel" 
+                                                     style="background: #2ecc71; 
+                                                     border: none;
+                                                     margin-left: 5px;" 
+                                                     ajax="false"
+                                                     actionListener="#{frmReportes.exportarExcel()}"
+                                                     update="frm-msg"
+                                                     />
+                                </h:panelGrid>
+                            </p:fieldset>
+                        </h:form>
+                    </div>
+
+
+                </div>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

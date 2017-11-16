@@ -1,0 +1,17 @@
+.form-report{
+    
+    width: 40%;
+    height: 400px;
+    margin: 0 auto;
+    /*background: #00aced;*/
+}
+
+.text-imagen{
+    width: 20%;
+    margin: 0 auto;
+}
+
+.btn-vizualizar{
+    background: #2ecc71; 
+    border: none;
+}
