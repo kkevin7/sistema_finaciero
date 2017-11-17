@@ -3,6 +3,8 @@ package uesocc.edu.sv.anf2017.mb;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.sql.Connection;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,15 +12,18 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -34,10 +39,13 @@ import uesocc.edu.sv.anf2017.entities.Movimientos;
 @Named(value = "frmReportes")
 @ViewScoped
 public class FrmReportes implements Serializable {
-    
+
     @EJB
     private EmpresasFacadeLocal ejbEmpresas;
     private Empresas empresas = new Empresas();
+
+    @Resource(lookup = "jndi_anf")
+    DataSource dbFinanciera;
 
     Calendar cal = Calendar.getInstance();
     String nombreEmpresa;
@@ -55,7 +63,7 @@ public class FrmReportes implements Serializable {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
         }
     }
-    
+
     @Deprecated
     public List<Empresas> obtenerTodos() {
         List<Empresas> salida = new ArrayList();
@@ -82,77 +90,162 @@ public class FrmReportes implements Serializable {
 
         return datos;
     }
-    
-    public void tipoReportesJasper(){
+
+    public void tipoReportesJasper() {
         if (tipoReporte.equals("BG")) {
             tipoJasper = "balanceGeneral.jasper";
         }
         if (tipoReporte.equals("ER")) {
             tipoJasper = "EstadosResultado.jasper";
         }
-        
-        System.out.println("Nombre Empresa:::--->"+nombreEmpresa);
-        System.out.println("Tipo Jasper ::::--->"+tipoJasper );
-        System.out.println("Fecha Fin ::::--->"+fechaFin);
+
     }
 
     public void verPDF() throws Exception {
         tipoReportesJasper();
-        Map<String, Object> parametros = new HashMap<String, Object>();
-        
 
-        File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/reports/"+tipoJasper));
-        byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(), parametros, new JRBeanCollectionDataSource(this.getDatos()));
+        try {
+            Map<String, Object> parametros = new HashMap<String, Object>();
+            File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/reports/" + tipoJasper));
+            parametros.put("nom_empresa", nombreEmpresa);
+            parametros.put("fechaInicio", limpiarUtilDate(fechaIncial));
+            parametros.put("fechaFin", limpiarUtilDate(fechaFin));
+            parametros.put("periodo", "Periodo realizado del "+limpiarUtilDate(fechaFin)+" al "+ limpiarUtilDate(fechaFin));
 
-        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-        response.setContentType("application/pdf");
-        response.setContentLength(bytes.length);
-        ServletOutputStream outStream = response.getOutputStream();
-        outStream.write(bytes, 0, bytes.length);
+            Connection conexion = null;
+            try {
+                if (dbFinanciera != null) {
+                    conexion = dbFinanciera.getConnection();
+                }
+                byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(), parametros, conexion);
 
-        outStream.flush();
-        outStream.close();
+                HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+                response.setContentType("application/pdf");
+                response.setContentLength(bytes.length);
+                ServletOutputStream outStream = response.getOutputStream();
+                outStream.write(bytes, 0, bytes.length);
 
-        FacesContext.getCurrentInstance().responseComplete();
+                outStream.flush();
+                outStream.close();
+
+                FacesContext.getCurrentInstance().responseComplete();
+            } catch (Exception e) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+            } finally {
+                if (conexion != null) {
+                    try {
+                        conexion.close();
+                    } catch (Exception e) {
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+        }
+
     }
 
     public void exportarPDF() throws JRException, IOException {
         tipoReportesJasper();
-        Map<String, Object> parametros = new HashMap<String, Object>();
+        try {
 
-        File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/reports/"+tipoJasper));
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(), parametros, new JRBeanCollectionDataSource(this.getDatos()));
+            Map<String, Object> parametros = new HashMap<String, Object>();
+            File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/reports/" + tipoJasper));
+            parametros.put("nom_empresa", nombreEmpresa);
+            parametros.put("fechaInicio", limpiarUtilDate(fechaIncial));
+            parametros.put("fechaFin", limpiarUtilDate(fechaFin));
+            parametros.put("perido", "Periodo realizado del "+limpiarUtilDate(fechaFin)+" al "+ limpiarUtilDate(fechaFin));
 
-        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-        response.addHeader("Content-disposition", "attachment; filename=contrato-sis_prestamos.pdf");
-        ServletOutputStream stream = response.getOutputStream();
+            Connection conexion = null;
+            try {
+                if (dbFinanciera != null) {
+                    conexion = dbFinanciera.getConnection();
+                }
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(), parametros, conexion);
 
-        JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
+                HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+                response.addHeader("Content-disposition", "attachment; filename=estados_financieros.pdf");
+                ServletOutputStream stream = response.getOutputStream();
 
-        stream.flush();
-        stream.close();
-        FacesContext.getCurrentInstance().responseComplete();
+                JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
+
+                stream.flush();
+                stream.close();
+                FacesContext.getCurrentInstance().responseComplete();
+            } catch (Exception e) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+            } finally {
+                if (conexion != null) {
+                    try {
+                        conexion.close();
+                    } catch (Exception e) {
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+        }
+
     }
 
     public void exportarExcel() throws JRException, IOException {
         tipoReportesJasper();
-        Map<String, Object> parametros = new HashMap<String, Object>();
+        try {
+            Map<String, Object> parametros = new HashMap<String, Object>();
+            File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/reports/" + tipoJasper));
+            parametros.put("nom_empresa", nombreEmpresa);
+            parametros.put("fechaInicio", limpiarUtilDate(fechaIncial));
+            parametros.put("fechaFin", limpiarUtilDate(fechaFin));
+            parametros.put("perido", "Periodo realizado del "+limpiarUtilDate(fechaFin)+" al "+ limpiarUtilDate(fechaFin));
 
-        File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/reports/"+tipoJasper));
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(), parametros, new JRBeanCollectionDataSource(this.getDatos()));
+            Connection conexion = null;
+            try {
+                if (dbFinanciera != null) {
+                    conexion = dbFinanciera.getConnection();
+                }
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(), parametros, conexion);
 
-        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-        response.addHeader("Content-disposition", "attachment; filename=contrato-sis_prestamos.xlsx");
-        ServletOutputStream stream = response.getOutputStream();
+                HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+                response.addHeader("Content-disposition", "attachment; filename=estados_financieros.xlsx");
+                ServletOutputStream stream = response.getOutputStream();
 
-        JRXlsExporter exporter = new JRXlsExporter();
-        exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
-        exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, stream);
-        exporter.exportReport();
+                JRXlsExporter exporter = new JRXlsExporter();
+                exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+                exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, stream);
+                exporter.exportReport();
 
-        stream.flush();
-        stream.close();
-        FacesContext.getCurrentInstance().responseComplete();
+                stream.flush();
+                stream.close();
+                FacesContext.getCurrentInstance().responseComplete();
+            } catch (Exception e) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+            } finally {
+                if (conexion != null) {
+                    try {
+                        conexion.close();
+                    } catch (Exception e) {
+                    }
+                }
+            }
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+        }
+    }
+
+    public String limpiarUtilDate(Date fechaIngresada) throws ParseException {
+        String fecha = fechaIngresada.toString();
+        DateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", Locale.US);
+        Date date = (Date) formatter.parse(fecha);
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        String formatedDate = cal.get(Calendar.YEAR) + "/"
+                + (cal.get(Calendar.MONTH) + 1)
+                + "/" + cal.get(Calendar.DATE);
+
+        return formatedDate;
     }
 
     public EmpresasFacadeLocal getEjbEmpresas() {
@@ -210,7 +303,5 @@ public class FrmReportes implements Serializable {
     public void setNombreEmpresa(String nombreEmpresa) {
         this.nombreEmpresa = nombreEmpresa;
     }
-    
-    
 
 }

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="balanceGeneral" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="51cf5fb5-7ee8-4a2b-b5a5-e4d4a579700f">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="68"/>
+	<property name="ireport.y" value="48"/>
 	<style name="Crosstab Data Text" hAlign="Center"/>
 	<style name="table">
 		<box>
@@ -95,15 +95,236 @@
 			<pen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
-	<subDataset name="prueba-balance" uuid="f48f0cc2-5b43-465c-a59e-6d6cf6148ffb">
-		<queryString language="SQL">
+	<style name="table 4">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 5">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 5_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 5_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 6">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 6_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 6_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 6_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 7">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 7_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 7_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 7_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 8">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 8_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 8_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 8_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 9">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 9_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 9_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 9_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 10">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 10_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 10_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 10_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 11">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 11_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 11_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 11_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 12">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 12_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 12_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 12_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<subDataset name="bg_activos_corrientes" uuid="bb3e7bd0-1462-44e2-90bc-e5230fdd62e2">
+		<parameter name="fechaInicioAC" class="java.lang.String"/>
+		<parameter name="fechaFinAC" class="java.lang.String"/>
+		<queryString>
 			<![CDATA[SELECT m.id_cuenta,c.nombre,m.fecha,m.monto FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_tipo_cuenta=1 AND m.fecha BETWEEN "2017-11-15" AND "2017-11-15" ORDER BY m.fecha ]]>
+WHERE c.id_cuenta LIKE "11%" AND m.fecha BETWEEN $P{fechaInicioAC} AND $P{fechaFinAC} ORDER BY m.fecha ]]>
 		</queryString>
 		<field name="id_cuenta" class="java.lang.Integer">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 		<field name="nombre" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="fecha" class="java.sql.Date">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 		<field name="monto" class="java.math.BigDecimal">
@@ -119,15 +340,20 @@ WHERE c.id_tipo_cuenta=1 AND m.fecha BETWEEN "2017-11-15" AND "2017-11-15" ORDER
 			<groupExpression><![CDATA[$F{monto}]]></groupExpression>
 		</group>
 	</subDataset>
-	<subDataset name="bg_pasivos" uuid="c8deecb3-5c81-4f97-ba1c-7c7448b32b86">
-		<queryString language="SQL">
+	<subDataset name="bg_activos_nocorrientes" uuid="d30fb858-5a29-42a1-8e07-3dba101f8559">
+		<parameter name="fechaInicioNC" class="java.lang.String"/>
+		<parameter name="fechaFinNC" class="java.lang.String"/>
+		<queryString>
 			<![CDATA[SELECT m.id_cuenta,c.nombre,m.fecha,m.monto FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_tipo_cuenta=2 AND m.fecha BETWEEN "2017-11-15" AND "2017-11-15" ORDER BY m.fecha ]]>
+WHERE c.id_cuenta LIKE "12%" AND m.fecha BETWEEN $P{fechaInicioNC} AND $P{fechaFinNC} ORDER BY m.fecha ]]>
 		</queryString>
 		<field name="id_cuenta" class="java.lang.Integer">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 		<field name="nombre" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="fecha" class="java.sql.Date">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 		<field name="monto" class="java.math.BigDecimal">
@@ -143,15 +369,20 @@ WHERE c.id_tipo_cuenta=2 AND m.fecha BETWEEN "2017-11-15" AND "2017-11-15" ORDER
 			<groupExpression><![CDATA[$F{monto}]]></groupExpression>
 		</group>
 	</subDataset>
-	<subDataset name="bg_capital" uuid="90b9a30d-f0e8-448e-b000-deee28108439">
-		<queryString language="SQL">
+	<subDataset name="bg_pasivos_corrientes" uuid="53db578f-503b-4568-a9af-5976b20a5cc2">
+		<parameter name="fechaInicioPC" class="java.lang.String"/>
+		<parameter name="fechaFinPC" class="java.lang.String"/>
+		<queryString>
 			<![CDATA[SELECT m.id_cuenta,c.nombre,m.fecha,m.monto FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_tipo_cuenta=3 AND m.fecha BETWEEN "2017-11-15" AND "2017-11-15" ORDER BY m.fecha ]]>
+WHERE c.id_cuenta LIKE "21%" AND m.fecha BETWEEN $P{fechaInicioPC} AND $P{fechaFinPC} ORDER BY m.fecha ]]>
 		</queryString>
 		<field name="id_cuenta" class="java.lang.Integer">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 		<field name="nombre" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="fecha" class="java.sql.Date">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 		<field name="monto" class="java.math.BigDecimal">
@@ -167,16 +398,20 @@ WHERE c.id_tipo_cuenta=3 AND m.fecha BETWEEN "2017-11-15" AND "2017-11-15" ORDER
 			<groupExpression><![CDATA[$F{monto}]]></groupExpression>
 		</group>
 	</subDataset>
-	<subDataset name="bg_activos" uuid="008ae71e-c0ac-4165-9f4c-c67c9d879674">
-		<queryString language="SQL">
+	<subDataset name="bg_pasivos_nocorrientes" uuid="f0ecd1e5-8bc6-45ae-bbc6-062a11d3c0f2">
+		<parameter name="fechaInicioPN" class="java.lang.String"/>
+		<parameter name="fechaFinPN" class="java.lang.String"/>
+		<queryString>
 			<![CDATA[SELECT m.id_cuenta,c.nombre,m.fecha,m.monto FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_tipo_cuenta=1 AND m.fecha BETWEEN "2017-11-15" AND "2017-11-15" ORDER BY m.fecha 
-]]>
+WHERE c.id_cuenta LIKE "22%" AND m.fecha BETWEEN $P{fechaInicioPN} AND $P{fechaFinPN} ORDER BY m.fecha ]]>
 		</queryString>
 		<field name="id_cuenta" class="java.lang.Integer">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 		<field name="nombre" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="fecha" class="java.sql.Date">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 		<field name="monto" class="java.math.BigDecimal">
@@ -192,9 +427,42 @@ WHERE c.id_tipo_cuenta=1 AND m.fecha BETWEEN "2017-11-15" AND "2017-11-15" ORDER
 			<groupExpression><![CDATA[$F{monto}]]></groupExpression>
 		</group>
 	</subDataset>
+	<subDataset name="bg_capital" uuid="f2712f6a-acf4-41d1-bc36-790a5ba59802">
+		<parameter name="fechaInicioC" class="java.lang.String"/>
+		<parameter name="fechaFinC" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT m.id_cuenta,c.nombre,m.fecha,m.monto FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "3%" AND m.fecha BETWEEN $P{fechaInicioC} AND $P{fechaFinC} ORDER BY m.fecha ]]>
+		</queryString>
+		<field name="id_cuenta" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="nombre" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="fecha" class="java.sql.Date">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="monto" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<group name="id_cuenta">
+			<groupExpression><![CDATA[$F{id_cuenta}]]></groupExpression>
+		</group>
+		<group name="nombre">
+			<groupExpression><![CDATA[$F{nombre}]]></groupExpression>
+		</group>
+		<group name="monto">
+			<groupExpression><![CDATA[$F{monto}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="nom_empresa" class="java.lang.String"/>
+	<parameter name="fechaFin" class="java.lang.String"/>
+	<parameter name="fechaInicio" class="java.lang.String"/>
+	<parameter name="periodo" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT m.id_cuenta,c.nombre,m.fecha,m.monto FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE m.fecha BETWEEN "2017-11-15" AND "2017-11-15" ORDER BY m.fecha ]]>
+WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha ]]>
 	</queryString>
 	<field name="id_cuenta" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -209,109 +477,135 @@ WHERE m.fecha BETWEEN "2017-11-15" AND "2017-11-15" ORDER BY m.fecha ]]>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<title>
-		<band height="65" splitType="Stretch"/>
+		<band height="115" splitType="Stretch">
+			<staticText>
+				<reportElement x="99" y="20" width="394" height="20" uuid="bdda3128-3aef-4fad-ba1f-6a99ce83a621"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BALANCE GENERAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="99" y="40" width="394" height="20" uuid="8b689ff1-9cef-4e6b-9bf5-2cc2fcbc6dcf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{periodo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="0" width="394" height="20" uuid="940c7021-8adf-457c-a892-33512694440b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nom_empresa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="99" y="60" width="394" height="20" uuid="e8d7f63d-b058-43b3-a305-1cdc368ea212"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Cantidades expresadas en dolares de los Estados Unidos de América]]></text>
+			</staticText>
+		</band>
 	</title>
-	<summary>
-		<band height="486">
+	<detail>
+		<band height="94">
 			<componentElement>
-				<reportElement key="table 1" style="table 1" x="290" y="20" width="255" height="182" uuid="a4b0ae2a-1189-4460-b952-6e0e87df2592"/>
+				<reportElement key="table 8" style="table 8" x="0" y="45" width="278" height="20" uuid="e300a5e0-5075-4685-867e-b0cd23a323e4"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="bg_pasivos" uuid="23bb61e1-3e1e-4268-bd03-da9deb3efc4e">
+					<datasetRun subDataset="bg_activos_corrientes" uuid="6ddb91d8-7eee-4543-b1f1-c26c5a33ff13">
+						<datasetParameter name="fechaInicioAC">
+							<datasetParameterExpression><![CDATA[$P{fechaInicio}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="fechaFinAC">
+							<datasetParameterExpression><![CDATA[$P{fechaFin}]]></datasetParameterExpression>
+						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="90" uuid="1efdda50-e9ce-49fd-a3dc-2c8d4f94f03b">
-						<jr:detailCell style="table 1_TD" height="20">
+					<jr:column width="90" uuid="2385932a-547d-497d-83b2-42a6756af5ec">
+						<jr:detailCell style="table 8_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="734db1a8-ee79-4c4a-a903-52d14086eafc"/>
+								<reportElement x="0" y="0" width="90" height="20" uuid="da1f5032-74bb-410c-8e41-0dd17af0500b"/>
 								<textFieldExpression><![CDATA[$F{id_cuenta}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="c6c8d384-1fc2-45bc-8ef5-9b5d3052888b">
-						<jr:detailCell style="table 1_TD" height="20">
+					<jr:column width="90" uuid="7728ab76-a01b-4e29-a9ae-bdbf622bb76d">
+						<jr:detailCell style="table 8_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="3f05b5cf-75f2-463d-aa3b-2c9dc1633737"/>
+								<reportElement x="0" y="0" width="90" height="20" uuid="e98bd936-3c5e-4fdc-a698-24619364f2a4"/>
 								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="b642b4c8-c439-4dee-b558-922702865c6d">
-						<jr:detailCell style="table 1_TD" height="20">
+					<jr:column width="90" uuid="2d67303b-b570-4758-912d-7dda9c4198f0">
+						<jr:detailCell style="table 8_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="0ff65269-9334-44f4-99d4-0692f9f3be2b"/>
+								<reportElement x="0" y="0" width="90" height="20" uuid="746bd2bb-9e34-4e61-8df1-5437f857748f"/>
 								<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
 				</jr:table>
 			</componentElement>
+			<staticText>
+				<reportElement x="26" y="23" width="160" height="20" uuid="cf97a19d-e5c4-421c-af08-8f58ec2c27d6"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ACTIVOS CORRIENTES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="23" width="181" height="20" uuid="388451ce-f4be-440a-8d2a-94c7e962a945"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PASIVOS CORRIENTES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="3" width="100" height="20" uuid="a4ac3efc-13e2-4400-a2a3-50403dec9404"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PASIVOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="3" width="100" height="20" uuid="b5fda851-9935-4d48-89e5-6559f9d71fce"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ACTIVOS]]></text>
+			</staticText>
 			<componentElement>
-				<reportElement key="table 2" style="table 2" x="290" y="247" width="255" height="191" uuid="342bebcb-dd61-4231-a3ff-3603a87aff03"/>
+				<reportElement key="table 10" style="table 10" x="289" y="43" width="266" height="20" uuid="779244ef-3cc6-47ab-9d36-6a19c919a912"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="bg_capital" uuid="dc9553b8-ec60-422e-9785-f2286a47ca50">
+					<datasetRun subDataset="bg_pasivos_corrientes" uuid="a9b2b79b-f81e-4df3-8d85-b85dceb2d886">
+						<datasetParameter name="fechaInicioPC">
+							<datasetParameterExpression><![CDATA[$P{fechaInicio}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="fechaFinPC">
+							<datasetParameterExpression><![CDATA[$P{fechaFin}]]></datasetParameterExpression>
+						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="90" uuid="b16c871b-6b81-4bc7-8b92-941df831bdd7">
-						<jr:detailCell style="table 2_TD" height="20">
+					<jr:column width="90" uuid="02065563-4c8c-4b00-a512-d0057387fe11">
+						<jr:detailCell style="table 10_TD" height="20">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="e6b3572d-f563-4230-bf27-170b00435845"/>
+								<reportElement x="0" y="0" width="90" height="20" uuid="b2cf458b-1296-43fc-9410-428c3b5d692a"/>
 								<textFieldExpression><![CDATA[$F{id_cuenta}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="dffd7a0b-7168-42b7-a799-ea116502cfb4">
-						<jr:detailCell style="table 2_TD" height="20">
+					<jr:column width="90" uuid="fe05b8c7-4315-4e5f-94cf-f7eb7c29c488">
+						<jr:detailCell style="table 10_TD" height="20">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="8a1c3376-0809-4fc3-a640-7a42f3a4b79b"/>
+								<reportElement x="0" y="0" width="90" height="20" uuid="f2453d8d-f0be-4d44-8ae9-065ce325d64d"/>
 								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="ba0a61cd-a66b-4793-82d4-9de3d519f978">
-						<jr:detailCell style="table 2_TD" height="20">
+					<jr:column width="90" uuid="21d75203-c3ce-428a-91a9-9c323dab8c03">
+						<jr:detailCell style="table 10_TD" height="20">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="43691934-2e61-42ae-b6ad-c47b6597b755"/>
-								<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-				</jr:table>
-			</componentElement>
-			<componentElement>
-				<reportElement key="table 3" style="table 3" x="0" y="20" width="281" height="430" uuid="80c890e9-68d1-4ef2-810f-db441dfd6fcd"/>
-				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="bg_activos" uuid="f361cc01-1b08-4a90-a543-50e932cd7565">
-						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					</datasetRun>
-					<jr:column width="90" uuid="8719b8d5-1001-4a9f-a337-47597d57d261">
-						<jr:detailCell style="table 3_TD" height="23" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="b9b4902a-10b2-4548-944c-2b1b47aaae13"/>
-								<textElement>
-									<font size="8" isBold="false"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{id_cuenta}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="90" uuid="6261cf64-0948-4abd-86e2-9e1a8f176971">
-						<jr:detailCell style="table 3_TD" height="23" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="85ec5de0-0c25-454b-98da-d929ee0a075f"/>
-								<textElement>
-									<font size="8" isBold="false"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="90" uuid="c414080a-dc08-4759-9751-b6201ccfbe17">
-						<jr:detailCell style="table 3_TD" height="23" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="28e5ce07-2139-45a6-aa63-fb13443eb567"/>
-								<textElement>
-									<font size="8" isBold="false"/>
-								</textElement>
+								<reportElement x="0" y="0" width="90" height="20" uuid="cc061cff-6c9f-4173-af97-3a701a9d9859"/>
 								<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -319,5 +613,177 @@ WHERE m.fecha BETWEEN "2017-11-15" AND "2017-11-15" ORDER BY m.fecha ]]>
 				</jr:table>
 			</componentElement>
 		</band>
-	</summary>
+		<band height="89">
+			<componentElement>
+				<reportElement key="table 9" style="table 9" x="0" y="65" width="278" height="20" uuid="5bbb9d65-2a41-4f2a-88ad-5e61beb70d7d"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="bg_activos_nocorrientes" uuid="e3c5bbb4-ca5f-4b0c-a03c-5bfbe456d3d5">
+						<datasetParameter name="fechaInicioNC">
+							<datasetParameterExpression><![CDATA[$P{fechaInicio}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="fechaFinNC">
+							<datasetParameterExpression><![CDATA[$P{fechaFin}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="1a06637b-e40d-43ca-a760-f1f8515e0e52">
+						<jr:detailCell style="table 9_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="2fa89b7d-eecf-4a19-91a5-0e636f4d8e3e"/>
+								<textFieldExpression><![CDATA[$F{id_cuenta}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="991e4726-79ad-4395-8c6d-97cc513daf25">
+						<jr:detailCell style="table 9_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="90533b07-859e-4d4c-896d-605133c77fa0"/>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="e3072469-ae12-4122-8aed-ce1a61235344">
+						<jr:detailCell style="table 9_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="487b2f10-92b9-4363-a5aa-a04626a7e5f3"/>
+								<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement x="22" y="45" width="164" height="20" uuid="861daa58-1389-4c1f-813a-428b5489b8d5"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ACTIVOS NO CORRIENTES]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement key="table 11" style="table 11" x="289" y="65" width="266" height="20" uuid="b7ec45f3-1464-466b-b8c1-a16a1acfdbd7"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="bg_pasivos_nocorrientes" uuid="ebd8d35c-2873-4521-bed1-86c4037b300a">
+						<datasetParameter name="fechaInicioPN">
+							<datasetParameterExpression><![CDATA[$P{fechaInicio}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="fechaFinPN">
+							<datasetParameterExpression><![CDATA[$P{fechaFin}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="d2361002-d7c2-40aa-aade-bd697987a78a">
+						<jr:detailCell style="table 11_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="552f8ece-9b64-42c6-b098-c5484d599ef8"/>
+								<textFieldExpression><![CDATA[$F{id_cuenta}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="106afcf2-0c9a-4eba-8fd2-5c8e06adef22">
+						<jr:detailCell style="table 11_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="c8c27770-bba2-40bc-acc4-8e95e0422c4d"/>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="fb2854d1-43d9-4777-883b-e55a863a4d1b">
+						<jr:detailCell style="table 11_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="3594d23f-25bc-46d9-8e12-e295eedd2fe9"/>
+								<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement x="336" y="45" width="181" height="20" uuid="9779c91c-6d83-4f22-b111-75b44e63f46f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PASIVOS NO CORRIENTES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="0" width="152" height="20" uuid="a4786914-3c40-4949-8eea-295330a55758"/>
+				<text><![CDATA[Total Activos  Corrientes=]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="0" width="132" height="20" uuid="052cc89b-fac6-4e9b-8992-6251508f54f5"/>
+				<text><![CDATA[Total Pasivos Corrientes=]]></text>
+			</staticText>
+		</band>
+		<band height="83">
+			<componentElement>
+				<reportElement key="table 12" style="table 12" x="289" y="54" width="266" height="20" uuid="84ccc12f-345f-4f2b-92ec-88f06c9adc5b"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="bg_capital" uuid="c26efbc7-bd9a-417f-8a50-1d36bf33269f">
+						<datasetParameter name="fechaInicioC">
+							<datasetParameterExpression><![CDATA[$P{fechaInicio}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="fechaFinC">
+							<datasetParameterExpression><![CDATA[$P{fechaFin}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="77534226-9aaf-4b2f-98c2-8423158272fa">
+						<jr:detailCell style="table 12_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="147c72dc-882e-4d01-b9eb-6ea2a078e039"/>
+								<textFieldExpression><![CDATA[$F{id_cuenta}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="dd5cc36b-ba90-4b7d-9982-4897ce85e871">
+						<jr:detailCell style="table 12_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="242dbc5d-acce-49ff-9597-0d1c4641d95e"/>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="503e0ce5-36cb-48cc-a46b-6e052c986956">
+						<jr:detailCell style="table 12_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="ef079403-59d3-455c-af27-6c24106ee07a"/>
+								<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement x="336" y="34" width="100" height="20" uuid="13031d7d-6acf-4095-a8c1-aec33c19ac86"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CAPITAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="0" width="148" height="20" uuid="e5102b82-c637-4e90-81d5-9fa1e6121759"/>
+				<text><![CDATA[Total Activos No corrientes=]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="0" width="154" height="20" uuid="5bad9660-090c-4285-9cbc-96cde85ac48e"/>
+				<text><![CDATA[Total Pasivos No Corrientes=]]></text>
+			</staticText>
+		</band>
+		<band height="114">
+			<staticText>
+				<reportElement x="304" y="0" width="100" height="20" uuid="2d0a1f52-6b82-4d88-b214-47c5484f3824"/>
+				<text><![CDATA[Total Capital =]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="30" width="130" height="20" uuid="a5fc9236-3e94-4a98-941a-fe1f30978c48"/>
+				<text><![CDATA[TOTAL DE ACTIVOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="30" width="166" height="20" uuid="28893b7a-a02f-4f23-8a57-cf2189ef48c8"/>
+				<text><![CDATA[TOTAL PASIVO Y CAPITAL]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50"/>
+	</pageFooter>
 </jasperReport>
