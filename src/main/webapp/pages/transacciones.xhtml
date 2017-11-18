@@ -13,7 +13,6 @@
             <ui:define name="content">
                 <div class="cont-tabla">
                     <h:form id="menu" style="position: relative; left: 10px; width: 20%">
-                        <p:commandButton value="PDF" actionListener="#{frmCrear.estadoResultados()}"/>
                         <br/>
                         <br/>
                         <h4><p:outputLabel value="Menu de cuentas:"/></h4>
@@ -113,8 +112,11 @@
 
                     </h:form>
                 </div>
+                <div class="cont-tabla" style="padding-top: 3%;"> 
                 <h:form id="tblmovimientos">
                     <p:dataTable id="movimientos" 
+                                 style="width: 90%;
+                                 margin: 0 auto;"
                                  var="movimiento" 
                                  value="#{frmCont.movimientos}" 
                                  editable="true" 
@@ -156,6 +158,7 @@
                         </p:column>
                     </p:dataTable>
                 </h:form>
+                </div>
                 <h:form id="frmEdit">
                     <p:dialog id="dialog" header="Agregar Transacción" 
                               widgetVar="dlg1" 
