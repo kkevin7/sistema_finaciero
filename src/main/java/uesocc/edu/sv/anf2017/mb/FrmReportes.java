@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -63,6 +64,7 @@ public class FrmReportes implements Serializable {
     private List<Movimientos> datos = new ArrayList<Movimientos>();
 
     public void estadoResultados() {
+        DecimalFormat df = new DecimalFormat("#.##");
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("uesocc.edu.sv_anf2017_war_1.0-SNAPSHOTPU");
         EntityManager em = emf.createEntityManager();
         Query v = em.createNamedQuery("Movimientos.ventas");
@@ -79,6 +81,7 @@ public class FrmReportes implements Serializable {
         devCompras = (Double) dc.getSingleResult();
         Query iF = em.createNamedQuery("Movimientos.inventarioFin");
         invFinal = (Double) iF.getSingleResult();
+        System.out.println(invFinal);
         uBruta = ventas - rebVentas - (invInicial + compras + gasCompras - devCompras - invFinal);
         Query go = em.createNamedQuery("Movimientos.gastoOperativo");
         gasOp = (Double) go.getSingleResult();
@@ -98,8 +101,10 @@ public class FrmReportes implements Serializable {
             impuesto = UAI * 0.3;
         } else {
             impuesto = UAI * 0.25;
+            impuesto =Double.parseDouble(df.format(impuesto));
         }
         reserva = UAI * 0.07;
+        reserva = Double.parseDouble(df.format(reserva));
         utilidad = UAI - impuesto - reserva;
     }
 
@@ -143,7 +148,7 @@ public class FrmReportes implements Serializable {
             tipoJasper = "balanceGeneral.jasper";
         }
         if (tipoReporte.equals("ER")) {
-            tipoJasper = "EstadosResultado.jasper";
+            tipoJasper = "EstadoResultados.jasper";
         }
 
     }
@@ -154,11 +159,30 @@ public class FrmReportes implements Serializable {
         try {
             Map<String, Object> parametros = new HashMap<String, Object>();
             File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/reports/" + tipoJasper));
+            estadoResultados();
             parametros.put("nom_empresa", nombreEmpresa);
             parametros.put("fechaInicio", limpiarUtilDate(fechaIncial));
             parametros.put("fechaFin", limpiarUtilDate(fechaFin));
             parametros.put("periodo", "Periodo realizado del " + limpiarUtilDate(fechaFin) + " al " + limpiarUtilDate(fechaFin));
-
+            parametros.put("Ventas", ventas);
+            parametros.put("revVentas", rebVentas);
+            parametros.put("invInicial", invInicial);
+            parametros.put("compras", compras);
+            parametros.put("gasCompras", gasCompras);
+            parametros.put("devCompras", devCompras);
+            parametros.put("invFinal", invFinal);
+            parametros.put("uBruta", uBruta);
+            parametros.put("gasOp", gasOp);
+            parametros.put("gasAdm", gasAdm);
+            parametros.put("gasVent", gasVent);
+            parametros.put("gasFinan", gasFinan);
+            parametros.put("uOPe", uOPe);
+            parametros.put("otrosIng", otrosIng);
+            parametros.put("otrosGas", otrosGas);
+            parametros.put("UAI", UAI);
+            parametros.put("impuesto", impuesto);
+            parametros.put("reserva", reserva);
+            parametros.put("utilidad", utilidad);
             Connection conexion = null;
             try {
                 if (dbFinanciera != null) {

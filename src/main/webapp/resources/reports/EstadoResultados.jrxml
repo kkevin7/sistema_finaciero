@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="511" leftMargin="43" rightMargin="41" topMargin="20" bottomMargin="20" uuid="078809cc-b670-448d-bd60-206e98a35366">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="511" leftMargin="43" rightMargin="41" topMargin="20" bottomMargin="20" uuid="078809cc-b670-448d-bd60-206e98a35366">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="94"/>
-	<property name="ireport.y" value="379"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="199"/>
 	<subDataset name="dataset1" uuid="c445e123-8842-4da8-9d3e-b67b8fa8c704"/>
 	<subDataset name="ingresos" uuid="8595d6d8-db80-4694-bf04-f195c372e983">
 		<queryString language="SQL">
@@ -147,13 +147,13 @@
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[new SimpleDateFormat("dd MMMMM yyyy").format(new java.util.Date())]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="38" y="0" width="433" height="25" uuid="834a6d75-f85c-4e71-b4e4-e42cd9bc20ec"/>
+			<textField>
+				<reportElement x="38" y="0" width="433" height="25" uuid="427d358b-9031-4d7e-8c8e-f727a7dea0f5"/>
 				<textElement textAlignment="Center" markup="none">
 					<font size="19" isBold="true"/>
 				</textElement>
-				<text><![CDATA[$P{nom_empresa}]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA[$P{nom_empresa}]]></textFieldExpression>
+			</textField>
 			<staticText>
 				<reportElement x="152" y="23" width="205" height="15" uuid="c226e44d-3bb5-4145-b0b3-903bf1d79fde"/>
 				<textElement textAlignment="Center"/>
@@ -254,7 +254,10 @@
 				<text><![CDATA[Compras Netas]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="11" y="199" width="209" height="20" uuid="7c877480-434c-4ee2-8193-4cda80569b62"/>
+				<reportElement x="11" y="199" width="252" height="20" uuid="7c877480-434c-4ee2-8193-4cda80569b62"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
 				<text><![CDATA[Disponibilidad de mercancias para el periodo]]></text>
 			</staticText>
 			<staticText>
@@ -266,6 +269,9 @@
 			</staticText>
 			<staticText>
 				<reportElement x="11" y="239" width="100" height="20" uuid="59b34b2e-680c-463e-98cd-ff6e2d19ddaa"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
 				<text><![CDATA[Costo de lo vendido]]></text>
 			</staticText>
 			<staticText>
@@ -417,7 +423,9 @@
 			</textField>
 			<textField>
 				<reportElement x="411" y="199" width="100" height="20" uuid="dfe900b2-e86f-42c8-9504-5e45fdbabc74"/>
-				<textElement textAlignment="Right"/>
+				<textElement textAlignment="Right">
+					<font size="11"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{invInicial}+$P{compras}+$P{gasCompras}-$P{devCompras}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -430,7 +438,7 @@
 			<textField>
 				<reportElement x="411" y="239" width="100" height="20" uuid="57939a79-8efa-4400-8b27-a1d89fcd92f3"/>
 				<textElement textAlignment="Right">
-					<font isUnderline="true"/>
+					<font size="11" isUnderline="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{invInicial}+$P{compras}+$P{gasCompras}-$P{devCompras}-$P{invFinal}]]></textFieldExpression>
 			</textField>

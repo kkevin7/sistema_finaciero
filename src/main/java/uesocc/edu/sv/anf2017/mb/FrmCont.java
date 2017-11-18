@@ -67,11 +67,6 @@ public class FrmCont implements Serializable {
         movimientos = resumen();
         movimientosxcuent = Collections.EMPTY_LIST;
         add = false;
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("uesocc.edu.sv_anf2017_war_1.0-SNAPSHOTPU");
-        EntityManager em = emf.createEntityManager();
-        Query c = em.createNamedQuery("Movimientos.ventas");
-        Double ventas=(Double) c.getSingleResult();
-        System.out.println(ventas);
     }
 
     public List<Cuentas> findCuentas(int codigo, String titulo) {
