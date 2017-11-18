@@ -110,7 +110,7 @@ public class FrmReportes implements Serializable {
             parametros.put("nom_empresa", nombreEmpresa);
             parametros.put("fechaInicio", limpiarUtilDate(fechaIncial));
             parametros.put("fechaFin", limpiarUtilDate(fechaFin));
-            parametros.put("periodo", "Periodo realizado del "+limpiarUtilDate(fechaFin)+" al "+ limpiarUtilDate(fechaFin));
+            parametros.put("periodo", "Periodo realizado del "+limpiarUtilDate(fechaIncial)+" al "+ limpiarUtilDate(fechaFin));
 
             Connection conexion = null;
             try {
@@ -155,7 +155,7 @@ public class FrmReportes implements Serializable {
             parametros.put("nom_empresa", nombreEmpresa);
             parametros.put("fechaInicio", limpiarUtilDate(fechaIncial));
             parametros.put("fechaFin", limpiarUtilDate(fechaFin));
-            parametros.put("perido", "Periodo realizado del "+limpiarUtilDate(fechaFin)+" al "+ limpiarUtilDate(fechaFin));
+            parametros.put("periodo", "Periodo realizado del "+limpiarUtilDate(fechaIncial)+" al "+ limpiarUtilDate(fechaFin));
 
             Connection conexion = null;
             try {
@@ -198,7 +198,7 @@ public class FrmReportes implements Serializable {
             parametros.put("nom_empresa", nombreEmpresa);
             parametros.put("fechaInicio", limpiarUtilDate(fechaIncial));
             parametros.put("fechaFin", limpiarUtilDate(fechaFin));
-            parametros.put("perido", "Periodo realizado del "+limpiarUtilDate(fechaFin)+" al "+ limpiarUtilDate(fechaFin));
+            parametros.put("periodo", "Periodo realizado del "+limpiarUtilDate(fechaIncial)+" al "+ limpiarUtilDate(fechaFin));
 
             Connection conexion = null;
             try {
@@ -241,6 +241,7 @@ public class FrmReportes implements Serializable {
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
+        cal.add(Calendar.DAY_OF_YEAR, 1);
         String formatedDate = cal.get(Calendar.YEAR) + "/"
                 + (cal.get(Calendar.MONTH) + 1)
                 + "/" + cal.get(Calendar.DATE);

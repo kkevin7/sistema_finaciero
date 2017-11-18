@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="balanceGeneral" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="51cf5fb5-7ee8-4a2b-b5a5-e4d4a579700f">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="48"/>
+	<property name="ireport.y" value="87"/>
 	<style name="Crosstab Data Text" hAlign="Center"/>
 	<style name="table">
 		<box>
@@ -311,12 +311,512 @@
 			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
 		</box>
 	</style>
+	<style name="table 13">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 13_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 13_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 13_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 14">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 14_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 14_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 14_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 15">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 15_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 15_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 15_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 16">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 16_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 16_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 16_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 17">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 17_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 17_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 17_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 18">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 18_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 18_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 18_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 19">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 19_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 19_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 19_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 20">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 20_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 20_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 20_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 21">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 21_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 21_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 21_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 22">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 22_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 22_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 22_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 23">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 23_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 23_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 23_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 24">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 24_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 24_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 24_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 25">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 25_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 25_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 25_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 26">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 26_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 26_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 26_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 27">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 27_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 27_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 27_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 28">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 28_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 28_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 28_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 29">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 29_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 29_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 29_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 30">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 30_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 30_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 30_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 31">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 31_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 31_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 31_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 32">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 32_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 32_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 32_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 33">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 33_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 33_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 33_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
 	<subDataset name="bg_activos_corrientes" uuid="bb3e7bd0-1462-44e2-90bc-e5230fdd62e2">
 		<parameter name="fechaInicioAC" class="java.lang.String"/>
 		<parameter name="fechaFinAC" class="java.lang.String"/>
 		<queryString>
 			<![CDATA[SELECT m.id_cuenta,c.nombre,m.fecha,m.monto FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "11%" AND m.fecha BETWEEN $P{fechaInicioAC} AND $P{fechaFinAC} ORDER BY m.fecha ]]>
+WHERE c.id_cuenta LIKE "11%" AND m.fecha BETWEEN $P{fechaInicioAC} AND $P{fechaFinAC} ORDER BY m.fecha]]>
 		</queryString>
 		<field name="id_cuenta" class="java.lang.Integer">
 			<fieldDescription><![CDATA[]]></fieldDescription>
@@ -345,7 +845,7 @@ WHERE c.id_cuenta LIKE "11%" AND m.fecha BETWEEN $P{fechaInicioAC} AND $P{fechaF
 		<parameter name="fechaFinNC" class="java.lang.String"/>
 		<queryString>
 			<![CDATA[SELECT m.id_cuenta,c.nombre,m.fecha,m.monto FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "12%" AND m.fecha BETWEEN $P{fechaInicioNC} AND $P{fechaFinNC} ORDER BY m.fecha ]]>
+WHERE c.id_cuenta LIKE "12%" AND m.fecha BETWEEN $P{fechaInicioNC} AND $P{fechaFinNC} ORDER BY m.fecha]]>
 		</queryString>
 		<field name="id_cuenta" class="java.lang.Integer">
 			<fieldDescription><![CDATA[]]></fieldDescription>
@@ -374,7 +874,7 @@ WHERE c.id_cuenta LIKE "12%" AND m.fecha BETWEEN $P{fechaInicioNC} AND $P{fechaF
 		<parameter name="fechaFinPC" class="java.lang.String"/>
 		<queryString>
 			<![CDATA[SELECT m.id_cuenta,c.nombre,m.fecha,m.monto FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "21%" AND m.fecha BETWEEN $P{fechaInicioPC} AND $P{fechaFinPC} ORDER BY m.fecha ]]>
+WHERE c.id_cuenta LIKE "21%" AND m.fecha BETWEEN $P{fechaInicioPC} AND $P{fechaFinPC} ORDER BY m.fecha]]>
 		</queryString>
 		<field name="id_cuenta" class="java.lang.Integer">
 			<fieldDescription><![CDATA[]]></fieldDescription>
@@ -403,7 +903,7 @@ WHERE c.id_cuenta LIKE "21%" AND m.fecha BETWEEN $P{fechaInicioPC} AND $P{fechaF
 		<parameter name="fechaFinPN" class="java.lang.String"/>
 		<queryString>
 			<![CDATA[SELECT m.id_cuenta,c.nombre,m.fecha,m.monto FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "22%" AND m.fecha BETWEEN $P{fechaInicioPN} AND $P{fechaFinPN} ORDER BY m.fecha ]]>
+WHERE c.id_cuenta LIKE "22%" AND m.fecha BETWEEN $P{fechaInicioPN} AND $P{fechaFinPN} ORDER BY m.fecha]]>
 		</queryString>
 		<field name="id_cuenta" class="java.lang.Integer">
 			<fieldDescription><![CDATA[]]></fieldDescription>
@@ -432,7 +932,7 @@ WHERE c.id_cuenta LIKE "22%" AND m.fecha BETWEEN $P{fechaInicioPN} AND $P{fechaF
 		<parameter name="fechaFinC" class="java.lang.String"/>
 		<queryString>
 			<![CDATA[SELECT m.id_cuenta,c.nombre,m.fecha,m.monto FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "3%" AND m.fecha BETWEEN $P{fechaInicioC} AND $P{fechaFinC} ORDER BY m.fecha ]]>
+WHERE c.id_cuenta LIKE "3%" AND m.fecha BETWEEN $P{fechaInicioC} AND $P{fechaFinC} ORDER BY m.fecha]]>
 		</queryString>
 		<field name="id_cuenta" class="java.lang.Integer">
 			<fieldDescription><![CDATA[]]></fieldDescription>
@@ -456,13 +956,113 @@ WHERE c.id_cuenta LIKE "3%" AND m.fecha BETWEEN $P{fechaInicioC} AND $P{fechaFin
 			<groupExpression><![CDATA[$F{monto}]]></groupExpression>
 		</group>
 	</subDataset>
+	<subDataset name="total_activos_corrientes" uuid="1ec22cbf-95ba-45df-b0c9-4ed5c834dac4">
+		<queryString language="SQL">
+			<![CDATA[SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "11%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha),0)) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "11%" AND c.tipo_saldo="H" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha ),0)]]>
+		</queryString>
+		<field name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE &quot;11%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;" class="java.math.BigDecimal"/>
+		<group name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE &quot;11%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;">
+			<groupExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "11%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "}]]></groupExpression>
+		</group>
+	</subDataset>
+	<subDataset name="total_activos_nocorrientes" uuid="5848c5a4-25f2-48c7-839f-9ae013fd6ac9">
+		<queryString language="SQL">
+			<![CDATA[SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "12%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha),0)) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "12%" AND c.tipo_saldo="H" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha ),0)]]>
+		</queryString>
+		<field name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE &quot;12%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;" class="java.math.BigDecimal"/>
+		<group name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE &quot;12%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;">
+			<groupExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "12%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "}]]></groupExpression>
+		</group>
+	</subDataset>
+	<subDataset name="total_pasivos_corrientes" uuid="02feb00e-6313-4e2d-93d9-3487153b1c81">
+		<queryString language="SQL">
+			<![CDATA[SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "21%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha),0)) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "21%" AND c.tipo_saldo="H" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha ),0)]]>
+		</queryString>
+		<field name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE &quot;21%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;" class="java.math.BigDecimal"/>
+		<group name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE &quot;21%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;">
+			<groupExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "21%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "}]]></groupExpression>
+		</group>
+	</subDataset>
+	<subDataset name="total_pasivos_nocorrientes" uuid="09d5b9ba-8b8d-4790-83a2-3a51d9721105">
+		<queryString language="SQL">
+			<![CDATA[SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "22%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha),0)) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "22%" AND c.tipo_saldo="H" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha ),0)]]>
+		</queryString>
+		<field name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE &quot;22%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;" class="java.math.BigDecimal"/>
+		<group name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE &quot;22%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;">
+			<groupExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "22%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "}]]></groupExpression>
+		</group>
+	</subDataset>
+	<subDataset name="total_capital" uuid="a42da5e5-953a-406f-b078-fd407f6d604a">
+		<queryString language="SQL">
+			<![CDATA[SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "3%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha),0)) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "3%" AND c.tipo_saldo="H" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha ),0)]]>
+		</queryString>
+		<field name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE &quot;3%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;2" class="java.math.BigDecimal"/>
+		<group name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE &quot;3%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;2">
+			<groupExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "3%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2}]]></groupExpression>
+		</group>
+	</subDataset>
+	<subDataset name="total_suma_activos" uuid="2821b532-57dd-4574-b24c-9008f8d28fea">
+		<queryString language="SQL">
+			<![CDATA[SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "1%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha),0)) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "1%" AND c.tipo_saldo="H" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha ),0)]]>
+		</queryString>
+		<field name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE &quot;1%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;2" class="java.math.BigDecimal"/>
+		<group name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE &quot;1%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;2">
+			<groupExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "1%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2}]]></groupExpression>
+		</group>
+	</subDataset>
+	<subDataset name="total_suma_pasivos_capital" uuid="99015bb7-148c-46bb-97d9-da524e0faa3d">
+		<queryString language="SQL">
+			<![CDATA[SELECT IFNULL(((SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) + (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "2%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha),0)) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "2%" AND c.tipo_saldo="H" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha ),0))+(SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "3%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha),0)) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "3%" AND c.tipo_saldo="H" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha ),0))),0)]]>
+		</queryString>
+		<field name="IFNULL(((SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) + (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE &quot;2%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2" class="java.math.BigDecimal"/>
+		<group name="IFNULL(((SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) + (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE &quot;2%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2">
+			<groupExpression><![CDATA[$F{IFNULL(((SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) + (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "2%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2}]]></groupExpression>
+		</group>
+	</subDataset>
 	<parameter name="nom_empresa" class="java.lang.String"/>
 	<parameter name="fechaFin" class="java.lang.String"/>
 	<parameter name="fechaInicio" class="java.lang.String"/>
 	<parameter name="periodo" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT m.id_cuenta,c.nombre,m.fecha,m.monto FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha ]]>
+WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha]]>
 	</queryString>
 	<field name="id_cuenta" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -507,9 +1107,9 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha ]]>
 		</band>
 	</title>
 	<detail>
-		<band height="94">
+		<band height="75">
 			<componentElement>
-				<reportElement key="table 8" style="table 8" x="0" y="45" width="278" height="20" uuid="e300a5e0-5075-4685-867e-b0cd23a323e4"/>
+				<reportElement key="table 8" style="table 8" x="26" y="45" width="252" height="20" uuid="e300a5e0-5075-4685-867e-b0cd23a323e4"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="bg_activos_corrientes" uuid="6ddb91d8-7eee-4543-b1f1-c26c5a33ff13">
 						<datasetParameter name="fechaInicioAC">
@@ -520,26 +1120,35 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha ]]>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="90" uuid="2385932a-547d-497d-83b2-42a6756af5ec">
+					<jr:column width="60" uuid="2385932a-547d-497d-83b2-42a6756af5ec">
 						<jr:detailCell style="table 8_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="da1f5032-74bb-410c-8e41-0dd17af0500b"/>
+								<reportElement x="0" y="0" width="60" height="20" uuid="da1f5032-74bb-410c-8e41-0dd17af0500b"/>
+								<textElement>
+									<font size="8"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{id_cuenta}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="7728ab76-a01b-4e29-a9ae-bdbf622bb76d">
+					<jr:column width="117" uuid="7728ab76-a01b-4e29-a9ae-bdbf622bb76d">
 						<jr:detailCell style="table 8_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="e98bd936-3c5e-4fdc-a698-24619364f2a4"/>
+								<reportElement x="0" y="0" width="117" height="20" uuid="e98bd936-3c5e-4fdc-a698-24619364f2a4"/>
+								<textElement>
+									<font size="8"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="2d67303b-b570-4758-912d-7dda9c4198f0">
+					<jr:column width="91" uuid="2d67303b-b570-4758-912d-7dda9c4198f0">
 						<jr:detailCell style="table 8_TD" height="20" rowSpan="1">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="20" uuid="746bd2bb-9e34-4e61-8df1-5437f857748f"/>
+								<textElement>
+									<font size="8"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -547,7 +1156,7 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha ]]>
 				</jr:table>
 			</componentElement>
 			<staticText>
-				<reportElement x="26" y="23" width="160" height="20" uuid="cf97a19d-e5c4-421c-af08-8f58ec2c27d6"/>
+				<reportElement x="73" y="23" width="160" height="20" uuid="cf97a19d-e5c4-421c-af08-8f58ec2c27d6"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -568,7 +1177,7 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha ]]>
 				<text><![CDATA[PASIVOS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="26" y="3" width="100" height="20" uuid="b5fda851-9935-4d48-89e5-6559f9d71fce"/>
+				<reportElement x="73" y="3" width="100" height="20" uuid="b5fda851-9935-4d48-89e5-6559f9d71fce"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -586,26 +1195,35 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha ]]>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="90" uuid="02065563-4c8c-4b00-a512-d0057387fe11">
-						<jr:detailCell style="table 10_TD" height="20">
+					<jr:column width="59" uuid="02065563-4c8c-4b00-a512-d0057387fe11">
+						<jr:detailCell style="table 10_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="b2cf458b-1296-43fc-9410-428c3b5d692a"/>
+								<reportElement x="0" y="0" width="58" height="20" uuid="b2cf458b-1296-43fc-9410-428c3b5d692a"/>
+								<textElement>
+									<font size="8"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{id_cuenta}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="fe05b8c7-4315-4e5f-94cf-f7eb7c29c488">
-						<jr:detailCell style="table 10_TD" height="20">
+					<jr:column width="115" uuid="fe05b8c7-4315-4e5f-94cf-f7eb7c29c488">
+						<jr:detailCell style="table 10_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="f2453d8d-f0be-4d44-8ae9-065ce325d64d"/>
+								<reportElement x="0" y="0" width="115" height="20" uuid="f2453d8d-f0be-4d44-8ae9-065ce325d64d"/>
+								<textElement>
+									<font size="8"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="21d75203-c3ce-428a-91a9-9c323dab8c03">
-						<jr:detailCell style="table 10_TD" height="20">
+					<jr:column width="93" uuid="21d75203-c3ce-428a-91a9-9c323dab8c03">
+						<jr:detailCell style="table 10_TD" height="20" rowSpan="1">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="20" uuid="cc061cff-6c9f-4173-af97-3a701a9d9859"/>
+								<textElement>
+									<font size="8"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -615,7 +1233,7 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha ]]>
 		</band>
 		<band height="89">
 			<componentElement>
-				<reportElement key="table 9" style="table 9" x="0" y="65" width="278" height="20" uuid="5bbb9d65-2a41-4f2a-88ad-5e61beb70d7d"/>
+				<reportElement key="table 9" style="table 9" x="26" y="65" width="252" height="20" uuid="5bbb9d65-2a41-4f2a-88ad-5e61beb70d7d"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="bg_activos_nocorrientes" uuid="e3c5bbb4-ca5f-4b0c-a03c-5bfbe456d3d5">
 						<datasetParameter name="fechaInicioNC">
@@ -630,6 +1248,9 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha ]]>
 						<jr:detailCell style="table 9_TD" height="20">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="20" uuid="2fa89b7d-eecf-4a19-91a5-0e636f4d8e3e"/>
+								<textElement>
+									<font size="8"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{id_cuenta}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -638,6 +1259,9 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha ]]>
 						<jr:detailCell style="table 9_TD" height="20">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="20" uuid="90533b07-859e-4d4c-896d-605133c77fa0"/>
+								<textElement>
+									<font size="8"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -646,6 +1270,9 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha ]]>
 						<jr:detailCell style="table 9_TD" height="20">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="20" uuid="487b2f10-92b9-4363-a5aa-a04626a7e5f3"/>
+								<textElement>
+									<font size="8"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -653,11 +1280,26 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha ]]>
 				</jr:table>
 			</componentElement>
 			<staticText>
-				<reportElement x="22" y="45" width="164" height="20" uuid="861daa58-1389-4c1f-813a-428b5489b8d5"/>
+				<reportElement x="69" y="45" width="164" height="20" uuid="861daa58-1389-4c1f-813a-428b5489b8d5"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[ACTIVOS NO CORRIENTES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="45" width="181" height="20" uuid="9779c91c-6d83-4f22-b111-75b44e63f46f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PASIVOS NO CORRIENTES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="21" y="0" width="163" height="20" uuid="a4786914-3c40-4949-8eea-295330a55758"/>
+				<text><![CDATA[ Total de Activos  Corrientes= $]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="0" width="143" height="20" uuid="052cc89b-fac6-4e9b-8992-6251508f54f5"/>
+				<text><![CDATA[Total Pasivos Corrientes= $]]></text>
 			</staticText>
 			<componentElement>
 				<reportElement key="table 11" style="table 11" x="289" y="65" width="266" height="20" uuid="b7ec45f3-1464-466b-b8c1-a16a1acfdbd7"/>
@@ -675,6 +1317,9 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha ]]>
 						<jr:detailCell style="table 11_TD" height="20">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="20" uuid="552f8ece-9b64-42c6-b098-c5484d599ef8"/>
+								<textElement>
+									<font size="8"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{id_cuenta}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -683,6 +1328,9 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha ]]>
 						<jr:detailCell style="table 11_TD" height="20">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="20" uuid="c8c27770-bba2-40bc-acc4-8e95e0422c4d"/>
+								<textElement>
+									<font size="8"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -691,27 +1339,49 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha ]]>
 						<jr:detailCell style="table 11_TD" height="20">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="20" uuid="3594d23f-25bc-46d9-8e12-e295eedd2fe9"/>
+								<textElement>
+									<font size="8"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
 				</jr:table>
 			</componentElement>
-			<staticText>
-				<reportElement x="336" y="45" width="181" height="20" uuid="9779c91c-6d83-4f22-b111-75b44e63f46f"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[PASIVOS NO CORRIENTES]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="22" y="0" width="152" height="20" uuid="a4786914-3c40-4949-8eea-295330a55758"/>
-				<text><![CDATA[Total Activos  Corrientes=]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="304" y="0" width="132" height="20" uuid="052cc89b-fac6-4e9b-8992-6251508f54f5"/>
-				<text><![CDATA[Total Pasivos Corrientes=]]></text>
-			</staticText>
+			<componentElement>
+				<reportElement key="table 27" style="table 27" x="184" y="0" width="94" height="20" uuid="c4e11e0b-7756-419b-bae6-45d25f9ed944"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="total_activos_corrientes" uuid="d921182a-b73d-4afe-bf5d-2331d8a82b14">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="0ca87b8f-7720-48eb-9518-c72dfb49f45d">
+						<jr:detailCell style="table 27_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="ab8cd565-ac2e-4666-b934-ba069fa0e508"/>
+								<textFieldExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "11%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 29" style="table 29" x="447" y="0" width="94" height="20" uuid="b64a339c-4c2c-43a0-bf59-55b44f6b6828"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="total_pasivos_corrientes" uuid="44dadbb7-9015-4890-9a04-95048ad979f9">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="288386c5-ff68-48e2-a1dd-697aeb663912">
+						<jr:detailCell style="table 29_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="9d4df871-9879-4297-8b63-01bd0adf6b88"/>
+								<textFieldExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "21%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
 		</band>
 		<band height="83">
 			<componentElement>
@@ -730,6 +1400,9 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha ]]>
 						<jr:detailCell style="table 12_TD" height="20">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="20" uuid="147c72dc-882e-4d01-b9eb-6ea2a078e039"/>
+								<textElement>
+									<font size="8"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{id_cuenta}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -738,6 +1411,9 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha ]]>
 						<jr:detailCell style="table 12_TD" height="20">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="20" uuid="242dbc5d-acce-49ff-9597-0d1c4641d95e"/>
+								<textElement>
+									<font size="8"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -746,6 +1422,9 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha ]]>
 						<jr:detailCell style="table 12_TD" height="20">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="20" uuid="ef079403-59d3-455c-af27-6c24106ee07a"/>
+								<textElement>
+									<font size="8"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -760,27 +1439,120 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha ]]>
 				<text><![CDATA[CAPITAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="26" y="0" width="148" height="20" uuid="e5102b82-c637-4e90-81d5-9fa1e6121759"/>
-				<text><![CDATA[Total Activos No corrientes=]]></text>
+				<reportElement x="26" y="0" width="158" height="20" uuid="e5102b82-c637-4e90-81d5-9fa1e6121759"/>
+				<text><![CDATA[Total Activos No corrientes= $]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="304" y="0" width="154" height="20" uuid="5bad9660-090c-4285-9cbc-96cde85ac48e"/>
-				<text><![CDATA[Total Pasivos No Corrientes=]]></text>
+				<reportElement x="304" y="0" width="162" height="20" uuid="5bad9660-090c-4285-9cbc-96cde85ac48e"/>
+				<text><![CDATA[Total Pasivos No Corrientes= $]]></text>
 			</staticText>
+			<componentElement>
+				<reportElement key="table 30" style="table 30" x="466" y="0" width="89" height="20" uuid="7e3f683c-c28e-4993-af7f-13479fa64532"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="total_pasivos_nocorrientes" uuid="0fe12ab7-b6ad-43fe-a78b-a1834172d896">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="4075fe83-9cfd-4e62-8ded-cc4d13dd0220">
+						<jr:detailCell style="table 30_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="c7a9873e-edfb-4060-9497-0f52553e66e5"/>
+								<textFieldExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "22%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 28" style="table 28" x="184" y="0" width="108" height="20" uuid="dc5b2fe8-726b-4a01-a61e-f520ef5640c0"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="total_activos_nocorrientes" uuid="f6d264e9-c43d-447e-90cc-ff487fc25457">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="187858a2-ed04-4e98-ad30-bed16e522ae6">
+						<jr:detailCell style="table 28_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="b69ed4f7-8582-49ef-9ac7-2f93c4119da3"/>
+								<textFieldExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "12%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
 		</band>
-		<band height="114">
+		<band height="199">
 			<staticText>
 				<reportElement x="304" y="0" width="100" height="20" uuid="2d0a1f52-6b82-4d88-b214-47c5484f3824"/>
-				<text><![CDATA[Total Capital =]]></text>
+				<text><![CDATA[Total Capital = $]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="56" y="30" width="130" height="20" uuid="a5fc9236-3e94-4a98-941a-fe1f30978c48"/>
+				<reportElement x="96" y="47" width="130" height="20" uuid="a5fc9236-3e94-4a98-941a-fe1f30978c48"/>
 				<text><![CDATA[TOTAL DE ACTIVOS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="304" y="30" width="166" height="20" uuid="28893b7a-a02f-4f23-8a57-cf2189ef48c8"/>
+				<reportElement x="327" y="47" width="166" height="20" uuid="28893b7a-a02f-4f23-8a57-cf2189ef48c8"/>
 				<text><![CDATA[TOTAL PASIVO Y CAPITAL]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="113" y="67" width="13" height="20" uuid="9dd82aff-5032-4150-9e0d-45ad636bc2cb"/>
+				<text><![CDATA[$]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="67" width="13" height="20" uuid="c2b854ac-a75f-4f78-bfcf-1158b4efe843"/>
+				<text><![CDATA[$]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement key="table 31" style="table 31" x="406" y="0" width="111" height="20" uuid="c7402d15-fc15-40a0-8e00-03dad4ebf0bf"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="total_capital" uuid="5a6ea46d-2e10-498e-b497-d0b949066c37">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="aabbaf3b-6a62-411d-a62f-ee42bbb3d824">
+						<jr:detailCell style="table 31_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="551b6735-d5be-440f-beeb-6edcf04b650c"/>
+								<textFieldExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "3%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 32" style="table 32" x="126" y="67" width="152" height="20" uuid="1514869a-a560-4a6d-9db5-900568c3ebf1"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="total_suma_activos" uuid="8943473d-9119-4da6-8642-b0b20743efaf">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="a6c5ddf1-5d27-41ed-85f0-4098ce1a46d2">
+						<jr:detailCell style="table 32_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="a6eb829a-a62b-426f-8086-3213d2b029ad"/>
+								<textFieldExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "1%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 33" style="table 33" x="349" y="67" width="152" height="20" uuid="c499a5d6-c308-4a9c-a81f-d3dc5e3075d0"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="total_suma_pasivos_capital" uuid="c61bdaaa-6bbd-49e0-a405-cb929ece2e53">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="64ff7e94-4ae9-4dc7-8cb2-7f080bde9dfc">
+						<jr:detailCell style="table 33_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="3b103b66-8b7c-486c-807e-31644421ae1d"/>
+								<textFieldExpression><![CDATA[$F{IFNULL(((SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) + (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
+WHERE c.id_cuenta LIKE "2%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
 		</band>
 	</detail>
 	<pageFooter>
