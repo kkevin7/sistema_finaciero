@@ -102,10 +102,10 @@ public class FrmReportes implements Serializable {
             impuesto = UAI * 0.3;
         } else {
             impuesto = UAI * 0.25;
-            
+
         }
         reserva = UAI * 0.07;
-        
+
         utilidad = UAI - impuesto - reserva;
     }
 
@@ -169,25 +169,34 @@ public class FrmReportes implements Serializable {
     public void tipoReportesJasper() {
         if (tipoReporte.equals("BG")) {
             tipoJasper = "balanceGeneral.jasper";
+
+            try {
+                parametros.put("nom_empresa", nombreEmpresa);
+                parametros.put("fechaInicio", limpiarUtilDate(fechaIncial));
+                parametros.put("fechaFin", limpiarUtilDate(fechaFin));
+                parametros.put("periodo", "Periodo realizado del " + limpiarUtilDate(fechaIncial) + " al " + limpiarUtilDate(fechaFin));
+            
+            } catch (Exception e) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+            }
+
         }
         if (tipoReporte.equals("ER")) {
             tipoJasper = "EstadoResultados.jasper";
+
+            estadoResultados();
+            putParametros();
         }
 
     }
 
     public void verPDF() throws Exception {
-        tipoReportesJasper();
 
         try {
             parametros = new HashMap<String, Object>();
+            tipoReportesJasper();
             File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/reports/" + tipoJasper));
-            estadoResultados();
-            parametros.put("nom_empresa", nombreEmpresa);
-            parametros.put("fechaInicio", limpiarUtilDate(fechaIncial));
-            parametros.put("fechaFin", limpiarUtilDate(fechaFin));
-            parametros.put("periodo", "Periodo realizado del " + limpiarUtilDate(fechaFin) + " al " + limpiarUtilDate(fechaFin));
-            putParametros();
+
             Connection conexion = null;
             try {
                 if (dbFinanciera != null) {
@@ -223,16 +232,12 @@ public class FrmReportes implements Serializable {
     }
 
     public void exportarPDF() throws JRException, IOException {
-        tipoReportesJasper();
-        try {
 
+        try {
             parametros = new HashMap<String, Object>();
+            tipoReportesJasper();
             File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/reports/" + tipoJasper));
-            parametros.put("nom_empresa", nombreEmpresa);
-            parametros.put("fechaInicio", limpiarUtilDate(fechaIncial));
-            parametros.put("fechaFin", limpiarUtilDate(fechaFin));
-            parametros.put("perido", "Periodo realizado del " + limpiarUtilDate(fechaFin) + " al " + limpiarUtilDate(fechaFin));
-            putParametros();
+
             Connection conexion = null;
             try {
                 if (dbFinanciera != null) {
@@ -267,15 +272,12 @@ public class FrmReportes implements Serializable {
     }
 
     public void exportarExcel() throws JRException, IOException {
-        tipoReportesJasper();
+
         try {
             parametros = new HashMap<String, Object>();
+            tipoReportesJasper();
             File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/reports/" + tipoJasper));
-            parametros.put("nom_empresa", nombreEmpresa);
-            parametros.put("fechaInicio", limpiarUtilDate(fechaIncial));
-            parametros.put("fechaFin", limpiarUtilDate(fechaFin));
-            parametros.put("perido", "Periodo realizado del " + limpiarUtilDate(fechaFin) + " al " + limpiarUtilDate(fechaFin));
-            putParametros();
+
             Connection conexion = null;
             try {
                 if (dbFinanciera != null) {
@@ -317,6 +319,7 @@ public class FrmReportes implements Serializable {
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
+        cal.add(Calendar.DAY_OF_YEAR, 1);
         String formatedDate = cal.get(Calendar.YEAR) + "/"
                 + (cal.get(Calendar.MONTH) + 1)
                 + "/" + cal.get(Calendar.DATE);
