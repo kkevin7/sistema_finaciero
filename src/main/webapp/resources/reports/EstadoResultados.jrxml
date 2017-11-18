@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="511" leftMargin="43" rightMargin="41" topMargin="20" bottomMargin="20" uuid="078809cc-b670-448d-bd60-206e98a35366">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="199"/>
+	<property name="ireport.y" value="357"/>
 	<subDataset name="dataset1" uuid="c445e123-8842-4da8-9d3e-b67b8fa8c704"/>
 	<subDataset name="ingresos" uuid="8595d6d8-db80-4694-bf04-f195c372e983">
 		<queryString language="SQL">
@@ -282,14 +282,14 @@
 				<text><![CDATA[Utilidad Bruta]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="21" y="289" width="100" height="20" uuid="4a12559a-24ff-45cf-a4f1-20cd18576012"/>
+				<reportElement x="21" y="289" width="174" height="20" uuid="4a12559a-24ff-45cf-a4f1-20cd18576012"/>
 				<textElement>
 					<font size="11"/>
 				</textElement>
 				<text><![CDATA[Gastos de Operacion]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="21" y="309" width="129" height="20" uuid="2a8a1654-e8c3-46b4-ae5a-c47d6787e383"/>
+				<reportElement x="21" y="309" width="174" height="20" uuid="2a8a1654-e8c3-46b4-ae5a-c47d6787e383"/>
 				<textElement>
 					<font size="11"/>
 				</textElement>
