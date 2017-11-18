@@ -21,6 +21,10 @@ import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
@@ -33,6 +37,7 @@ import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
 import uesocc.edu.sv.anf2017.ejb.EmpresasFacadeLocal;
+import uesocc.edu.sv.anf2017.ejb.MovimientosFacadeLocal;
 import uesocc.edu.sv.anf2017.entities.Empresas;
 import uesocc.edu.sv.anf2017.entities.Movimientos;
 
@@ -53,8 +58,50 @@ public class FrmReportes implements Serializable {
     Date fechaIncial;
     String tipoReporte;
     String tipoJasper;
+    Double ventas, rebVentas, invInicial, compras, gasCompras, devCompras, invFinal, gasAdm, gasOp, gasFinan, gasVent, otrosGas, otrosIng, impuesto, reserva, uBruta, uOPe, UAI, utilidad;
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     private List<Movimientos> datos = new ArrayList<Movimientos>();
+
+    public void estadoResultados() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("uesocc.edu.sv_anf2017_war_1.0-SNAPSHOTPU");
+        EntityManager em = emf.createEntityManager();
+        Query v = em.createNamedQuery("Movimientos.ventas");
+        ventas = (Double) v.getSingleResult();
+        Query rv = em.createNamedQuery("Movimientos.rebVentas");
+        rebVentas = (Double) rv.getSingleResult();
+        Query iI = em.createNamedQuery("Movimientos.inventarioIni");
+        invInicial = (Double) iI.getSingleResult();
+        Query c = em.createNamedQuery("Movimientos.compras");
+        compras = (Double) c.getSingleResult();
+        Query gc = em.createNamedQuery("Movimientos.gastosCompras");
+        gasCompras = (Double) gc.getSingleResult();
+        Query dc = em.createNamedQuery("Movimientos.rebCompras");
+        devCompras = (Double) dc.getSingleResult();
+        Query iF = em.createNamedQuery("Movimientos.inventarioFin");
+        invFinal = (Double) iF.getSingleResult();
+        uBruta = ventas - rebVentas - (invInicial + compras + gasCompras - devCompras - invFinal);
+        Query go = em.createNamedQuery("Movimientos.gastoOperativo");
+        gasOp = (Double) go.getSingleResult();
+        Query ga = em.createNamedQuery("Movimientos.gastoAdm");
+        gasAdm = (Double) ga.getSingleResult();
+        Query gv = em.createNamedQuery("Movimientos.gastoVentas");
+        gasVent = (Double) gv.getSingleResult();
+        Query gf = em.createNamedQuery("Movimientos.gastoFinanciero");
+        gasFinan = (Double) gf.getSingleResult();
+        uOPe = uBruta - gasAdm - gasFinan - gasOp - gasVent;
+        Query og = em.createNamedQuery("Movimientos.otrosGastos");
+        otrosGas = (Double) og.getSingleResult();
+        Query oI = em.createNamedQuery("Movimientos.otrosIngresos");
+        otrosIng = (Double) oI.getSingleResult();
+        UAI = uOPe - otrosGas + otrosIng;
+        if (UAI >= 150000) {
+            impuesto = UAI * 0.3;
+        } else {
+            impuesto = UAI * 0.25;
+        }
+        reserva = UAI * 0.07;
+        utilidad = UAI - impuesto - reserva;
+    }
 
     public FrmReportes() {
         try {
@@ -110,7 +157,7 @@ public class FrmReportes implements Serializable {
             parametros.put("nom_empresa", nombreEmpresa);
             parametros.put("fechaInicio", limpiarUtilDate(fechaIncial));
             parametros.put("fechaFin", limpiarUtilDate(fechaFin));
-            parametros.put("periodo", "Periodo realizado del "+limpiarUtilDate(fechaFin)+" al "+ limpiarUtilDate(fechaFin));
+            parametros.put("periodo", "Periodo realizado del " + limpiarUtilDate(fechaFin) + " al " + limpiarUtilDate(fechaFin));
 
             Connection conexion = null;
             try {
@@ -155,7 +202,7 @@ public class FrmReportes implements Serializable {
             parametros.put("nom_empresa", nombreEmpresa);
             parametros.put("fechaInicio", limpiarUtilDate(fechaIncial));
             parametros.put("fechaFin", limpiarUtilDate(fechaFin));
-            parametros.put("perido", "Periodo realizado del "+limpiarUtilDate(fechaFin)+" al "+ limpiarUtilDate(fechaFin));
+            parametros.put("perido", "Periodo realizado del " + limpiarUtilDate(fechaFin) + " al " + limpiarUtilDate(fechaFin));
 
             Connection conexion = null;
             try {
@@ -198,7 +245,7 @@ public class FrmReportes implements Serializable {
             parametros.put("nom_empresa", nombreEmpresa);
             parametros.put("fechaInicio", limpiarUtilDate(fechaIncial));
             parametros.put("fechaFin", limpiarUtilDate(fechaFin));
-            parametros.put("perido", "Periodo realizado del "+limpiarUtilDate(fechaFin)+" al "+ limpiarUtilDate(fechaFin));
+            parametros.put("perido", "Periodo realizado del " + limpiarUtilDate(fechaFin) + " al " + limpiarUtilDate(fechaFin));
 
             Connection conexion = null;
             try {
