@@ -36,6 +36,19 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Movimientos.findByIdMovimiento", query = "SELECT m FROM Movimientos m WHERE m.idMovimiento = :idMovimiento")
     , @NamedQuery(name = "Movimientos.findByMonto", query = "SELECT m FROM Movimientos m WHERE m.monto = :monto")
     , @NamedQuery(name = "Movimientos.findByFecha", query = "SELECT m FROM Movimientos m WHERE m.fecha = :fecha")
+    , @NamedQuery(name = "Movimientos.ventas", query = "select sum(t.monto) from Movimientos t where t.idCuenta.idCuenta like '5101%' and t.fecha like '2017%'")
+    , @NamedQuery(name = "Movimientos.rebVentas", query = "select sum(t.monto) from Movimientos t where t.idCuenta.idCuenta like '4102%' and t.fecha like '2017%'")
+    , @NamedQuery(name = "Movimientos.inventarioIni", query = "select sum(t.monto) from Movimientos t where t.idCuenta.idCuenta like '4103%' and t.fecha like '2017%'")
+    , @NamedQuery(name = "Movimientos.inventarioFin", query = "select sum(t.monto) from Movimientos t where t.idCuenta.idCuenta like '4106%' and t.fecha like '2017%'")
+    , @NamedQuery(name = "Movimientos.compras", query = "select sum(t.monto) from Movimientos t where t.idCuenta.idCuenta like '4101%' and t.fecha like '2017%'")
+    , @NamedQuery(name = "Movimientos.gastosCompras", query = "select sum(t.monto) from Movimientos t where t.idCuenta.idCuenta like '4108%' and t.fecha like '2017%'")
+    , @NamedQuery(name = "Movimientos.rebCompras", query = "select sum(t.monto) from Movimientos t where t.idCuenta.idCuenta like '4102%' and t.fecha like '2017%'")
+    , @NamedQuery(name = "Movimientos.otrosIngresos", query = "select sum(t.monto) from Movimientos t where t.idCuenta.idCuenta like '5105%' and t.fecha like '2017%'")
+    , @NamedQuery(name = "Movimientos.otrosGastos", query = "select sum(t.monto) from Movimientos t where t.idCuenta.idCuenta like '4107%' and t.fecha like '2017%'")
+    , @NamedQuery(name = "Movimientos.gastoOperativo", query = "select sum(t.monto) from Movimientos t where t.idCuenta.idCuenta like '4103%' and t.fecha like '2017%'")
+    , @NamedQuery(name = "Movimientos.gastoAdm", query = "select sum(t.monto) from Movimientos t where t.idCuenta.idCuenta like '4104%' and t.fecha like '2017%'")
+    , @NamedQuery(name = "Movimientos.gastoVentas", query = "select sum(t.monto) from Movimientos t where t.idCuenta.idCuenta like '4105%' and t.fecha like '2017%'")
+    , @NamedQuery(name = "Movimientos.gastoFinanciero", query = "select sum(t.monto) from Movimientos t where t.idCuenta.idCuenta like '4106%' and t.fecha like '2017%'")
     , @NamedQuery(name = "Movimientos.findByDescripcion", query = "SELECT m FROM Movimientos m WHERE m.descripcion = :descripcion")})
 public class Movimientos implements Serializable {
 
@@ -149,5 +162,5 @@ public class Movimientos implements Serializable {
     public String toString() {
         return "uesocc.edu.sv.anf2017.entities.Movimientos[ idMovimiento=" + idMovimiento + " ]";
     }
-    
+
 }

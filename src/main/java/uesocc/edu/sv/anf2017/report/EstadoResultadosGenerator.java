@@ -7,14 +7,16 @@ package uesocc.edu.sv.anf2017.report;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,17 +31,26 @@ import net.sf.jasperreports.export.OutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
+import uesocc.edu.sv.anf2017.ejb.MovimientosFacadeLocal;
+import uesocc.edu.sv.anf2017.entities.Cuentas;
+import uesocc.edu.sv.anf2017.entities.Movimientos;
 
 /**
  *
  * @author yovany
  */
 @WebServlet(name = "EstadoResultadosGenerator", urlPatterns = {"/EstadoResultadosGenerator"})
-public class EstadoResultadosGenerator extends HttpServlet implements Serializable{
+public class EstadoResultadosGenerator extends HttpServlet implements Serializable {
 
     @Resource(lookup = "jndi_anf")
     DataSource source_jdbc;
     Connection conexion;
+
+    @EJB
+    private MovimientosFacadeLocal mfl;
+    private List<Movimientos> movi;
+    private Movimientos mv;
+
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -57,16 +68,16 @@ public class EstadoResultadosGenerator extends HttpServlet implements Serializab
 
         try {
             conexion = null;
-            
-            File jasper = new File(request.getServletContext().getRealPath("/resources/reports/EstadoResultado.jasper"));
+
+            File jasper = new File(request.getServletContext().getRealPath("/resources/reports/Estado.jasper"));
             HashMap parametros = new HashMap<>();
-            
+
             try {
                 if (source_jdbc != null) {
                     conexion = source_jdbc.getConnection();
-                    
+
                 }
-                parametros.put("Parameter1", 1000);
+
                 JasperPrint impresor = JasperFillManager.fillReport(jasper.getPath(), parametros, conexion);
                 JRPdfExporter exportador = new JRPdfExporter();
                 exportador.setExporterInput(new SimpleExporterInput(impresor));

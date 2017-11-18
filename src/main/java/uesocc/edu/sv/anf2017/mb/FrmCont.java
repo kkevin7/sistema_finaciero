@@ -16,6 +16,10 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.SelectEvent;
 import uesocc.edu.sv.anf2017.ejb.CuentasFacadeLocal;
@@ -56,13 +60,18 @@ public class FrmCont implements Serializable {
     private String title;
     private Cuentas cuenta;
     private TipoCuenta tipo = new TipoCuenta();
-
+    
     @PostConstruct
     public void init() {
         movi = new Movimientos();
         movimientos = resumen();
         movimientosxcuent = Collections.EMPTY_LIST;
         add = false;
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("uesocc.edu.sv_anf2017_war_1.0-SNAPSHOTPU");
+        EntityManager em = emf.createEntityManager();
+        Query c = em.createNamedQuery("Movimientos.ventas");
+        Double ventas=(Double) c.getSingleResult();
+        System.out.println(ventas);
     }
 
     public List<Cuentas> findCuentas(int codigo, String titulo) {
@@ -154,7 +163,6 @@ public class FrmCont implements Serializable {
     }
 
     //----- Getter and Setter Methods -----//
-    
     public CuentasFacadeLocal getFl() {
         return fl;
     }

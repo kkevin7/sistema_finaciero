@@ -8,6 +8,7 @@ package uesocc.edu.sv.anf2017.ejb;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import uesocc.edu.sv.anf2017.entities.Movimientos;
 
 /**
@@ -28,5 +29,6 @@ public class MovimientosFacade extends AbstractFacade<Movimientos> implements Mo
     public MovimientosFacade() {
         super(Movimientos.class);
     }
+    
     
 }

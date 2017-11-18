@@ -31,4 +31,7 @@ public interface AbstractInterface<T> {
     public List<T> findRange(int first, int pageSize);
 
     public int count();
+    
+   
+    
 }
