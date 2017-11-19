@@ -103,6 +103,7 @@ public class FrmCatalogo implements Serializable {
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
         }
+        
     }
 
     public void crear() {

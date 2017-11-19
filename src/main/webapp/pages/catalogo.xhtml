@@ -49,6 +49,7 @@
                                          rowsPerPageTemplate="10,15,20"
                                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          selection="#{frmCatalogo.cuenta}"
+                                         sortBy="#{item.idTipoCuenta.idTipoCuenta}"
                                          >
                                 <p:ajax update=":frmEdit"
                                         event="rowSelect" 

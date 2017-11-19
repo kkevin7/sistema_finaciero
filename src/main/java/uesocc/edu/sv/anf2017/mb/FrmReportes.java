@@ -65,51 +65,62 @@ public class FrmReportes implements Serializable {
     private List<Movimientos> datos = new ArrayList<Movimientos>();
     Map<String, Object> parametros = new HashMap<String, Object>();
 
+    public Double obtenerValidar(Query query) {
+        Double variable = 0.0;
+        try {
+            variable = (Double) query.getSingleResult();
+        } catch (Exception e) {
+        }
+        if (variable == null ) {
+            variable = 0.0;
+        }
+        return variable;
+    }
+
     public void estadoResultados() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("uesocc.edu.sv_anf2017_war_1.0-SNAPSHOTPU");
         EntityManager em = emf.createEntityManager();
         Query v = em.createNamedQuery("Movimientos.ventas");
-        ventas = (Double) v.getSingleResult();
+        ventas = obtenerValidar(v);
         Query rv = em.createNamedQuery("Movimientos.rebVentas");
-        rebVentas = (Double) rv.getSingleResult();
+        rebVentas = obtenerValidar(rv);
         Query iI = em.createNamedQuery("Movimientos.inventarioIni");
-        invInicial = (Double) iI.getSingleResult();
+        invInicial = obtenerValidar(iI);
         Query c = em.createNamedQuery("Movimientos.compras");
-        compras = (Double) c.getSingleResult();
+        compras = obtenerValidar(c);
         Query gc = em.createNamedQuery("Movimientos.gastosCompras");
-        gasCompras = (Double) gc.getSingleResult();
+        gasCompras = obtenerValidar(gc);
         Query dc = em.createNamedQuery("Movimientos.rebCompras");
-        devCompras = (Double) dc.getSingleResult();
+        devCompras = obtenerValidar(dc);
         Query iF = em.createNamedQuery("Movimientos.inventarioFin");
-        invFinal = (Double) iF.getSingleResult();
-        System.out.println(invFinal);
+        invFinal = obtenerValidar(iF);
         uBruta = ventas - rebVentas - (invInicial + compras + gasCompras - devCompras - invFinal);
         Query go = em.createNamedQuery("Movimientos.gastoOperativo");
-        gasOp = (Double) go.getSingleResult();
+        gasOp = obtenerValidar(go);
         Query ga = em.createNamedQuery("Movimientos.gastoAdm");
-        gasAdm = (Double) ga.getSingleResult();
+        gasAdm = obtenerValidar(ga);
         Query gv = em.createNamedQuery("Movimientos.gastoVentas");
-        gasVent = (Double) gv.getSingleResult();
+        gasVent = obtenerValidar(gv);
         Query gf = em.createNamedQuery("Movimientos.gastoFinanciero");
-        gasFinan = (Double) gf.getSingleResult();
+        gasFinan = obtenerValidar(gf);
         uOPe = uBruta - gasAdm - gasFinan - gasOp - gasVent;
         Query og = em.createNamedQuery("Movimientos.otrosGastos");
-        otrosGas = (Double) og.getSingleResult();
+        otrosGas = obtenerValidar(og);
         Query oI = em.createNamedQuery("Movimientos.otrosIngresos");
-        otrosIng = (Double) oI.getSingleResult();
+        otrosIng = obtenerValidar(oI);
         UAI = uOPe - otrosGas + otrosIng;
         if (UAI >= 150000) {
             impuesto = UAI * 0.3;
         } else {
             impuesto = UAI * 0.25;
-
         }
         reserva = UAI * 0.07;
-
         utilidad = UAI - impuesto - reserva;
+        
     }
 
     public void putParametros() {
+        parametros.put("nom_empresa", nombreEmpresa);
         parametros.put("Ventas", ventas);
         parametros.put("revVentas", rebVentas);
         parametros.put("invInicial", invInicial);
@@ -175,7 +186,7 @@ public class FrmReportes implements Serializable {
                 parametros.put("fechaInicio", limpiarUtilDate(fechaIncial));
                 parametros.put("fechaFin", limpiarUtilDate(fechaFin));
                 parametros.put("periodo", "Periodo realizado del " + limpiarUtilDate(fechaIncial) + " al " + limpiarUtilDate(fechaFin));
-            
+
             } catch (Exception e) {
                 Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
             }

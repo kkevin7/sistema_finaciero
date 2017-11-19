@@ -83,7 +83,7 @@
                                      >
 
                             <p:ajax event="rowSelect" listener="#{frmCont.changeSelected}" update="@none"/>
-                            <p:ajax event="cellEdit" listener="#{frmCont.onCellEdit}" update="tblmovimientos :movimientosxcuenta"/>
+                            <p:ajax event="cellEdit" listener="#{frmCont.onCellEdit}" update="tblmovimientos movimientosxcuenta:movcuent movimientosxcuenta:msgs"/>
 
                             <f:facet name="header">
                                 <p:outputPanel>
@@ -95,7 +95,7 @@
                                     <f:convertDateTime pattern="dd-MM-yyyy" />
                                 </h:outputText>
                             </p:column>
-                            <p:column headerText="Monto" width="20%">
+                            <p:column headerText="Monto" width="30%">
                                 <p:cellEditor>
                                     <f:facet name="output">
                                         <h:outputText value="#{movimiento.monto}" style="width: min-content">
@@ -129,11 +129,11 @@
                                  >
 
                         <p:ajax event="rowSelect" listener="#{frmCont.changeSelected}" update="@none"/>
-                        <p:ajax event="cellEdit" listener="#{frmCont.onCellEdit}" update="tblmovimientos:movimientos movimientosxcuenta"/>
+                        <p:ajax event="cellEdit" listener="#{frmCont.onCellEdit}" update="tblmovimientos:movimientos movimientosxcuenta:movcuent movimientosxcuenta:msgs"/>
 
                         <f:facet name="header">
                             <p:outputPanel>
-                                <h:outputText value="Resumen de Trnasacciones del día" />
+                                <h:outputText value="Resumen de Transacciones del día" />
                             </p:outputPanel>
                         </f:facet>
                         <p:headerRow>

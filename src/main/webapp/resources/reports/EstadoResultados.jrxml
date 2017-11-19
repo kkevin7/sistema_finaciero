@@ -1,37 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="511" leftMargin="43" rightMargin="41" topMargin="20" bottomMargin="20" uuid="078809cc-b670-448d-bd60-206e98a35366">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="0.9090909090909091"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="357"/>
-	<subDataset name="dataset1" uuid="c445e123-8842-4da8-9d3e-b67b8fa8c704"/>
-	<subDataset name="ingresos" uuid="8595d6d8-db80-4694-bf04-f195c372e983">
-		<queryString language="SQL">
-			<![CDATA[select * from movimientos inner join cuentas on cuentas.id_cuenta=movimientos.id_cuenta where cuentas.id_tipo_cuenta=5 and movimientos.fecha like '2017%']]>
-		</queryString>
-		<field name="nombre" class="java.lang.String">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="fecha" class="java.sql.Date">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="monto" class="java.math.BigDecimal">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-	</subDataset>
-	<subDataset name="gastos" uuid="4fcd6504-ed22-4907-9429-05275698117b">
-		<queryString language="SQL">
-			<![CDATA[select * from movimientos inner join cuentas on cuentas.id_cuenta=movimientos.id_cuenta where cuentas.id_tipo_cuenta=4 and movimientos.fecha like '2017%'  order by cuentas.id_cuenta asc]]>
-		</queryString>
-		<field name="nombre" class="java.lang.String">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="fecha" class="java.sql.Date">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="monto" class="java.math.BigDecimal">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-	</subDataset>
+	<property name="ireport.y" value="0"/>
 	<parameter name="Ventas" class="java.lang.Double">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -95,41 +66,11 @@
 	<queryString>
 		<![CDATA[select * from movimientos inner join cuentas on cuentas.id_cuenta=movimientos.id_cuenta where cuentas.id_tipo_cuenta=5 or cuentas.id_tipo_cuenta=4 and movimientos.fecha like '2017%' order by cuentas.id_tipo_cuenta desc]]>
 	</queryString>
-	<field name="id_movimiento" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="id_empresa" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="id_cuenta" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="monto" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="fecha" class="java.sql.Date">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="descripcion" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="nombre" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="id_tipo_cuenta" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="id_tipo_estado" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="tipo_saldo" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
 	<background>
 		<band/>
 	</background>
 	<title>
-		<band height="122" splitType="Stretch">
+		<band height="122">
 			<line>
 				<reportElement x="0" y="117" width="511" height="1" uuid="806ce5df-1219-4876-ae0c-ca7405b1f246">
 					<property name="local_mesure_unitheight" value="pixel"/>
@@ -193,7 +134,7 @@
 			<staticText>
 				<reportElement x="11" y="49" width="100" height="20" uuid="717cda4f-3e97-4d1d-a269-b21d0c0aab2a"/>
 				<textElement>
-					<font size="12"/>
+					<font size="12" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Ventas Netas]]></text>
 			</staticText>
@@ -270,7 +211,7 @@
 			<staticText>
 				<reportElement x="11" y="239" width="100" height="20" uuid="59b34b2e-680c-463e-98cd-ff6e2d19ddaa"/>
 				<textElement>
-					<font size="11"/>
+					<font size="11" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Costo de lo vendido]]></text>
 			</staticText>
@@ -352,7 +293,7 @@
 				<text><![CDATA[Reserva Legal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="489" width="167" height="20" uuid="63270564-8eb3-4455-ac1c-5f94be5563c3"/>
+				<reportElement x="10" y="493" width="167" height="20" uuid="63270564-8eb3-4455-ac1c-5f94be5563c3"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
@@ -445,7 +386,7 @@
 			<textField>
 				<reportElement x="411" y="269" width="100" height="20" uuid="ef00ff5c-92d2-4e6c-bbe8-9f77eeed1bc0"/>
 				<textElement textAlignment="Right">
-					<font size="12" isUnderline="true"/>
+					<font size="12" isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{uBruta}]]></textFieldExpression>
 			</textField>
@@ -520,12 +461,24 @@
 				<textFieldExpression><![CDATA[$P{reserva}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="411" y="489" width="100" height="20" uuid="88c916eb-cbb8-4c7c-9e82-2314d77bba76"/>
+				<reportElement x="411" y="493" width="100" height="20" uuid="88c916eb-cbb8-4c7c-9e82-2314d77bba76"/>
 				<textElement textAlignment="Right">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{utilidad}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="0" y="286" width="511" height="1" uuid="d92b7cce-a4f6-44fb-9dda-0e4e73f8da77"/>
+			</line>
+			<line>
+				<reportElement x="0" y="386" width="511" height="1" uuid="d88d505d-3660-42b0-ae54-2da7bce823f8"/>
+			</line>
+			<line>
+				<reportElement x="0" y="445" width="511" height="1" uuid="8c501c2a-8ba9-4a60-8faa-1aebba32b804"/>
+			</line>
+			<line>
+				<reportElement x="0" y="511" width="511" height="1" uuid="ef5e574f-05a3-457a-9ca4-142ff1c00c2a"/>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>
