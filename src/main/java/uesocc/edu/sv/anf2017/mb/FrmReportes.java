@@ -61,6 +61,13 @@ public class FrmReportes implements Serializable {
     String tipoReporte;
     String tipoJasper;
     Double ventas, rebVentas, invInicial, compras, gasCompras, devCompras, invFinal, gasAdm, gasOp, gasFinan, gasVent, otrosGas, otrosIng, impuesto, reserva, uBruta, uOPe, UAI, utilidad;
+    Double actCorrientePosi, actCorriNegativo, activosCorrientes;
+    Double actNOCorriPositivo, actNOCorriNegativo, activosNOCorrientes;
+    Double pasCorrientePos, pasCorrienteNeg, pasivoCorriente;
+    Double pasNoCorrientePos, pasNoCorrienteNeg, pasivoNOCorriente;
+    Double capitalPos, capitalNeg, capital;
+    Double totalActivos;
+    Double totalPasivosCapital;
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     private List<Movimientos> datos = new ArrayList<Movimientos>();
     Map<String, Object> parametros = new HashMap<String, Object>();
@@ -141,6 +148,68 @@ public class FrmReportes implements Serializable {
         parametros.put("reserva", reserva);
         parametros.put("utilidad", utilidad);
     }
+    
+    public void balanceGeneral(){
+        try {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("uesocc.edu.sv_anf2017_war_1.0-SNAPSHOTPU");
+        EntityManager em = emf.createEntityManager();
+        Query ACPositivo = em.createNamedQuery("Movimientos.activosCorrientePOSI");
+        actCorrientePosi = obtenerValidar(ACPositivo);
+        Query ACNegativo = em.createNamedQuery("Movimientos.activosCorrienteNEG");
+        actCorriNegativo = obtenerValidar(ACNegativo);
+        //Activos Corrientes
+        activosCorrientes = actCorrientePosi - actCorriNegativo;
+            System.out.println("Activos corrientes:::---> "+activosCorrientes);
+        Query ACNOPositivo = em.createNamedQuery("Movimientos.activosNOCorrientesPOSI");
+        actNOCorriPositivo = obtenerValidar(ACNOPositivo);
+        Query ACNONegativo = em.createNamedQuery("Movimientos.activosNOCorrientesNEG");
+        actNOCorriNegativo = obtenerValidar(ACNONegativo);
+        //Activos No Corrientes
+        activosNOCorrientes = actNOCorriPositivo - actNOCorriNegativo;
+            System.out.println("Activos No corrientes:::--->"+activosNOCorrientes);
+        Query PACPositivo = em.createNamedQuery("Movimientos.pasivosCorrientesPOSI");
+        pasCorrientePos = obtenerValidar(PACPositivo);
+        Query PACNegativo = em.createNamedQuery("Movimientos.pasivosCorrientesNEG");
+        pasCorrienteNeg = obtenerValidar(PACNegativo);
+        //Pasivos Corrientes
+        pasivoCorriente = pasCorrientePos - pasCorrienteNeg;
+            System.out.println("Pasivos Corriente:::--->"+pasivoCorriente);
+        Query PACNOPositivo = em.createNamedQuery("Movimientos.pasivosNOCorrientesPOSI");
+        pasNoCorrientePos = obtenerValidar(PACNOPositivo);
+        Query PACNONegativo = em.createNamedQuery("Movimientos.pasivosNOCorrientesNEG");
+        pasNoCorrienteNeg = obtenerValidar(PACNONegativo);
+        //Pasivos No Corrientes
+        pasivoNOCorriente = pasNoCorrientePos - pasNoCorrienteNeg;
+            System.out.println("Pasivos NO Corriente:::--->"+pasivoNOCorriente);
+        Query capPositivo = em.createNamedQuery("Movimientos.capitalPOSI");
+        capitalPos = obtenerValidar(capPositivo);
+        Query capNegativo = em.createNamedQuery("Movimientos.capitalNEG");
+        capitalNeg = obtenerValidar(capNegativo);
+        //Capital
+        capital = capitalPos - capitalNeg;
+            System.out.println("Capital:::----> "+capital);
+        //Total Suma Activos
+        totalActivos = activosCorrientes + activosNOCorrientes;
+            System.out.println("Total de Activos::---> "+totalActivos);
+        //Total Pasivo + Capital (falta Utilidad y reserva)
+        totalPasivosCapital = pasivoCorriente + pasivoNOCorriente + capital;
+            System.out.println("Total de Capita y Pasivos::--> "+totalPasivosCapital);
+        
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+        }
+        
+    }
+    
+    public void parametrosBalance(){
+        parametros.put("actCorrientes", activosCorrientes.toString());
+        parametros.put("actNoCorrientes", activosNOCorrientes.toString());
+        parametros.put("pasCorrientes", pasivoCorriente.toString());
+        parametros.put("pasNoCorrientes", pasivoNOCorriente.toString());
+        parametros.put("capital", capital.toString());
+        parametros.put("totalActivos", totalActivos.toString());
+        parametros.put("totalPasCapital", totalPasivosCapital.toString());
+    }
 
     public FrmReportes() {
         try {
@@ -186,6 +255,8 @@ public class FrmReportes implements Serializable {
                 parametros.put("fechaInicio", limpiarUtilDate(fechaIncial));
                 parametros.put("fechaFin", limpiarUtilDate(fechaFin));
                 parametros.put("periodo", "Periodo realizado del " + limpiarUtilDate(fechaIncial) + " al " + limpiarUtilDate(fechaFin));
+                balanceGeneral();
+                parametrosBalance();
 
             } catch (Exception e) {
                 Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
