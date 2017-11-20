@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="511" leftMargin="43" rightMargin="41" topMargin="20" bottomMargin="20" uuid="078809cc-b670-448d-bd60-206e98a35366">
 	<property name="ireport.zoom" value="0.9090909090909091"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="246"/>
 	<parameter name="Ventas" class="java.lang.Double">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -300,168 +300,168 @@
 				<text><![CDATA[Utilidad por Distribuir ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="411" y="10" width="100" height="20" uuid="e4b1fab0-7239-45bc-8f79-986bd0fa2462"/>
+				<reportElement x="341" y="10" width="100" height="20" uuid="e4b1fab0-7239-45bc-8f79-986bd0fa2462"/>
 				<textElement textAlignment="Right">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{Ventas}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="411" y="30" width="100" height="20" uuid="5a8f15b0-29a0-4871-b31d-54fcf712501c"/>
+				<reportElement x="341" y="30" width="100" height="20" uuid="5a8f15b0-29a0-4871-b31d-54fcf712501c"/>
 				<textElement textAlignment="Right">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{revVentas}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="411" y="49" width="100" height="20" uuid="5c9df9f5-9019-480e-b898-71ee5ba93e1d"/>
+				<reportElement x="341" y="49" width="100" height="20" uuid="5c9df9f5-9019-480e-b898-71ee5ba93e1d"/>
 				<textElement textAlignment="Right">
 					<font size="12" isUnderline="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{Ventas}-$P{revVentas}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="411" y="79" width="100" height="20" uuid="7924f4b9-819a-42ae-90bd-ff0e0630ff83"/>
+				<reportElement x="341" y="79" width="100" height="20" uuid="7924f4b9-819a-42ae-90bd-ff0e0630ff83"/>
 				<textElement textAlignment="Right">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{invInicial}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="280" y="99" width="100" height="20" uuid="733185a1-43bf-43e7-b9a2-41bd51f30735"/>
+				<reportElement x="210" y="99" width="100" height="20" uuid="733185a1-43bf-43e7-b9a2-41bd51f30735"/>
 				<textElement textAlignment="Right">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{compras}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="280" y="119" width="100" height="20" uuid="7b119d10-6fd3-4e77-8786-1c5f7c27c539"/>
+				<reportElement x="210" y="119" width="100" height="20" uuid="7b119d10-6fd3-4e77-8786-1c5f7c27c539"/>
 				<textElement textAlignment="Right">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{gasCompras}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="341" y="139" width="100" height="20" uuid="ffae4626-0e7f-4f5a-8db8-7cd4816f0683"/>
+				<reportElement x="271" y="139" width="100" height="20" uuid="ffae4626-0e7f-4f5a-8db8-7cd4816f0683"/>
 				<textElement textAlignment="Right">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{compras}+$P{gasCompras}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="341" y="159" width="100" height="20" uuid="28266ce7-757f-43b8-bebf-7c2341acc14c"/>
+				<reportElement x="271" y="159" width="100" height="20" uuid="28266ce7-757f-43b8-bebf-7c2341acc14c"/>
 				<textElement textAlignment="Right">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{devCompras}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="341" y="179" width="100" height="20" uuid="2b591995-0624-40c8-b35b-72df19c8ef75"/>
+				<reportElement x="271" y="179" width="100" height="20" uuid="2b591995-0624-40c8-b35b-72df19c8ef75"/>
 				<textElement textAlignment="Right">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{compras}+$P{gasCompras}-$P{devCompras}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="411" y="199" width="100" height="20" uuid="dfe900b2-e86f-42c8-9504-5e45fdbabc74"/>
+				<reportElement x="341" y="199" width="100" height="20" uuid="dfe900b2-e86f-42c8-9504-5e45fdbabc74"/>
 				<textElement textAlignment="Right">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{invInicial}+$P{compras}+$P{gasCompras}-$P{devCompras}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="341" y="219" width="100" height="20" uuid="2a3cdc40-921e-4aa5-981e-171e4c52c799"/>
+				<reportElement x="271" y="219" width="100" height="20" uuid="2a3cdc40-921e-4aa5-981e-171e4c52c799"/>
 				<textElement textAlignment="Right">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{invFinal}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="411" y="239" width="100" height="20" uuid="57939a79-8efa-4400-8b27-a1d89fcd92f3"/>
+				<reportElement x="341" y="239" width="100" height="20" uuid="57939a79-8efa-4400-8b27-a1d89fcd92f3"/>
 				<textElement textAlignment="Right">
 					<font size="11" isUnderline="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{invInicial}+$P{compras}+$P{gasCompras}-$P{devCompras}-$P{invFinal}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="411" y="269" width="100" height="20" uuid="ef00ff5c-92d2-4e6c-bbe8-9f77eeed1bc0"/>
+				<reportElement x="341" y="269" width="100" height="20" uuid="ef00ff5c-92d2-4e6c-bbe8-9f77eeed1bc0"/>
 				<textElement textAlignment="Right">
 					<font size="12" isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{uBruta}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="341" y="289" width="100" height="20" uuid="afc1c903-9eec-4f42-b4d7-0c3fe412e2ac"/>
+				<reportElement x="271" y="289" width="100" height="20" uuid="afc1c903-9eec-4f42-b4d7-0c3fe412e2ac"/>
 				<textElement textAlignment="Right">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{gasOp}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="341" y="309" width="100" height="20" uuid="f187eed0-e281-4735-82ae-e67c03a70d02"/>
+				<reportElement x="271" y="309" width="100" height="20" uuid="f187eed0-e281-4735-82ae-e67c03a70d02"/>
 				<textElement textAlignment="Right">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{gasAdm}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="341" y="329" width="100" height="20" uuid="afd285de-cf57-4091-a428-af8f6e3e4b15"/>
+				<reportElement x="271" y="329" width="100" height="20" uuid="afd285de-cf57-4091-a428-af8f6e3e4b15"/>
 				<textElement textAlignment="Right">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{gasVent}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="341" y="349" width="100" height="20" uuid="e3e1173d-1240-4fc1-ae74-3c6e32168151"/>
+				<reportElement x="271" y="349" width="100" height="20" uuid="e3e1173d-1240-4fc1-ae74-3c6e32168151"/>
 				<textElement textAlignment="Right">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{gasFinan}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="411" y="369" width="100" height="20" uuid="a2782bd8-a93c-4d0c-b12d-83996ce352ec"/>
+				<reportElement x="341" y="369" width="100" height="20" uuid="a2782bd8-a93c-4d0c-b12d-83996ce352ec"/>
 				<textElement textAlignment="Right">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{uOPe}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="341" y="389" width="100" height="20" uuid="d75a4122-8b66-43f3-a373-f0fccab29197"/>
+				<reportElement x="271" y="389" width="100" height="20" uuid="d75a4122-8b66-43f3-a373-f0fccab29197"/>
 				<textElement textAlignment="Right">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{otrosIng}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="341" y="409" width="100" height="20" uuid="a3a0e27f-bfc4-4fee-bcdc-0e09257f8f5c"/>
+				<reportElement x="271" y="409" width="100" height="20" uuid="a3a0e27f-bfc4-4fee-bcdc-0e09257f8f5c"/>
 				<textElement textAlignment="Right">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{otrosGas}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="411" y="429" width="100" height="20" uuid="b0e80f15-9907-40a7-b4d4-e03fb12d6604"/>
+				<reportElement x="341" y="429" width="100" height="20" uuid="b0e80f15-9907-40a7-b4d4-e03fb12d6604"/>
 				<textElement textAlignment="Right">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{UAI}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="341" y="449" width="100" height="20" uuid="5564a188-458f-4e5a-83ff-3403748dea4b"/>
+				<reportElement x="271" y="449" width="100" height="20" uuid="5564a188-458f-4e5a-83ff-3403748dea4b"/>
 				<textElement textAlignment="Right">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{impuesto}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="341" y="469" width="100" height="20" uuid="0de54992-501f-461c-acfc-96a89e7a5578"/>
+				<reportElement x="271" y="469" width="100" height="20" uuid="0de54992-501f-461c-acfc-96a89e7a5578"/>
 				<textElement textAlignment="Right">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{reserva}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="411" y="493" width="100" height="20" uuid="88c916eb-cbb8-4c7c-9e82-2314d77bba76"/>
+				<reportElement x="341" y="493" width="100" height="20" uuid="88c916eb-cbb8-4c7c-9e82-2314d77bba76"/>
 				<textElement textAlignment="Right">
 					<font size="12"/>
 				</textElement>
@@ -479,6 +479,69 @@
 			<line>
 				<reportElement x="0" y="511" width="511" height="1" uuid="ef5e574f-05a3-457a-9ca4-142ff1c00c2a"/>
 			</line>
+			<staticText>
+				<reportElement x="471" y="49" width="40" height="20" uuid="45641aa2-14a7-4f11-aee2-1f66f11353b1"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[100%]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="471" y="269" width="35" height="20" uuid="1f4a16ce-7188-45bc-835b-acb9e139bbfe"/>
+				<textElement textAlignment="Right">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($P{uBruta}/($P{Ventas}-$P{revVentas}))*100)]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="471" y="369" width="35" height="20" uuid="406b2ac9-1d55-4a4b-b5c1-5a3f8aebbd57"/>
+				<textElement textAlignment="Right">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{uOPe}/($P{Ventas}-$P{revVentas}))*100]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="471" y="429" width="35" height="20" uuid="02c4110d-1f5b-41d1-8844-d72db9249ddd"/>
+				<textElement textAlignment="Right">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{UAI}/($P{Ventas}-$P{revVentas}))*100]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="471" y="493" width="35" height="20" uuid="b15b2b83-32c6-4439-b57a-8b17b3b295b1"/>
+				<textElement textAlignment="Right">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{utilidad}/($P{Ventas}-$P{revVentas}))*100]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="506" y="269" width="26" height="20" uuid="707ca3f8-f879-4fc1-9d47-768730bd664a"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="506" y="369" width="26" height="20" uuid="779c3214-d89f-447e-8ffe-36970265bc47"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="506" y="429" width="26" height="20" uuid="944b129d-7701-4647-9f56-ab04691a3207"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="506" y="493" width="26" height="20" uuid="6da2118a-1aa2-413a-9536-60a76eb13a45"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<columnFooter>
