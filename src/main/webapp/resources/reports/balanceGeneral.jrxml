@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="balanceGeneral" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="51cf5fb5-7ee8-4a2b-b5a5-e4d4a579700f">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="87"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Crosstab Data Text" hAlign="Center"/>
 	<style name="table">
 		<box>
@@ -956,110 +956,17 @@ WHERE c.id_cuenta LIKE "3%" AND m.fecha BETWEEN $P{fechaInicioC} AND $P{fechaFin
 			<groupExpression><![CDATA[$F{monto}]]></groupExpression>
 		</group>
 	</subDataset>
-	<subDataset name="total_activos_corrientes" uuid="1ec22cbf-95ba-45df-b0c9-4ed5c834dac4">
-		<queryString language="SQL">
-			<![CDATA[SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "11%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha),0)) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "11%" AND c.tipo_saldo="H" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha ),0)]]>
-		</queryString>
-		<field name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE &quot;11%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;" class="java.math.BigDecimal"/>
-		<group name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE &quot;11%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;">
-			<groupExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "11%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "}]]></groupExpression>
-		</group>
-	</subDataset>
-	<subDataset name="total_activos_nocorrientes" uuid="5848c5a4-25f2-48c7-839f-9ae013fd6ac9">
-		<queryString language="SQL">
-			<![CDATA[SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "12%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha),0)) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "12%" AND c.tipo_saldo="H" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha ),0)]]>
-		</queryString>
-		<field name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE &quot;12%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;" class="java.math.BigDecimal"/>
-		<group name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE &quot;12%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;">
-			<groupExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "12%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "}]]></groupExpression>
-		</group>
-	</subDataset>
-	<subDataset name="total_pasivos_corrientes" uuid="02feb00e-6313-4e2d-93d9-3487153b1c81">
-		<queryString language="SQL">
-			<![CDATA[SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "21%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha),0)) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "21%" AND c.tipo_saldo="H" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha ),0)]]>
-		</queryString>
-		<field name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE &quot;21%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;" class="java.math.BigDecimal"/>
-		<group name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE &quot;21%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;">
-			<groupExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "21%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "}]]></groupExpression>
-		</group>
-	</subDataset>
-	<subDataset name="total_pasivos_nocorrientes" uuid="09d5b9ba-8b8d-4790-83a2-3a51d9721105">
-		<queryString language="SQL">
-			<![CDATA[SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "22%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha),0)) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "22%" AND c.tipo_saldo="H" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha ),0)]]>
-		</queryString>
-		<field name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE &quot;22%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;" class="java.math.BigDecimal"/>
-		<group name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE &quot;22%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;">
-			<groupExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "22%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "}]]></groupExpression>
-		</group>
-	</subDataset>
-	<subDataset name="total_capital" uuid="a42da5e5-953a-406f-b078-fd407f6d604a">
-		<queryString language="SQL">
-			<![CDATA[SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "3%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha),0)) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "3%" AND c.tipo_saldo="H" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha ),0)]]>
-		</queryString>
-		<field name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE &quot;3%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;2" class="java.math.BigDecimal"/>
-		<group name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE &quot;3%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;2">
-			<groupExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "3%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2}]]></groupExpression>
-		</group>
-	</subDataset>
-	<subDataset name="total_suma_activos" uuid="2821b532-57dd-4574-b24c-9008f8d28fea">
-		<queryString language="SQL">
-			<![CDATA[SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "1%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha),0)) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "1%" AND c.tipo_saldo="H" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha ),0)]]>
-		</queryString>
-		<field name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE &quot;1%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;2" class="java.math.BigDecimal"/>
-		<group name="IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE &quot;1%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2017-11-1&quot; AND &quot;2">
-			<groupExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "1%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2}]]></groupExpression>
-		</group>
-	</subDataset>
-	<subDataset name="total_suma_pasivos_capital" uuid="99015bb7-148c-46bb-97d9-da524e0faa3d">
-		<queryString language="SQL">
-			<![CDATA[SELECT IFNULL(((SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) + (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "2%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha),0)) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "2%" AND c.tipo_saldo="H" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha ),0))+(SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "3%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha),0)) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "3%" AND c.tipo_saldo="H" AND m.fecha BETWEEN "2017-11-1" AND "2017-11-30" ORDER BY m.fecha ),0))),0)]]>
-		</queryString>
-		<field name="IFNULL(((SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) + (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE &quot;2%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2" class="java.math.BigDecimal"/>
-		<group name="IFNULL(((SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) + (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE &quot;2%&quot; AND c.tipo_saldo=&quot;D&quot; AND m.fecha BETWEEN &quot;2">
-			<groupExpression><![CDATA[$F{IFNULL(((SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) + (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "2%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2}]]></groupExpression>
-		</group>
-	</subDataset>
 	<parameter name="nom_empresa" class="java.lang.String"/>
 	<parameter name="fechaFin" class="java.lang.String"/>
 	<parameter name="fechaInicio" class="java.lang.String"/>
 	<parameter name="periodo" class="java.lang.String"/>
+	<parameter name="actCorrientes" class="java.lang.String"/>
+	<parameter name="actNoCorrientes" class="java.lang.String"/>
+	<parameter name="pasCorrientes" class="java.lang.String"/>
+	<parameter name="pasNoCorrientes" class="java.lang.String"/>
+	<parameter name="capital" class="java.lang.String"/>
+	<parameter name="totalActivos" class="java.lang.String"/>
+	<parameter name="totalPasCapital" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT m.id_cuenta,c.nombre,m.fecha,m.monto FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
 WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha]]>
@@ -1077,33 +984,36 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha]]>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<title>
-		<band height="115" splitType="Stretch">
+		<band height="100" splitType="Stretch">
 			<staticText>
-				<reportElement x="99" y="20" width="394" height="20" uuid="bdda3128-3aef-4fad-ba1f-6a99ce83a621"/>
+				<reportElement x="99" y="31" width="394" height="20" uuid="bdda3128-3aef-4fad-ba1f-6a99ce83a621"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="13" isBold="true"/>
 				</textElement>
 				<text><![CDATA[BALANCE GENERAL]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="99" y="40" width="394" height="20" uuid="8b689ff1-9cef-4e6b-9bf5-2cc2fcbc6dcf"/>
+				<reportElement x="99" y="51" width="394" height="20" uuid="8b689ff1-9cef-4e6b-9bf5-2cc2fcbc6dcf"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{periodo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="99" y="0" width="394" height="20" uuid="940c7021-8adf-457c-a892-33512694440b"/>
+				<reportElement x="99" y="0" width="394" height="26" uuid="940c7021-8adf-457c-a892-33512694440b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="12"/>
+					<font size="19" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nom_empresa}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="99" y="60" width="394" height="20" uuid="e8d7f63d-b058-43b3-a305-1cdc368ea212"/>
+				<reportElement x="99" y="71" width="394" height="20" uuid="e8d7f63d-b058-43b3-a305-1cdc368ea212"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Cantidades expresadas en dolares de los Estados Unidos de América]]></text>
 			</staticText>
+			<line>
+				<reportElement x="0" y="94" width="555" height="1" uuid="1ba25c1b-752e-4ba9-a866-1fabaea5c409"/>
+			</line>
 		</band>
 	</title>
 	<detail>
@@ -1348,40 +1258,14 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha]]>
 					</jr:column>
 				</jr:table>
 			</componentElement>
-			<componentElement>
-				<reportElement key="table 27" style="table 27" x="184" y="0" width="94" height="20" uuid="c4e11e0b-7756-419b-bae6-45d25f9ed944"/>
-				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="total_activos_corrientes" uuid="d921182a-b73d-4afe-bf5d-2331d8a82b14">
-						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					</datasetRun>
-					<jr:column width="90" uuid="0ca87b8f-7720-48eb-9518-c72dfb49f45d">
-						<jr:detailCell style="table 27_TD" height="20">
-							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="ab8cd565-ac2e-4666-b934-ba069fa0e508"/>
-								<textFieldExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "11%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-				</jr:table>
-			</componentElement>
-			<componentElement>
-				<reportElement key="table 29" style="table 29" x="447" y="0" width="94" height="20" uuid="b64a339c-4c2c-43a0-bf59-55b44f6b6828"/>
-				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="total_pasivos_corrientes" uuid="44dadbb7-9015-4890-9a04-95048ad979f9">
-						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					</datasetRun>
-					<jr:column width="90" uuid="288386c5-ff68-48e2-a1dd-697aeb663912">
-						<jr:detailCell style="table 29_TD" height="20">
-							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="9d4df871-9879-4297-8b63-01bd0adf6b88"/>
-								<textFieldExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "21%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-				</jr:table>
-			</componentElement>
+			<textField>
+				<reportElement x="184" y="0" width="100" height="20" uuid="71234d31-bd5e-42f2-bb6f-9289c2832daa"/>
+				<textFieldExpression><![CDATA[$P{actCorrientes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="447" y="0" width="100" height="20" uuid="62e6b1f3-3c4b-48bd-9be3-5a667081ce03"/>
+				<textFieldExpression><![CDATA[$P{pasCorrientes}]]></textFieldExpression>
+			</textField>
 		</band>
 		<band height="83">
 			<componentElement>
@@ -1446,42 +1330,16 @@ WHERE c.id_cuenta LIKE "21%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1
 				<reportElement x="304" y="0" width="162" height="20" uuid="5bad9660-090c-4285-9cbc-96cde85ac48e"/>
 				<text><![CDATA[Total Pasivos No Corrientes= $]]></text>
 			</staticText>
-			<componentElement>
-				<reportElement key="table 30" style="table 30" x="466" y="0" width="89" height="20" uuid="7e3f683c-c28e-4993-af7f-13479fa64532"/>
-				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="total_pasivos_nocorrientes" uuid="0fe12ab7-b6ad-43fe-a78b-a1834172d896">
-						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					</datasetRun>
-					<jr:column width="90" uuid="4075fe83-9cfd-4e62-8ded-cc4d13dd0220">
-						<jr:detailCell style="table 30_TD" height="20">
-							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="c7a9873e-edfb-4060-9497-0f52553e66e5"/>
-								<textFieldExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "22%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-				</jr:table>
-			</componentElement>
-			<componentElement>
-				<reportElement key="table 28" style="table 28" x="184" y="0" width="108" height="20" uuid="dc5b2fe8-726b-4a01-a61e-f520ef5640c0"/>
-				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="total_activos_nocorrientes" uuid="f6d264e9-c43d-447e-90cc-ff487fc25457">
-						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					</datasetRun>
-					<jr:column width="90" uuid="187858a2-ed04-4e98-ad30-bed16e522ae6">
-						<jr:detailCell style="table 28_TD" height="20">
-							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="b69ed4f7-8582-49ef-9ac7-2f93c4119da3"/>
-								<textFieldExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "12%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-				</jr:table>
-			</componentElement>
+			<textField>
+				<reportElement x="184" y="0" width="100" height="20" uuid="72050802-59dd-4db7-a003-16204e0eae60"/>
+				<textFieldExpression><![CDATA[$P{actNoCorrientes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="466" y="0" width="89" height="20" uuid="0fd81af7-0396-4c9e-91a6-e676aa451660"/>
+				<textFieldExpression><![CDATA[$P{pasNoCorrientes}]]></textFieldExpression>
+			</textField>
 		</band>
-		<band height="199">
+		<band height="161">
 			<staticText>
 				<reportElement x="304" y="0" width="100" height="20" uuid="2d0a1f52-6b82-4d88-b214-47c5484f3824"/>
 				<text><![CDATA[Total Capital = $]]></text>
@@ -1502,80 +1360,53 @@ WHERE c.id_cuenta LIKE "12%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1
 				<reportElement x="336" y="67" width="13" height="20" uuid="c2b854ac-a75f-4f78-bfcf-1158b4efe843"/>
 				<text><![CDATA[$]]></text>
 			</staticText>
-			<componentElement>
-				<reportElement key="table 31" style="table 31" x="406" y="0" width="111" height="20" uuid="c7402d15-fc15-40a0-8e00-03dad4ebf0bf"/>
-				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="total_capital" uuid="5a6ea46d-2e10-498e-b497-d0b949066c37">
-						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					</datasetRun>
-					<jr:column width="90" uuid="aabbaf3b-6a62-411d-a62f-ee42bbb3d824">
-						<jr:detailCell style="table 31_TD" height="20">
-							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="551b6735-d5be-440f-beeb-6edcf04b650c"/>
-								<textFieldExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "3%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-				</jr:table>
-			</componentElement>
-			<componentElement>
-				<reportElement key="table 32" style="table 32" x="126" y="67" width="152" height="20" uuid="1514869a-a560-4a6d-9db5-900568c3ebf1"/>
-				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="total_suma_activos" uuid="8943473d-9119-4da6-8642-b0b20743efaf">
-						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					</datasetRun>
-					<jr:column width="90" uuid="a6c5ddf1-5d27-41ed-85f0-4098ce1a46d2">
-						<jr:detailCell style="table 32_TD" height="20">
-							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="a6eb829a-a62b-426f-8086-3213d2b029ad"/>
-								<textFieldExpression><![CDATA[$F{IFNULL((SELECT IFNULL((SUM(m.monto)),0) - (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "1%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2017-11-1" AND "2}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-				</jr:table>
-			</componentElement>
-			<componentElement>
-				<reportElement key="table 33" style="table 33" x="349" y="67" width="152" height="20" uuid="c499a5d6-c308-4a9c-a81f-d3dc5e3075d0"/>
-				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="total_suma_pasivos_capital" uuid="c61bdaaa-6bbd-49e0-a405-cb929ece2e53">
-						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					</datasetRun>
-					<jr:column width="90" uuid="64ff7e94-4ae9-4dc7-8cb2-7f080bde9dfc">
-						<jr:detailCell style="table 33_TD" height="20">
-							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="3b103b66-8b7c-486c-807e-31644421ae1d"/>
-								<textFieldExpression><![CDATA[$F{IFNULL(((SELECT IFNULL((SELECT IFNULL((SUM(m.monto)),0) + (IFNULL((SELECT SUM(m.monto) FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
-WHERE c.id_cuenta LIKE "2%" AND c.tipo_saldo="D" AND m.fecha BETWEEN "2}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-				</jr:table>
-			</componentElement>
+			<textField pattern="#,##0.00">
+				<reportElement x="126" y="67" width="100" height="20" uuid="a75b43c4-f490-423c-b79d-ea3db5a0d166"/>
+				<textFieldExpression><![CDATA[$P{totalActivos}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="349" y="67" width="117" height="20" uuid="644afdd1-89f0-4879-87fc-e6c10f332d39"/>
+				<textFieldExpression><![CDATA[$P{totalPasCapital}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="404" y="0" width="100" height="20" uuid="3639754a-0a0a-400b-a07d-66679ad9ea16"/>
+				<textFieldExpression><![CDATA[$P{capital}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="39">
+		<band height="71">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<staticText>
-				<reportElement x="21" y="6" width="150" height="30" uuid="3250277b-9eba-4e9c-9da0-dc63903678c8"/>
+				<reportElement x="21" y="41" width="150" height="30" uuid="3250277b-9eba-4e9c-9da0-dc63903678c8"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[F:_____________________
 Representante Legal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="218" y="6" width="127" height="30" uuid="9d9c788e-6d6e-4876-bb40-428444e4e4b4"/>
+				<reportElement x="218" y="41" width="127" height="30" uuid="9d9c788e-6d6e-4876-bb40-428444e4e4b4"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[F:_________________
 Contador]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="407" y="6" width="100" height="30" uuid="03f05658-a521-49f5-b120-51086094e574"/>
+				<reportElement x="407" y="41" width="100" height="30" uuid="03f05658-a521-49f5-b120-51086094e574"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[F:________________
 Auditor]]></text>
 			</staticText>
+			<image>
+				<reportElement x="70" y="19" width="208" height="34" uuid="a9ea207a-8712-49d9-a79f-1ae5d5a01525"/>
+				<imageExpression><![CDATA["./firmaTRes.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="265" y="31" width="221" height="22" uuid="e35447b2-ac22-40ae-84dc-6de04fd4fccf"/>
+				<imageExpression><![CDATA["./firmaDos.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="431" y="26" width="145" height="27" uuid="05d44e58-0fe4-44ca-8855-797f10ba96c3"/>
+				<imageExpression><![CDATA["./firmaUNo.png"]]></imageExpression>
+			</image>
 		</band>
 	</pageFooter>
 </jasperReport>

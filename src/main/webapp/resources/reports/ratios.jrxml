@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="530" leftMargin="30" rightMargin="35" topMargin="30" bottomMargin="20" uuid="f245fdf4-2e49-40fc-9352-825a8270c2e7">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="204"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
@@ -206,7 +206,7 @@ WHERE c.id_cuenta LIKE "1%" AND c.tipo_saldo="H" AND m.fecha BETWEEN "2017-11-1"
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="13" isBold="true"/>
 				</textElement>
-				<text><![CDATA[BALANCE GENERAL]]></text>
+				<text><![CDATA[RAZONES FINANCIERAS]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="70" y="81" width="394" height="20" uuid="1a31b864-3f92-45f2-9216-b216f70deaa3"/>
@@ -214,9 +214,9 @@ WHERE c.id_cuenta LIKE "1%" AND c.tipo_saldo="H" AND m.fecha BETWEEN "2017-11-1"
 				<text><![CDATA[Cantidades expresadas en dolares de los Estados Unidos de América]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="70" y="21" width="394" height="20" uuid="be45e0de-290d-4a98-bc1d-e5da957e0fcd"/>
+				<reportElement x="70" y="0" width="394" height="31" uuid="be45e0de-290d-4a98-bc1d-e5da957e0fcd"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="12"/>
+					<font size="19" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nom_empresa}]]></textFieldExpression>
 			</textField>
@@ -294,31 +294,31 @@ WHERE c.id_cuenta LIKE "1%" AND c.tipo_saldo="H" AND m.fecha BETWEEN "2017-11-1"
 				<reportElement x="159" y="205" width="232" height="15" uuid="4c1c6ce1-d04f-4cde-ab5e-cf8cef754a61"/>
 				<text><![CDATA[Utilidad Bruta / Ventas]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="407" y="18" width="100" height="20" uuid="a75e6baf-0680-4644-8bbf-6f93e025058b"/>
 				<textFieldExpression><![CDATA[$P{pruebaAcida}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="407" y="47" width="100" height="20" uuid="274a0a71-b764-4882-9e34-ab4a237d0727"/>
 				<textFieldExpression><![CDATA[$P{capTrabajo}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="407" y="76" width="100" height="20" uuid="204ade78-73b3-4934-a1a1-b653bf554203"/>
 				<textFieldExpression><![CDATA[$P{razonCorriente}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="407" y="96" width="100" height="20" uuid="d1c76687-6725-47d0-8833-2ea68c74b1e2"/>
 				<textFieldExpression><![CDATA[$P{ppPago}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="407" y="125" width="100" height="20" uuid="d8ed8d45-9c9c-4e13-ae04-b2c03c6869e4"/>
 				<textFieldExpression><![CDATA[$P{ppCobro}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="407" y="148" width="100" height="20" uuid="6eed703e-a3de-4b67-b042-2a098715050f"/>
 				<textFieldExpression><![CDATA[$P{rotAct}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="407" y="173" width="100" height="20" uuid="cc64823a-fb24-4178-845b-d3b359d2d66c"/>
 				<textFieldExpression><![CDATA[$P{indEndeudamiento}]]></textFieldExpression>
 			</textField>
@@ -336,8 +336,7 @@ WHERE c.id_cuenta LIKE "1%" AND c.tipo_saldo="H" AND m.fecha BETWEEN "2017-11-1"
 			</staticText>
 			<textField>
 				<reportElement x="407" y="225" width="100" height="20" uuid="004a8fdc-fccf-41bc-9308-7d4f14f56e79"/>
-				<textFieldExpression><![CDATA[$P{uOpe}+"%"
-]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{uOpe}+"%"]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="245" width="153" height="15" uuid="193800f9-62c1-4835-a1de-baaa59f6b9bc"/>
@@ -403,15 +402,15 @@ Auditor]]></text>
 			</staticText>
 			<image>
 				<reportElement x="70" y="19" width="208" height="34" uuid="a9ea207a-8712-49d9-a79f-1ae5d5a01525"/>
-				<imageExpression><![CDATA["/home/phyroot/JAVA/ANALISIS-FINANCIERO/new/sistema_financiero/src/main/webapp/resources/reports/firmaTRes.png"]]></imageExpression>
+				<imageExpression><![CDATA["./firmaTRes.png"]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="265" y="31" width="221" height="22" uuid="e35447b2-ac22-40ae-84dc-6de04fd4fccf"/>
-				<imageExpression><![CDATA["/home/phyroot/JAVA/ANALISIS-FINANCIERO/new/sistema_financiero/src/main/webapp/resources/reports/firmaDos.png"]]></imageExpression>
+				<imageExpression><![CDATA["./firmaDos.png"]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="431" y="26" width="145" height="27" uuid="05d44e58-0fe4-44ca-8855-797f10ba96c3"/>
-				<imageExpression><![CDATA["/home/phyroot/JAVA/ANALISIS-FINANCIERO/new/sistema_financiero/src/main/webapp/resources/reports/firmaUNo.png"]]></imageExpression>
+				<imageExpression><![CDATA["./firmaUNo.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageFooter>

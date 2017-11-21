@@ -129,7 +129,6 @@ public class FrmReportes implements Serializable {
     }
 
     public void putParametros() {
-        parametros.put("nom_empresa", nombreEmpresa);
         parametros.put("Ventas", ventas);
         parametros.put("revVentas", rebVentas);
         parametros.put("invInicial", invInicial);
@@ -212,17 +211,17 @@ public class FrmReportes implements Serializable {
 
     public void parametrosRazones() {
         parametros.put("pruebaAcida", (activosCorrientes - invFinal / pasivoCorriente));
-        parametros.put("capTrabajo", new BigDecimal(activosCorrientes - pasivoCorriente).setScale(4,RoundingMode.HALF_UP).doubleValue());
-        parametros.put("razonCorriente", new BigDecimal(activosCorrientes / pasivoCorriente).setScale(4,RoundingMode.HALF_UP).doubleValue());
-        parametros.put("ppPago", new BigDecimal(cuentasPagar / (compras / 360)).setScale(4,RoundingMode.HALF_UP).doubleValue());
-        parametros.put("ppCobro", new BigDecimal(cuentasCobrar / (ventas / 360)).setScale(4,RoundingMode.HALF_UP).doubleValue());
-        parametros.put("rotAct", new BigDecimal(ventas / totalActivos).setScale(4,RoundingMode.HALF_UP).doubleValue());
-        parametros.put("indEndeudamiento", new BigDecimal(totalPasivos / totalActivos).setScale(4,RoundingMode.HALF_UP).doubleValue());
-        parametros.put("margenBruto", new BigDecimal((uBruta / ventas) * 100).setScale(4,RoundingMode.HALF_UP).doubleValue());
-        parametros.put("uOpe", new BigDecimal((uOPe / ventas) * 100).setScale(4,RoundingMode.HALF_UP).doubleValue());
-        parametros.put("uNeta", new BigDecimal((utilidad / ventas) * 100).setScale(4,RoundingMode.HALF_UP).doubleValue());
-        parametros.put("RSA", new BigDecimal((utilidad / totalActivos) * 100).setScale(4,RoundingMode.HALF_UP).doubleValue());
-        parametros.put("RSP", new BigDecimal((utilidad / (totalActivos - totalPasivos)) * 100).setScale(4,RoundingMode.HALF_UP).doubleValue());
+        parametros.put("capTrabajo", new BigDecimal(activosCorrientes - pasivoCorriente).setScale(4, RoundingMode.HALF_UP).doubleValue());
+        parametros.put("razonCorriente", new BigDecimal(activosCorrientes / pasivoCorriente).setScale(4, RoundingMode.HALF_UP).doubleValue());
+        parametros.put("ppPago", new BigDecimal(cuentasPagar / (compras / 360)).setScale(4, RoundingMode.HALF_UP).doubleValue());
+        parametros.put("ppCobro", new BigDecimal(cuentasCobrar / (ventas / 360)).setScale(4, RoundingMode.HALF_UP).doubleValue());
+        parametros.put("rotAct", new BigDecimal(ventas / totalActivos).setScale(4, RoundingMode.HALF_UP).doubleValue());
+        parametros.put("indEndeudamiento", new BigDecimal(totalPasivos / totalActivos).setScale(4, RoundingMode.HALF_UP).doubleValue());
+        parametros.put("margenBruto", new BigDecimal((uBruta / ventas) * 100).setScale(4, RoundingMode.HALF_UP).doubleValue());
+        parametros.put("uOpe", new BigDecimal((uOPe / ventas) * 100).setScale(4, RoundingMode.HALF_UP).doubleValue());
+        parametros.put("uNeta", new BigDecimal((utilidad / ventas) * 100).setScale(4, RoundingMode.HALF_UP).doubleValue());
+        parametros.put("RSA", new BigDecimal((utilidad / totalActivos) * 100).setScale(4, RoundingMode.HALF_UP).doubleValue());
+        parametros.put("RSP", new BigDecimal((utilidad / (totalActivos - totalPasivos)) * 100).setScale(4, RoundingMode.HALF_UP).doubleValue());
 
     }
 
@@ -293,9 +292,17 @@ public class FrmReportes implements Serializable {
         }
         if (tipoReporte.equals("ER")) {
             tipoJasper = "EstadoResultados.jasper";
+            try {
+                parametros.put("nom_empresa", nombreEmpresa);
 
-            estadoResultados();
-            putParametros();
+                parametros.put("periodo", "Periodo realizado del " + limpiarUtilDate(fechaIncial) + " al " + limpiarUtilDate(fechaFin));
+
+                estadoResultados();
+                putParametros();
+
+            } catch (Exception e) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+            }
         }
         if (tipoReporte.equals("RZ")) {
             tipoJasper = "ratios.jasper";

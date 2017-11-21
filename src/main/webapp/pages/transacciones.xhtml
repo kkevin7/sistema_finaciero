@@ -18,21 +18,21 @@
                         <h4><p:outputLabel value="Menu de cuentas:"/></h4>
                         <p:menu style="width: 100%">
                             <p:submenu label="Activos">
-                                <p:menuitem value="Activos Corrientes" actionListener="#{frmCont.findCuentas(11, 'Activos Corrientes')}" update="tblcuentas:cuentas movimientosxcuenta"/>
-                                <p:menuitem value="Activos No Corrientes" actionListener="#{frmCont.findCuentas(12, 'Activos No Corrientes')}" update="tblcuentas:cuentas movimientosxcuenta"/>
+                                <p:menuitem value="Activos Corrientes" actionListener="#{frmCont.findCuentas(11, 'Activos Corrientes')}" update="tblcuentas:cuentas movimientosxcuenta:movcuent"/>
+                                <p:menuitem value="Activos No Corrientes" actionListener="#{frmCont.findCuentas(12, 'Activos No Corrientes')}" update="tblcuentas:cuentas movimientosxcuenta:movcuent"/>
                             </p:submenu>
                             <p:submenu label="Pasivos">
-                                <p:menuitem value="Pasivos Corrientes" actionListener="#{frmCont.findCuentas(21, 'Pasivos Corrientes')}" update="tblcuentas:cuentas movimientosxcuenta"/>
-                                <p:menuitem value="Pasivos No Corrientes" actionListener="#{frmCont.findCuentas(22, 'Pasivos No Corrientes')}" update="tblcuentas:cuentas movimientosxcuenta"/>
+                                <p:menuitem value="Pasivos Corrientes" actionListener="#{frmCont.findCuentas(21, 'Pasivos Corrientes')}" update="tblcuentas:cuentas movimientosxcuenta:movcuent"/>
+                                <p:menuitem value="Pasivos No Corrientes" actionListener="#{frmCont.findCuentas(22, 'Pasivos No Corrientes')}" update="tblcuentas:cuentas movimientosxcuenta:movcuent"/>
                             </p:submenu>
                             <p:submenu label="Capital">
-                                <p:menuitem value="Capital" actionListener="#{frmCont.findCuentas(3, 'Capital')}" update="tblcuentas:cuentas movimientosxcuenta"/>
+                                <p:menuitem value="Capital" actionListener="#{frmCont.findCuentas(3, 'Capital')}" update="tblcuentas:cuentas movimientosxcuenta:movcuent"/>
                             </p:submenu>
                             <p:submenu label="Gastos">
-                                <p:menuitem value="Gastos" actionListener="#{frmCont.findCuentas(4, 'Gastos')}" update="tblcuentas:cuentas movimientosxcuenta"/>
+                                <p:menuitem value="Gastos" actionListener="#{frmCont.findCuentas(4, 'Gastos')}" update="tblcuentas:cuentas movimientosxcuenta:movcuent"/>
                             </p:submenu>
                             <p:submenu label="Ingresos">
-                                <p:menuitem value="Ingresos" actionListener="#{frmCont.findCuentas(5, 'Ingresos')}" update="tblcuentas:cuentas movimientosxcuenta"/>
+                                <p:menuitem value="Ingresos" actionListener="#{frmCont.findCuentas(5, 'Ingresos')}" update="tblcuentas:cuentas movimientosxcuenta:movcuent"/>
                             </p:submenu>
                         </p:menu>
                     </h:form>
