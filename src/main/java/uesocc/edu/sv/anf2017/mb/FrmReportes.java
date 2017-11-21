@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -32,6 +33,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JRParameter;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -66,8 +68,8 @@ public class FrmReportes implements Serializable {
     Double pasCorrientePos, pasCorrienteNeg, pasivoCorriente;
     Double pasNoCorrientePos, pasNoCorrienteNeg, pasivoNOCorriente;
     Double capitalPos, capitalNeg, capital;
-    Double totalActivos;
-    Double totalPasivosCapital;
+    Double totalActivos, cuentasCobrar, cuentasPagar;
+    Double totalPasivosCapital, totalPasivos;
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     private List<Movimientos> datos = new ArrayList<Movimientos>();
     Map<String, Object> parametros = new HashMap<String, Object>();
@@ -78,7 +80,7 @@ public class FrmReportes implements Serializable {
             variable = (Double) query.getSingleResult();
         } catch (Exception e) {
         }
-        if (variable == null ) {
+        if (variable == null) {
             variable = 0.0;
         }
         return variable;
@@ -123,7 +125,7 @@ public class FrmReportes implements Serializable {
         }
         reserva = UAI * 0.07;
         utilidad = UAI - impuesto - reserva;
-        
+
     }
 
     public void putParametros() {
@@ -148,60 +150,83 @@ public class FrmReportes implements Serializable {
         parametros.put("reserva", reserva);
         parametros.put("utilidad", utilidad);
     }
-    
-    public void balanceGeneral(){
+
+    public void balanceGeneral() {
         try {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("uesocc.edu.sv_anf2017_war_1.0-SNAPSHOTPU");
-        EntityManager em = emf.createEntityManager();
-        Query ACPositivo = em.createNamedQuery("Movimientos.activosCorrientePOSI");
-        actCorrientePosi = obtenerValidar(ACPositivo);
-        Query ACNegativo = em.createNamedQuery("Movimientos.activosCorrienteNEG");
-        actCorriNegativo = obtenerValidar(ACNegativo);
-        //Activos Corrientes
-        activosCorrientes = actCorrientePosi - actCorriNegativo;
-            System.out.println("Activos corrientes:::---> "+activosCorrientes);
-        Query ACNOPositivo = em.createNamedQuery("Movimientos.activosNOCorrientesPOSI");
-        actNOCorriPositivo = obtenerValidar(ACNOPositivo);
-        Query ACNONegativo = em.createNamedQuery("Movimientos.activosNOCorrientesNEG");
-        actNOCorriNegativo = obtenerValidar(ACNONegativo);
-        //Activos No Corrientes
-        activosNOCorrientes = actNOCorriPositivo - actNOCorriNegativo;
-            System.out.println("Activos No corrientes:::--->"+activosNOCorrientes);
-        Query PACPositivo = em.createNamedQuery("Movimientos.pasivosCorrientesPOSI");
-        pasCorrientePos = obtenerValidar(PACPositivo);
-        Query PACNegativo = em.createNamedQuery("Movimientos.pasivosCorrientesNEG");
-        pasCorrienteNeg = obtenerValidar(PACNegativo);
-        //Pasivos Corrientes
-        pasivoCorriente = pasCorrientePos - pasCorrienteNeg;
-            System.out.println("Pasivos Corriente:::--->"+pasivoCorriente);
-        Query PACNOPositivo = em.createNamedQuery("Movimientos.pasivosNOCorrientesPOSI");
-        pasNoCorrientePos = obtenerValidar(PACNOPositivo);
-        Query PACNONegativo = em.createNamedQuery("Movimientos.pasivosNOCorrientesNEG");
-        pasNoCorrienteNeg = obtenerValidar(PACNONegativo);
-        //Pasivos No Corrientes
-        pasivoNOCorriente = pasNoCorrientePos - pasNoCorrienteNeg;
-            System.out.println("Pasivos NO Corriente:::--->"+pasivoNOCorriente);
-        Query capPositivo = em.createNamedQuery("Movimientos.capitalPOSI");
-        capitalPos = obtenerValidar(capPositivo);
-        Query capNegativo = em.createNamedQuery("Movimientos.capitalNEG");
-        capitalNeg = obtenerValidar(capNegativo);
-        //Capital
-        capital = capitalPos - capitalNeg;
-            System.out.println("Capital:::----> "+capital);
-        //Total Suma Activos
-        totalActivos = activosCorrientes + activosNOCorrientes;
-            System.out.println("Total de Activos::---> "+totalActivos);
-        //Total Pasivo + Capital (falta Utilidad y reserva)
-        totalPasivosCapital = pasivoCorriente + pasivoNOCorriente + capital;
-            System.out.println("Total de Capita y Pasivos::--> "+totalPasivosCapital);
-        
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("uesocc.edu.sv_anf2017_war_1.0-SNAPSHOTPU");
+            EntityManager em = emf.createEntityManager();
+            Query ACPositivo = em.createNamedQuery("Movimientos.activosCorrientePOSI");
+            actCorrientePosi = obtenerValidar(ACPositivo);
+            Query ACNegativo = em.createNamedQuery("Movimientos.activosCorrienteNEG");
+            actCorriNegativo = obtenerValidar(ACNegativo);
+            //Activos Corrientes
+            activosCorrientes = actCorrientePosi - actCorriNegativo;
+            System.out.println("Activos corrientes:::---> " + activosCorrientes);
+            Query ACNOPositivo = em.createNamedQuery("Movimientos.activosNOCorrientesPOSI");
+            actNOCorriPositivo = obtenerValidar(ACNOPositivo);
+            Query ACNONegativo = em.createNamedQuery("Movimientos.activosNOCorrientesNEG");
+            actNOCorriNegativo = obtenerValidar(ACNONegativo);
+            //Activos No Corrientes
+            activosNOCorrientes = actNOCorriPositivo - actNOCorriNegativo;
+            System.out.println("Activos No corrientes:::--->" + activosNOCorrientes);
+            Query PACPositivo = em.createNamedQuery("Movimientos.pasivosCorrientesPOSI");
+            pasCorrientePos = obtenerValidar(PACPositivo);
+            Query PACNegativo = em.createNamedQuery("Movimientos.pasivosCorrientesNEG");
+            pasCorrienteNeg = obtenerValidar(PACNegativo);
+
+            //Pasivos Corrientes
+            pasivoCorriente = pasCorrientePos - pasCorrienteNeg;
+            System.out.println("Pasivos Corriente:::--->" + pasivoCorriente);
+            Query PACNOPositivo = em.createNamedQuery("Movimientos.pasivosNOCorrientesPOSI");
+            pasNoCorrientePos = obtenerValidar(PACNOPositivo);
+            Query PACNONegativo = em.createNamedQuery("Movimientos.pasivosNOCorrientesNEG");
+            pasNoCorrienteNeg = obtenerValidar(PACNONegativo);
+            //Pasivos No Corrientes
+            pasivoNOCorriente = pasNoCorrientePos - pasNoCorrienteNeg;
+            System.out.println("Pasivos NO Corriente:::--->" + pasivoNOCorriente);
+            Query capPositivo = em.createNamedQuery("Movimientos.capitalPOSI");
+            capitalPos = obtenerValidar(capPositivo);
+            Query capNegativo = em.createNamedQuery("Movimientos.capitalNEG");
+            capitalNeg = obtenerValidar(capNegativo);
+            //Capital
+            capital = capitalPos - capitalNeg;
+            System.out.println("Capital:::----> " + capital);
+            //Total Suma Activos
+            totalActivos = activosCorrientes + activosNOCorrientes;
+            System.out.println("Total de Activos::---> " + totalActivos);
+            //Total Pasivo + Capital (falta Utilidad y reserva)
+            totalPasivosCapital = pasivoCorriente + pasivoNOCorriente + capital;
+            totalPasivos = pasivoCorriente + pasivoNOCorriente;
+            System.out.println("Total de Capita y Pasivos::--> " + totalPasivosCapital);
+
+            Query cc = em.createNamedQuery("Movimientos.cuentasCobrar");
+            cuentasCobrar = obtenerValidar(cc);
+            Query cp = em.createNamedQuery("Movimientos.cuentasPagar");
+            cuentasPagar = obtenerValidar(cp);
+
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
         }
-        
+
     }
-    
-    public void parametrosBalance(){
+
+    public void parametrosRazones() {
+        parametros.put("pruebaAcida", (activosCorrientes - invFinal / pasivoCorriente));
+        parametros.put("capTrabajo", new BigDecimal(activosCorrientes - pasivoCorriente).setScale(4,RoundingMode.HALF_UP).doubleValue());
+        parametros.put("razonCorriente", new BigDecimal(activosCorrientes / pasivoCorriente).setScale(4,RoundingMode.HALF_UP).doubleValue());
+        parametros.put("ppPago", new BigDecimal(cuentasPagar / (compras / 360)).setScale(4,RoundingMode.HALF_UP).doubleValue());
+        parametros.put("ppCobro", new BigDecimal(cuentasCobrar / (ventas / 360)).setScale(4,RoundingMode.HALF_UP).doubleValue());
+        parametros.put("rotAct", new BigDecimal(ventas / totalActivos).setScale(4,RoundingMode.HALF_UP).doubleValue());
+        parametros.put("indEndeudamiento", new BigDecimal(totalPasivos / totalActivos).setScale(4,RoundingMode.HALF_UP).doubleValue());
+        parametros.put("margenBruto", new BigDecimal((uBruta / ventas) * 100).setScale(4,RoundingMode.HALF_UP).doubleValue());
+        parametros.put("uOpe", new BigDecimal((uOPe / ventas) * 100).setScale(4,RoundingMode.HALF_UP).doubleValue());
+        parametros.put("uNeta", new BigDecimal((utilidad / ventas) * 100).setScale(4,RoundingMode.HALF_UP).doubleValue());
+        parametros.put("RSA", new BigDecimal((utilidad / totalActivos) * 100).setScale(4,RoundingMode.HALF_UP).doubleValue());
+        parametros.put("RSP", new BigDecimal((utilidad / (totalActivos - totalPasivos)) * 100).setScale(4,RoundingMode.HALF_UP).doubleValue());
+
+    }
+
+    public void parametrosBalance() {
         parametros.put("actCorrientes", activosCorrientes.toString());
         parametros.put("actNoCorrientes", activosNOCorrientes.toString());
         parametros.put("pasCorrientes", pasivoCorriente.toString());
@@ -247,6 +272,9 @@ public class FrmReportes implements Serializable {
     }
 
     public void tipoReportesJasper() {
+
+        parametros.put(JRParameter.REPORT_MAX_COUNT, 1);
+
         if (tipoReporte.equals("BG")) {
             tipoJasper = "balanceGeneral.jasper";
 
@@ -268,6 +296,21 @@ public class FrmReportes implements Serializable {
 
             estadoResultados();
             putParametros();
+        }
+        if (tipoReporte.equals("RZ")) {
+            tipoJasper = "ratios.jasper";
+            try {
+                parametros.put("nom_empresa", nombreEmpresa);
+
+                parametros.put("periodo", "Periodo realizado del " + limpiarUtilDate(fechaIncial) + " al " + limpiarUtilDate(fechaFin));
+
+            } catch (Exception e) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+            }
+            estadoResultados();
+            balanceGeneral();
+            putParametros();
+            parametrosRazones();
         }
 
     }

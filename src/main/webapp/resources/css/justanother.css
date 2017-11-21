@@ -1,0 +1,123 @@
+.l-grid {
+     display: -ms-grid;
+}
+
+* {
+     box-sizing: border-box;
+}
+
+body {
+   background: #fff;
+   padding: 1rem; 
+}
+
+
+.l-grid--half-half {
+     -ms-grid-columns: 1fr 1rem 1fr;
+     -ms-grid-rows: minmax(100vh, 1fr);
+}
+
+.second {
+     -ms-grid-column: 3;
+}
+
+/* Aligning with legacy grid is a little more difficult
+ because of the lack of align-items, you must use align-self */
+
+.ms-center-content {
+     -ms-grid-columns: 1fr;
+     -ms-grid-rows: 1fr;
+}
+
+.ms-align-center {
+     -ms-grid-column: 1;
+     -ms-grid-column-align: center;
+     -ms-grid-row-align: center;
+}
+
+/* Evergreen browsers that don't yet support grid */
+@supports not(display: -ms-grid) {
+     
+     .l-grid {
+          display: flex; 
+     }
+
+     .l-grid--half-half > .l-grid__item {
+          flex: 1 1 auto;
+     }
+
+     .l-grid--gutter-large {
+          margin-left: -1rem;
+     }
+
+     .l-grid--gutter-large > .l-grid__item {
+          margin-left: 1rem;
+     }
+}
+
+/* Evergreen browsers with full grid support */
+@supports (display: grid) {
+     /* Only the display: grid part needs a feature query */
+     .l-grid {
+          display: grid;
+     } 
+     
+     /* Reset the margins since we no longer need them */
+     .l-grid--gutter-large {
+          margin: initial;
+     }
+     
+     .l-grid--gutter-large > .l-grid__item {
+          margin: initial;
+     }
+}
+
+/* Declares two columns 1 fraction each */
+.l-grid--half-half {
+     grid-template-columns: 1fr 1fr;
+}
+
+/* Declares a gutter of 1rem between grid items */
+.l-grid--gutter-large {
+     grid-gap: 1rem;
+}
+
+
+.l-center-center {
+     align-items: center;
+     justify-content: center;
+}
+
+.l-full-height {
+     min-height: 100vh;
+}
+
+.theme-green {
+     background: #eee;
+     color: #111;
+}
+
+.theme-white {
+     background: #eee;
+     color: #111;
+}
+
+.content {
+     max-width: 500px;
+}
+
+.heading {
+     font-family: 'Playfair Display', serif;
+     font-weight: 700;
+     font-size: 2.5rem;
+     line-height: 1.2;
+     margin-bottom: 1rem;
+
+}
+
+.description {
+     font-family: 'Raleway', sans-serif;
+     font-weight: 400;
+     font-size: 0.9rem;
+     line-height: 1.5;
+}

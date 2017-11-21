@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title> Cuentas </title>
+    </h:head>
+    <h:body>
+
+        <ui:composition template="../templates/dinamyctemplate.xhtml">
+            <ui:define name="content">
+
+
+
+
+                <div >
+                    <h3>Importación de Archivos</h3>
+
+                    <h5>Este aplicativo se encuentra en fase de pruebas y desarrollo, pero ha sido habilitado para su utilización teniendo los cuidados respectivos frente a la utilización de datos erroneos
+                    </h5>
+                    <h5>Por su comprensión , gracias.
+
+                    </h5>    
+                    <br/>
+
+
+
+                </div>
+
+                <div class="l-grid l-grid--half-half l-grid--gutter-large l-full-height">
+
+                    <div class="l-grid__item l-grid theme-green l-center-center center-content">
+                        <div class="content first ms-align-center">
+                            <h2 class="heading">Cuentas</h2>
+                            <h4>Utilize este apartado para adjundtar un archivo que contenga información respecto a Cuentas.</h4>
+
+
+                            <h:form>
+                                <p:fileUpload  fileUploadListener="#{frmBatch.uploadFile}" update=":msg :containerC" mode="advanced"
+                                               auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(csv)$/" />
+
+                                <p:growl id="messages" showDetail="true" />
+                            </h:form>
+
+                            <h:form id="containerC">
+                                <p:panel id="panelC">
+                                    <p:panelGrid columns="2">
+                                        <p:outputLabel value="#{frmBatch.file.fileName==null?'Archivo no adjunto':frmBatch.file.fileName}"  />
+                                        <p:commandButton value="Procesar"  actionListener="#{frmBatch.process()}"/>
+                                    </p:panelGrid>
+                                </p:panel>
+
+
+
+                            </h:form>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="l-grid__item l-grid l-center-center theme-white second ms-center-content">
+                        <div class="content ms-align-center">
+                            <h2 class="heading">Transacciones</h2>
+                            <h4>Utilize este apartado para adjuntar archivos que contengan información respecto a Transacciones.</h4>
+
+
+                            <h:form>
+                                <p:fileUpload fileUploadListener="#{frmBatch.uploadFile}" mode="advanced"
+                                              update=":msg :containerP" auto="true" sizeLimit="100000" allowTypes="/(csv)$/" />
+
+                                <p:growl id="messages" showDetail="true" />
+                            </h:form>
+                            <h:form id="containerP">
+                                <p:panel id="panelP">
+                                    <p:panelGrid columns="2">
+                                        <p:outputLabel value="#{frmBatch.file.fileName==null?'Archivo no adjunto':frmBatch.file.fileName}"  />
+                                        <p:commandButton value="Procesar"  actionListener="#{frmBatch.processT  ()}"/>
+                                    </p:panelGrid>
+                                </p:panel>
+
+
+
+                            </h:form>
+
+
+                        </div>
+                    </div>
+                    <br/>
+                </div>
+
+
+
+                <p:growl id="msg" autoUpdate="true" />
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

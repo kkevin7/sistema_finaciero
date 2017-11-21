@@ -14,6 +14,8 @@
         <link href="../resources/css/sidebar-hide.css" rel="stylesheet" type="text/css" media="all" />
         <link href="../resources/css/generic-clasess.css" rel="stylesheet" type="text/css" media="all" />
         <link href="../resources/css/footer_principal.css" rel="stylesheet" type="text/css" media="all"/>
+        <link href="../resources/css/justanother.css" rel="stylesheet" type="text/css" media="all"/>
+
     </h:head>
 
     <h:body>
@@ -36,37 +38,37 @@
                             </div>
 
                             <ul class="list-unstyled components">
-                            <li>
-                                <h:link outcome="/index.jsf">
-                                    <i class="glyphicon glyphicon-home"></i>
-                                    Inicio
-                                </h:link>
-                            </li>
-                            <li>
+                                <li>
+                                    <h:link outcome="/index.jsf">
+                                        <i class="glyphicon glyphicon-home"></i>
+                                        Inicio
+                                    </h:link>
+                                </li>
+                                <li>
 
-                                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
-                                    <i class="glyphicon glyphicon-duplicate"></i>
-                                    Pages
-                                </a>
-                                <ul class="list-unstyled collapse in" id="pageSubmenu">
-                                    <li><h:link outcome="catalogo.jsf" value="Catalogo"/></li>
-                                    <li><h:link outcome="transacciones.jsf" value="Transacciones"/></li>
-                                    <li><h:link outcome="cont.jsf" value="Contabilidad"/></li>
-                                    <li><h:link outcome="empresas.jsf" value="Empresas"/></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#reporteSubmenu" data-toggle="collapse" aria-expanded="false">
-                                    <i class="fa fa-print"></i>
-                                    Reportes
-                                </a>
-                                <ul class="collapse list-unstyled" id="reporteSubmenu">
-                                    <li><h:link outcome="reportes.jsf" value="Reportes"/></li>
-                                    <li><a href="#">Estado de resultado</a></li>
-                                    <li><a href="#">Balance</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
+                                        <i class="glyphicon glyphicon-duplicate"></i>
+                                        Pages
+                                    </a>
+                                    <ul class="list-unstyled collapse in" id="pageSubmenu">
+                                        <li><h:link outcome="catalogo.jsf" value="Catalogo"/></li>
+                                        <li><h:link outcome="transacciones.jsf" value="Transacciones"/></li>
+                                        <li><h:link outcome="cont.jsf" value="Contabilidad"/></li>
+                                        <li><h:link outcome="empresas.jsf" value="Empresas"/></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#reporteSubmenu" data-toggle="collapse" aria-expanded="false">
+                                        <i class="fa fa-print"></i>
+                                        Reportes
+                                    </a>
+                                    <ul class="collapse list-unstyled" id="reporteSubmenu">
+                                        <li><h:link outcome="reportes.jsf" value="Reportes"/></li>
+                                        <li><a href="#">Estado de resultado</a></li>
+                                        <li><a href="#">Balance</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </nav>
 
 

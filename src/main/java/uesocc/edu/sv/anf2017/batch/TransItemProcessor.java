@@ -18,41 +18,49 @@ import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import uesocc.edu.sv.anf2017.ejb.CuentasFacadeLocal;
+import uesocc.edu.sv.anf2017.ejb.EmpresasFacadeLocal;
 import uesocc.edu.sv.anf2017.ejb.TipoCuentaFacadeLocal;
 import uesocc.edu.sv.anf2017.ejb.TipoEstadoFacadeLocal;
 import uesocc.edu.sv.anf2017.entities.Cuentas;
+import uesocc.edu.sv.anf2017.entities.Empresas;
+import uesocc.edu.sv.anf2017.entities.Movimientos;
 
 @Dependent
-@Named(value = "itemProcessor")
-public class ItmProcessor implements ItemProcessor {
+@Named(value = "transItemProcessor")
+public class TransItemProcessor implements ItemProcessor {
 
-    private Cuentas ncuenta;
+    private Movimientos nmovimiento;
+    private SimpleDateFormat datehelper = new SimpleDateFormat("yyyy/MM/dd");
     @Inject
     protected JobContext jobContext;
     @EJB
-    private TipoCuentaFacadeLocal ejbTipoCuenta;
+    private EmpresasFacadeLocal ejbEmpresa;
     @EJB
-    private TipoEstadoFacadeLocal ejbTipoEstado;
+    private CuentasFacadeLocal ejbCuenta;
     private String rs;
     private char cr;
 
     @Override
 
     public Object processItem(Object item) {
-            ncuenta = new Cuentas();
+        nmovimiento = new Movimientos();
         System.out.println("processItem: " + item.toString());
+       
+     
+
         try {
             rs = item.toString();
+            
             StringTokenizer tokens = new StringTokenizer(rs, ",");
-            ncuenta.setIdCuenta(Integer.valueOf(tokens.nextToken()));            
-            ncuenta.setNombre(tokens.nextToken());
-            ncuenta.setIdTipoCuenta(ejbTipoCuenta.find(Integer.valueOf(tokens.nextToken())));
-            ncuenta.setIdTipoEstado(ejbTipoEstado.find(Integer.valueOf(tokens.nextToken())));
-            ncuenta.setTipoSaldo(tokens.nextToken().charAt(0));
-            if (!tokens.hasMoreTokens()) {
-                ncuenta.setDescripcion("Sin detalles");
+            
+            nmovimiento.setIdEmpresa(ejbEmpresa.find(Integer.valueOf(tokens.nextToken())));
+            nmovimiento.setIdCuenta(ejbCuenta.find(Integer.valueOf(tokens.nextToken())));
+            nmovimiento.setMonto(Double.valueOf(tokens.nextToken()));
+            nmovimiento.setFecha(datehelper.parse(tokens.nextToken())); 
+            if (!tokens.hasMoreTokens() ) {
+                nmovimiento.setDescripcion("Sin detalles");
             } else {
-                ncuenta.setDescripcion(tokens.toString());
+                nmovimiento.setDescripcion(tokens.toString());
             }
 
         } catch (Exception ex) {
@@ -62,7 +70,7 @@ public class ItmProcessor implements ItemProcessor {
 
         } 
 
-              return ncuenta;
+              return nmovimiento;
        
     }
 }

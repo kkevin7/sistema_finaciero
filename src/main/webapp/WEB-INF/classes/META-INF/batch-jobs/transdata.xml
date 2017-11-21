@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job id="transdata" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+    <step id="firstStep" >
+        <chunk checkpoint-policy="item" item-count="3" >
+            <reader ref="transItemReader"/>
+            <processor ref="transItemProcessor"/>
+            <writer ref="transItemWriter"/>
+        </chunk>    
+    </step>
+</job>

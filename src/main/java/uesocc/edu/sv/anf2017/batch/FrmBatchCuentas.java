@@ -28,12 +28,15 @@ public class FrmBatchCuentas implements Serializable {
     private UploadedFile file;
     private File destFile;
 
+    
+    
+    
     public void uploadFile(FileUploadEvent event) throws IOException {
         file = event.getFile();
         destFile = new File("file.csv");
         FileUtils.copyInputStreamToFile(file.getInputstream(), destFile);
 
-        FacesMessage message = new FacesMessage("Trabajo con id ", file.getFileName() + "Ha comenzado.");
+        FacesMessage message = new FacesMessage("Archivo Adjuntado ", "");
         FacesContext.getCurrentInstance().addMessage(null, message);
 
     }
@@ -57,6 +60,26 @@ public class FrmBatchCuentas implements Serializable {
         }
 
     }
+     public void processT() {
+        try {
+            //STARTING JOB
+            JobOperator jo = BatchRuntime.getJobOperator();
+            Properties props = new Properties();
+            props.setProperty("filePath", destFile.getAbsolutePath());
+
+            long jid = jo.start("transdata", props);
+            JobExecution je = jo.getJobExecution(jid);
+
+            FacesMessage message = new FacesMessage("Trabajo con id ", je.getExecutionId() + "Ha comenzado.");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+
+        }
+
+    }
+
 
     /**
      * @return the file
