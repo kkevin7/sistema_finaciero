@@ -70,6 +70,7 @@ public class FrmReportes implements Serializable {
     Double capitalPos, capitalNeg, capital;
     Double totalActivos, cuentasCobrar, cuentasPagar;
     Double totalPasivosCapital, totalPasivos;
+    Double actOtrosPos, actOtrosNeg, activosOtros;
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     private List<Movimientos> datos = new ArrayList<Movimientos>();
     Map<String, Object> parametros = new HashMap<String, Object>();
@@ -172,7 +173,14 @@ public class FrmReportes implements Serializable {
             pasCorrientePos = obtenerValidar(PACPositivo);
             Query PACNegativo = em.createNamedQuery("Movimientos.pasivosCorrientesNEG");
             pasCorrienteNeg = obtenerValidar(PACNegativo);
-
+            //Activos Otros
+            Query AOPositivo = em.createNamedQuery("Movimientos.activosOtrosPOSI");
+            actOtrosPos = obtenerValidar(AOPositivo);
+            Query AONegativo = em.createNamedQuery("Movimientos.activosOtrosNEG");
+            actOtrosNeg = obtenerValidar(AONegativo);
+            activosOtros = actOtrosPos - actOtrosNeg;
+            System.out.println("Activos Otros:::--->" + activosOtros);
+            
             //Pasivos Corrientes
             pasivoCorriente = pasCorrientePos - pasCorrienteNeg;
             System.out.println("Pasivos Corriente:::--->" + pasivoCorriente);
@@ -191,7 +199,7 @@ public class FrmReportes implements Serializable {
             capital = capitalPos - capitalNeg;
             System.out.println("Capital:::----> " + capital);
             //Total Suma Activos
-            totalActivos = activosCorrientes + activosNOCorrientes;
+            totalActivos = activosCorrientes + activosNOCorrientes + activosOtros;
             System.out.println("Total de Activos::---> " + totalActivos);
             //Total Pasivo + Capital (falta Utilidad y reserva)
             totalPasivosCapital = pasivoCorriente + pasivoNOCorriente + capital;

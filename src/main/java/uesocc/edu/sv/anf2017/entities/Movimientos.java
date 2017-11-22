@@ -63,6 +63,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Movimientos.capitalNEG", query = "SELECT SUM(m.monto) FROM Movimientos m JOIN m.idCuenta c WHERE c.idCuenta LIKE '3%' AND c.tipoSaldo='D' AND m.fecha BETWEEN '2017-11-1' AND '2017-11-30' ORDER BY m.fecha ASC")
     , @NamedQuery(name = "Movimientos.totalActivosPOSI", query = "SELECT SUM(m.monto) FROM Movimientos m JOIN m.idCuenta c WHERE c.idCuenta LIKE '1%' AND c.tipoSaldo='H' AND m.fecha BETWEEN '2017-11-1' AND '2017-11-30' ORDER BY m.fecha ASC")
     , @NamedQuery(name = "Movimientos.totalActivosNEG", query = "SELECT SUM(m.monto) FROM Movimientos m JOIN m.idCuenta c WHERE c.idCuenta LIKE '1%' AND c.tipoSaldo='D' AND m.fecha BETWEEN '2017-11-1' AND '2017-11-30' ORDER BY m.fecha ASC")
+    , @NamedQuery(name = "Movimientos.activosOtrosPOSI", query = "SELECT SUM(m.monto) FROM Movimientos m JOIN m.idCuenta c WHERE c.idCuenta LIKE '13%' AND c.tipoSaldo='H' AND m.fecha BETWEEN '2017-11-1' AND '2017-11-30' ORDER BY m.fecha ASC")
+    , @NamedQuery(name = "Movimientos.activosOtrosNEG", query = "SELECT SUM(m.monto) FROM Movimientos m JOIN m.idCuenta c WHERE c.idCuenta LIKE '13%' AND c.tipoSaldo='D' AND m.fecha BETWEEN '2017-11-1' AND '2017-11-30' ORDER BY m.fecha ASC")
     , @NamedQuery(name = "Movimientos.findByDescripcion", query = "SELECT m FROM Movimientos m WHERE m.descripcion = :descripcion")})
 public class Movimientos implements Serializable {
 

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="balanceGeneral" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="51cf5fb5-7ee8-4a2b-b5a5-e4d4a579700f">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="198"/>
+	<property name="ireport.y" value="288"/>
 	<style name="Crosstab Data Text" hAlign="Center"/>
 	<style name="table">
 		<box>
@@ -980,7 +980,7 @@ WHERE c.id_cuenta LIKE "3%" AND m.fecha BETWEEN $P{fechaInicioC} AND $P{fechaFin
 			<groupExpression><![CDATA[$F{monto}]]></groupExpression>
 		</group>
 	</subDataset>
-	<subDataset name="bg_activos_otros" uuid="6eb3b39a-2c89-42d4-bff3-895d3225b2a7">
+	<subDataset name="bg_activos_otros" uuid="b4925749-f963-48dc-8f91-2e4e4a054e77">
 		<parameter name="fechaInicioAO" class="java.lang.String"/>
 		<parameter name="fechaFinAO" class="java.lang.String"/>
 		<queryString>
@@ -1020,6 +1020,8 @@ WHERE c.id_cuenta LIKE "13%" AND m.fecha BETWEEN $P{fechaInicioAO} AND $P{fechaF
 	<parameter name="capital" class="java.lang.String"/>
 	<parameter name="totalActivos" class="java.lang.String"/>
 	<parameter name="totalPasCapital" class="java.lang.String"/>
+	<parameter name="utilidad" class="java.lang.String"/>
+	<parameter name="reserva" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT m.id_cuenta,c.nombre,m.fecha,m.monto FROM analisisf2017.movimientos m INNER JOIN analisisf2017.cuentas c ON m.id_cuenta = c.id_cuenta
 WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha]]>
@@ -1320,7 +1322,7 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha]]>
 				<textFieldExpression><![CDATA[$P{pasCorrientes}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="83">
+		<band height="78">
 			<componentElement>
 				<reportElement key="table 12" style="table 12" x="289" y="54" width="266" height="20" uuid="84ccc12f-345f-4f2b-92ec-88f06c9adc5b"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
@@ -1392,16 +1394,16 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha]]>
 				<textFieldExpression><![CDATA[$P{pasNoCorrientes}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="73" y="34" width="160" height="20" uuid="cd6b51f2-5661-4ae1-be33-03c7daa49808"/>
-				<textElement>
+				<reportElement x="73" y="34" width="164" height="20" uuid="9a7e1179-be84-46e7-82d0-de549f8d3c91"/>
+				<textElement verticalAlignment="Top">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[OTROS ACTIVOS]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement key="table 34" style="table 34" x="26" y="54" width="252" height="20" uuid="7ef8c895-49e3-4f2e-ba0d-137e04d34d24"/>
+				<reportElement key="table 34" style="table 34" x="26" y="54" width="252" height="20" uuid="5ae08168-e25e-410b-b6e5-4efabde621fc"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="bg_activos_otros" uuid="3058e9c5-235d-47b4-8483-7e381b0c02fb">
+					<datasetRun subDataset="bg_activos_otros" uuid="0bc7f654-d872-4018-88a0-1e54954ae81d">
 						<datasetParameter name="fechaInicioAO">
 							<datasetParameterExpression><![CDATA[$P{fechaInicio}]]></datasetParameterExpression>
 						</datasetParameter>
@@ -1410,10 +1412,10 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha]]>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="90" uuid="ff779e8a-e3e9-40bc-84bc-c878a1376b1f">
+					<jr:column width="90" uuid="48a17567-6e93-4db9-8948-aeac9dd5bc5a">
 						<jr:detailCell style="table 34_TD" height="20">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="b8e13296-4b8f-4de7-8626-5e2750ca7dc9"/>
+								<reportElement x="0" y="0" width="90" height="20" uuid="8cac114d-319a-4a0f-8355-b98bd1fd0a6b"/>
 								<textElement>
 									<font size="8"/>
 								</textElement>
@@ -1421,10 +1423,10 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="77334de4-de4f-4f2f-b3e0-b5e23dc4620c">
+					<jr:column width="90" uuid="b9211a0a-a127-42b1-979c-8fc826eff5c4">
 						<jr:detailCell style="table 34_TD" height="20">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="10d2d977-8343-4512-9809-ca7bfba380a5"/>
+								<reportElement x="0" y="0" width="90" height="20" uuid="30d28e96-3a6d-4c7c-94f3-18ca39548568"/>
 								<textElement>
 									<font size="8"/>
 								</textElement>
@@ -1432,10 +1434,10 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="f62326ac-d301-4e26-9bb5-c904e58b000f">
+					<jr:column width="90" uuid="a6b9f521-dcad-4551-84ea-f5b4ee688485">
 						<jr:detailCell style="table 34_TD" height="20">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="dacf4024-9116-4bd2-a8e9-89b036b52f19"/>
+								<reportElement x="0" y="0" width="90" height="20" uuid="d29d8bc5-607a-4476-b22d-1d348cbdcf6d"/>
 								<textElement>
 									<font size="8"/>
 								</textElement>
@@ -1448,36 +1450,64 @@ WHERE m.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin} ORDER BY m.fecha]]>
 		</band>
 		<band height="161">
 			<staticText>
-				<reportElement x="304" y="0" width="100" height="20" uuid="2d0a1f52-6b82-4d88-b214-47c5484f3824"/>
+				<reportElement x="307" y="54" width="100" height="20" uuid="2d0a1f52-6b82-4d88-b214-47c5484f3824"/>
 				<text><![CDATA[Total Capital = $]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="96" y="47" width="130" height="20" uuid="a5fc9236-3e94-4a98-941a-fe1f30978c48"/>
+				<reportElement x="99" y="101" width="130" height="20" uuid="a5fc9236-3e94-4a98-941a-fe1f30978c48"/>
 				<text><![CDATA[TOTAL DE ACTIVOS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="327" y="47" width="166" height="20" uuid="28893b7a-a02f-4f23-8a57-cf2189ef48c8"/>
+				<reportElement x="330" y="101" width="166" height="20" uuid="28893b7a-a02f-4f23-8a57-cf2189ef48c8"/>
 				<text><![CDATA[TOTAL PASIVO Y CAPITAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="113" y="67" width="13" height="20" uuid="9dd82aff-5032-4150-9e0d-45ad636bc2cb"/>
+				<reportElement x="116" y="121" width="13" height="20" uuid="9dd82aff-5032-4150-9e0d-45ad636bc2cb"/>
 				<text><![CDATA[$]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="336" y="67" width="13" height="20" uuid="c2b854ac-a75f-4f78-bfcf-1158b4efe843"/>
+				<reportElement x="339" y="121" width="13" height="20" uuid="c2b854ac-a75f-4f78-bfcf-1158b4efe843"/>
 				<text><![CDATA[$]]></text>
 			</staticText>
 			<textField pattern="#,##0.00">
-				<reportElement x="126" y="67" width="100" height="20" uuid="a75b43c4-f490-423c-b79d-ea3db5a0d166"/>
+				<reportElement x="129" y="121" width="100" height="20" uuid="a75b43c4-f490-423c-b79d-ea3db5a0d166"/>
 				<textFieldExpression><![CDATA[$P{totalActivos}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00">
-				<reportElement x="349" y="67" width="117" height="20" uuid="644afdd1-89f0-4879-87fc-e6c10f332d39"/>
+				<reportElement x="352" y="121" width="117" height="20" uuid="644afdd1-89f0-4879-87fc-e6c10f332d39"/>
 				<textFieldExpression><![CDATA[$P{totalPasCapital}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="404" y="0" width="100" height="20" uuid="3639754a-0a0a-400b-a07d-66679ad9ea16"/>
+				<reportElement x="407" y="54" width="100" height="20" uuid="3639754a-0a0a-400b-a07d-66679ad9ea16"/>
 				<textFieldExpression><![CDATA[$P{capital}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="319" y="0" width="100" height="20" uuid="4817c4aa-5a7a-4d89-a719-3ca0e8d2315a"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Utilidad de ejercicio = $]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="20" width="100" height="20" uuid="be517849-8c5f-42d6-9f74-cdafb5a4a0c5"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Reserva Legal =$]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="419" y="0" width="114" height="20" uuid="3b2b8632-a36a-4798-92f9-8c1111ebc9e8"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{utilidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="419" y="20" width="114" height="20" uuid="95bbd3f5-a2de-4dde-a8a4-d9753676229e"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{reserva}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
