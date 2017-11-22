@@ -30,7 +30,7 @@ import uesocc.edu.sv.anf2017.entities.Movimientos;
 public class TransItemProcessor implements ItemProcessor {
 
     private Movimientos nmovimiento;
-    private SimpleDateFormat datehelper = new SimpleDateFormat("yyyy/MM/dd");
+    private SimpleDateFormat datehelper = new SimpleDateFormat("yyyy-MM-dd");
     @Inject
     protected JobContext jobContext;
     @EJB

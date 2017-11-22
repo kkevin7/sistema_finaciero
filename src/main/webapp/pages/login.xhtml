@@ -7,21 +7,22 @@
         <title>Iniciar Sesión</title>
         <link rel="stylesheet" href="../resources/css/login.css" />
 
-        
+
     </h:head>
     <h:body>
-          <div class="login">
-  
-              <h1 Class="login-header" ><p:outputLabel value="Inicie Sesión"/></h1>
+        <div class="login">
 
-  <h:form styleClass="login-container">
-      <p><p:inputText type="email" placeholder="Email" /></p>
-    <p><p:inputText type="password" placeholder="Password" /></p>
-    <p><p:inputText type="submit" value="Log in"   /></p>
-  </h:form>
-</div>
+            <h1 Class="login-header" ><p:outputLabel value="Inicie Sesión"/></h1>
 
-  
+            <h:form styleClass="login-container">
+                <p><p:inputText type="email" placeholder="Email" value="#{frmLogin.usuario.login}" /></p>
+                <p><p:inputText type="password" placeholder="Password" value="#{frmLogin.usuario.clave}" /></p>
+                <p><p:commandButton value="Log in" actionListener="#{frmLogin.login()}" update=":msg"   /></p>
+            </h:form>
+        </div>
+        <p:growl id="msg"/>
+
+
     </h:body>
 </html>
 

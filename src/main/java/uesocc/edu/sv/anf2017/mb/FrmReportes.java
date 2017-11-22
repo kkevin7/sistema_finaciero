@@ -69,7 +69,7 @@ public class FrmReportes implements Serializable {
     Double pasNoCorrientePos, pasNoCorrienteNeg, pasivoNOCorriente;
     Double capitalPos, capitalNeg, capital;
     Double totalActivos, cuentasCobrar, cuentasPagar;
-    Double totalPasivosCapital, totalPasivos;
+    Double totalPasivosCapital, totalPasivos, inventarioBa;
     Double actOtrosPos, actOtrosNeg, activosOtros;
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     private List<Movimientos> datos = new ArrayList<Movimientos>();
@@ -198,11 +198,19 @@ public class FrmReportes implements Serializable {
             //Capital
             capital = capitalPos - capitalNeg;
             System.out.println("Capital:::----> " + capital);
+            
+            
+            if (tipoReporte.equals("BG")) {
+                reserva=0.0;
+                utilidad=0.0;
+            }
+            
+            
             //Total Suma Activos
             totalActivos = activosCorrientes + activosNOCorrientes + activosOtros;
             System.out.println("Total de Activos::---> " + totalActivos);
             //Total Pasivo + Capital (falta Utilidad y reserva)
-            totalPasivosCapital = pasivoCorriente + pasivoNOCorriente + capital;
+            totalPasivosCapital = pasivoCorriente + pasivoNOCorriente + capital + reserva + utilidad;
             totalPasivos = pasivoCorriente + pasivoNOCorriente;
             System.out.println("Total de Capita y Pasivos::--> " + totalPasivosCapital);
 
@@ -210,6 +218,9 @@ public class FrmReportes implements Serializable {
             cuentasCobrar = obtenerValidar(cc);
             Query cp = em.createNamedQuery("Movimientos.cuentasPagar");
             cuentasPagar = obtenerValidar(cp);
+            Query ib= em.createNamedQuery("Movimientos.inventarioB");
+            inventarioBa = obtenerValidar(ib);
+            
 
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
@@ -218,7 +229,8 @@ public class FrmReportes implements Serializable {
     }
 
     public void parametrosRazones() {
-        parametros.put("pruebaAcida", (activosCorrientes - invFinal / pasivoCorriente));
+        
+        parametros.put("pruebaAcida", ((activosCorrientes - inventarioBa) / pasivoCorriente));
         parametros.put("capTrabajo", new BigDecimal(activosCorrientes - pasivoCorriente).setScale(4, RoundingMode.HALF_UP).doubleValue());
         parametros.put("razonCorriente", new BigDecimal(activosCorrientes / pasivoCorriente).setScale(4, RoundingMode.HALF_UP).doubleValue());
         parametros.put("ppPago", new BigDecimal(cuentasPagar / (compras / 360)).setScale(4, RoundingMode.HALF_UP).doubleValue());
@@ -241,6 +253,8 @@ public class FrmReportes implements Serializable {
         parametros.put("capital", capital.toString());
         parametros.put("totalActivos", totalActivos.toString());
         parametros.put("totalPasCapital", totalPasivosCapital.toString());
+        parametros.put("reserva", reserva.toString());
+        parametros.put("utilidad", utilidad.toString());
     }
 
     public FrmReportes() {
@@ -326,6 +340,23 @@ public class FrmReportes implements Serializable {
             balanceGeneral();
             putParametros();
             parametrosRazones();
+        }
+        if (tipoReporte.equals("BGU")) {
+            tipoJasper = "balanceGeneralUtilidad.jasper";
+
+            try {
+                parametros.put("nom_empresa", nombreEmpresa);
+                parametros.put("fechaInicio", limpiarUtilDate(fechaIncial));
+                parametros.put("fechaFin", limpiarUtilDate(fechaFin));
+                parametros.put("periodo", "Periodo realizado del " + limpiarUtilDate(fechaIncial) + " al " + limpiarUtilDate(fechaFin));
+                estadoResultados();
+                balanceGeneral();
+                parametrosBalance();
+
+            } catch (Exception e) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+            }
+
         }
 
     }
