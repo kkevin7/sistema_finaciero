@@ -1,0 +1,51 @@
+.contenedor {
+    padding:0 0 0 0;
+    width:auto;
+    margin-bottom: 5%;
+}
+
+.contenido {
+    padding:1%;
+    border-width:5px;
+    width:47%;
+    margin: 1%;
+    display:inline-block;
+    background: #d3d5f2;
+}
+
+.contenido-main{
+    width: 98%;
+    margin: 1%;
+}
+
+.cajon1{
+    width: 98%;
+    height: 150px;
+    clear:both;
+    background:#000FFF;
+    margin: 1%;
+}
+.cajon2{
+    width: 48%;
+    height: 500px;
+    float:left;
+    background:#000FFF;
+    margin: 1%;
+
+}
+.cajon3{
+    width: 48%;
+    height: 500px;
+    float:left;
+    background:#CC6600;
+    margin: 1%;
+}
+
+.padre{
+    border: 1px;
+    display: inline-block;
+    width: auto;
+    margin: auto;
+    text-align: left;
+}
+
