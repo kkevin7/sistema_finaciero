@@ -195,9 +195,6 @@ public class FrmReportes implements Serializable {
             capitalPos = obtenerValidar(capPositivo);
             Query capNegativo = em.createNamedQuery("Movimientos.capitalNEG");
             capitalNeg = obtenerValidar(capNegativo);
-            //Capital
-            capital = capitalPos - capitalNeg;
-            System.out.println("Capital:::----> " + capital);
             
             
             if (tipoReporte.equals("BG")) {
@@ -206,11 +203,17 @@ public class FrmReportes implements Serializable {
             }
             
             
+            //Capital
+            capital = capitalPos - capitalNeg + reserva + utilidad;
+            System.out.println("Capital:::----> " + capital);
+            
+            
+            
             //Total Suma Activos
             totalActivos = activosCorrientes + activosNOCorrientes + activosOtros;
             System.out.println("Total de Activos::---> " + totalActivos);
             //Total Pasivo + Capital (falta Utilidad y reserva)
-            totalPasivosCapital = pasivoCorriente + pasivoNOCorriente + capital + reserva + utilidad;
+            totalPasivosCapital = pasivoCorriente + pasivoNOCorriente + capital ;
             totalPasivos = pasivoCorriente + pasivoNOCorriente;
             System.out.println("Total de Capita y Pasivos::--> " + totalPasivosCapital);
 
